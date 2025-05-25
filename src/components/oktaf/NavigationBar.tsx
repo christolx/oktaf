@@ -1,93 +1,97 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Search, Bell, Users, Settings } from 'lucide-react';
+import { cn } from '@/lib/utils'; // Ensure you have this utility from ShadCN setup
 
-interface NavigationBarProps {
-    className?: string;
-}
+const navItems = ['Albums', 'Playlists', 'Tracks'];
 
-const NavigationBar: React.FC<NavigationBarProps> = ({ className = '' }) => {
-    const [activeTab, setActiveTab] = useState('Albums');
+export function NavigationBar() {
+    const [activeNav, setActiveNav] = useState('Albums');
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const tabs = ['Albums', 'Playlists', 'Tracks'];
+    // Consistent height for buttons and input, ~28-30px from Figma (h-7)
+    // py-1 (top/bottom 4px) + text-sm (14px) + line-height adjustment
+    const elementHeightClass = 'h-[30px]';
+    const buttonPaddingClass = 'px-3.5 py-1';
 
     return (
-        <div
-            className={`
-                w-full px-6 py-3 
-                bg-gray-800/90 backdrop-blur-lg rounded-2xl 
-                flex items-center justify-between
-                border border-gray-700/30
-                ${className}
-            `}
+        <header
+            className={cn(
+                "flex w-full items-center justify-between gap-4 px-4 py-2",
+                // Figma's specific radial gradient and blur:
+                // "bg-[radial-gradient(ellipse_49.14%_718.37%_at_50.00%_0.00%,_rgba(14,14,14,0.42)_0%,_rgba(36,36,36,0.42)_100%)]",
+                // Simplified dark translucent background:
+                "bg-zinc-900/70 backdrop-blur-xl",
+                "rounded-2xl text-white" // Figma: rounded-2xl
+            )}
         >
-            {/* Left Section - Filter Tabs */}
-            <div className="flex items-center gap-3">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                        className={`
-                            px-5 py-2 rounded-lg
-                            text-sm font-medium transition-all duration-200
-                            ${activeTab === tab
-                            ? 'bg-gray-600 text-white shadow-sm'
-                            : 'bg-gray-900/80 text-gray-300 hover:bg-gray-700/80 hover:text-white'
-                        }
-                        `}
-                        style={{ fontFamily: 'League Spartan, sans-serif' }}
+            {/* Left: Navigation Buttons */}
+            <div className="flex items-center gap-2">
+                {navItems.map((item) => (
+                    <Button
+                        key={item}
+                        variant="ghost" // Base variant, styling handled by className
+                        onClick={() => setActiveNav(item)}
+                        className={cn(
+                            elementHeightClass,
+                            buttonPaddingClass,
+                            "text-sm font-medium transition-colors",
+                            "rounded-lg", // Figma: rounded-lg
+                            activeNav === item
+                                ? "bg-zinc-500 text-white" // Active state: Lighter gray bg, white text
+                                : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600 hover:text-zinc-100" // Inactive: Darker gray bg
+                        )}
                     >
-                        {tab}
-                    </button>
+                        {item}
+                    </Button>
                 ))}
             </div>
 
-            {/* Center Section - Search Bar */}
-            <div className="flex-1 max-w-96 mx-8">
-                <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="
-                            w-full h-9 pl-10 pr-4
-                            bg-gray-900/60 rounded-lg
-                            text-gray-300 text-sm font-medium
-                            placeholder:text-gray-400
-                            outline-none border border-gray-700/50
-                            focus:border-gray-600 focus:bg-gray-900/80
-                            transition-all duration-200
-                        "
-                        style={{ fontFamily: 'League Spartan, sans-serif' }}
-                    />
-                </div>
+            {/* Middle: Search Bar */}
+            <div className="relative flex-grow max-w-xs sm:max-w-sm md:w-96">
+                <Search className="absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+                <Input
+                    type="search"
+                    placeholder="Search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className={cn(
+                        elementHeightClass,
+                        "w-full rounded-lg border-transparent bg-zinc-700 pl-9 pr-3 text-sm text-zinc-100 placeholder:text-zinc-400",
+                        "focus-visible:ring-1 focus-visible:ring-zinc-500 focus-visible:ring-offset-0 focus-visible:border-transparent"
+                    )}
+                />
             </div>
 
-            {/* Right Section - Action Buttons */}
+            {/* Right: Action Icons & Avatar */}
             <div className="flex items-center gap-2">
-                {/* Notification Bell */}
-                <button className="w-9 h-9 bg-gray-900/80 rounded-lg flex items-center justify-center hover:bg-gray-700/80 transition-colors border border-gray-700/50">
-                    <Bell className="w-4 h-4 text-gray-300" strokeWidth={1.5} />
-                </button>
-
-                {/* Users/Groups */}
-                <button className="w-9 h-9 bg-gray-900/80 rounded-lg flex items-center justify-center hover:bg-gray-700/80 transition-colors border border-gray-700/50">
-                    <Users className="w-4 h-4 text-gray-300" strokeWidth={1.5} />
-                </button>
-
-                {/* Settings */}
-                <button className="w-9 h-9 bg-gray-900/80 rounded-lg flex items-center justify-center hover:bg-gray-700/80 transition-colors border border-gray-700/50">
-                    <Settings className="w-4 h-4 text-gray-300" strokeWidth={1.5} />
-                </button>
-
-                {/* Profile Avatar */}
-                <button className="w-9 h-9 bg-gray-900/80 rounded-lg flex items-center justify-center hover:bg-gray-700/80 transition-colors border border-gray-700/50">
-                    <div className="w-5 h-5 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
-                        <div className="w-3 h-3 bg-white rounded-full"></div>
-                    </div>
-                </button>
+                {[Bell, Users, Settings].map((IconComponent, index) => (
+                    <Button
+                        key={index}
+                        variant="ghost"
+                        size="icon"
+                        className={cn(
+                            "h-7 w-7 rounded-full p-0 text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                        )}
+                        aria-label={IconComponent.displayName || 'Action icon'}
+                    >
+                        <IconComponent size={18} strokeWidth={1.5} />
+                    </Button>
+                ))}
+                <Avatar className="h-7 w-7">
+                    <AvatarImage
+                        src="https://placehold.co/28x28/FF5733/FFFFFF?text=U&font=roboto" // Placeholder, adjust as needed
+                        alt="User Avatar"
+                    />
+                    <AvatarFallback className="text-xs bg-zinc-600 text-zinc-200">
+                        U
+                    </AvatarFallback>
+                </Avatar>
             </div>
-        </div>
+        </header>
     );
-};
+}
 
 export default NavigationBar;

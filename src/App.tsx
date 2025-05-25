@@ -1,12 +1,13 @@
-import { useState } from 'react'
 import './App.css'
-import NavigationBar from "@/components/oktaf/NavigationBar.tsx";
+import NavigationBar from './components/oktaf/NavigationBar'
 
 function App() {
 
   return (
     <>
-        <NavigationBar />
+        <div className={"w-[90vw] flex justify-start items-start"}>
+            <NavigationBar />
+        </div>
     </>
   )
 }
