@@ -1,15 +1,17 @@
-import './App.css'
-import NavigationBar from './components/oktaf/NavigationBar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router'
+import { HomePage } from '@/pages/HomePage.tsx'
+import { AlbumDetailPage } from '@/pages/AlbumDetailPage'
 
 function App() {
-
-  return (
-    <>
-        <div className={"w-[90vw] flex justify-start items-start"}>
-            <NavigationBar />
-        </div>
-    </>
-  )
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/album/:albumId" element={<AlbumDetailPage />} />
+                {/* Add more routes as needed */}
+            </Routes>
+        </Router>
+    )
 }
 
 export default App
