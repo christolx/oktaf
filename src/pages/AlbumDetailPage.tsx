@@ -1,12 +1,13 @@
 // src/pages/AlbumDetailPage.tsx
-import {useState} from 'react'
-import {useParams, useNavigate} from 'react-router'
-import {Button} from '@/components/ui/button'
-import {AlbumArt} from '@/components/ui/AlbumArt'
-import {Sidebar} from '@/components/oktaf/Sidebar'
-import {BottomPlayer} from '@/components/oktaf/BottomPlayer'
+import { useState } from 'react'
+import { useParams, useNavigate } from 'react-router'
+import { Button } from '@/components/ui/button'
+import { AlbumArt } from '@/components/ui/AlbumArt'
+import { Sidebar } from '@/components/oktaf/Sidebar'
+import { BottomPlayer } from '@/components/oktaf/BottomPlayer'
 import NavHeader from '@/components/oktaf/NavHeader'
-import {usePlayer} from '@/contexts/PlayerContext'
+import { usePlayer } from '@/contexts/PlayerContext'
+import { useAlbumColors } from '@/hooks/useAlbumColors'
 import {
     navigationIcons,
     albumsForYou,
@@ -18,7 +19,9 @@ import {
     getAlbumTracks,
     calculateAlbumDuration,
     formatPlayCount,
-    mainNavItems, type CurrentTrack,
+    mainNavItems,
+    type CurrentTrack,
+    type Track
 } from '@/data/DummyData'
 
 const {
@@ -31,10 +34,10 @@ const {
 } = navigationIcons
 
 export function AlbumDetailPage() {
-    const {albumId} = useParams()
+    const { albumId } = useParams()
     const navigate = useNavigate()
     const [activeNav, setActiveNav] = useState(mainNavItems[0].id)
-    const {playTrack, currentTrack, isPlaying} = usePlayer()
+    const { playTrack, currentTrack, isPlaying } = usePlayer()
 
     // Find the album from all available albums
     const allAlbums = [
@@ -47,6 +50,11 @@ export function AlbumDetailPage() {
     ]
 
     const album = allAlbums.find(a => a.id === albumId)
+
+    // Extract colors from album art
+    const albumArtUrl = typeof album?.art === 'string' ? album.art : album?.art?.value || ''
+    const { dominant, vibrant, muted, isLoading: colorsLoading } = useAlbumColors(albumArtUrl)
+
     const tracks = album ? getAlbumTracks(album.id) : []
     const albumDuration = tracks.length > 0 ? calculateAlbumDuration(tracks) : '0m'
 
@@ -55,7 +63,7 @@ export function AlbumDetailPage() {
         navigate(`/?section=${navId}`)
     }
 
-    const handleTrackPlay = (track: any) => {
+    const handleTrackPlay = (track: Track) => {
         const trackData: CurrentTrack = {
             id: track.id,
             title: track.title,
@@ -93,7 +101,7 @@ export function AlbumDetailPage() {
             <div className="flex flex-1 min-h-0 pb-20 relative">
                 {/* Sidebar */}
                 <div className="relative z-40">
-                    <Sidebar/>
+                    <Sidebar />
                 </div>
 
                 {/* Main Content Area - Full Height */}
@@ -108,23 +116,51 @@ export function AlbumDetailPage() {
 
                     {/* Main Content - Extends Full Height */}
                     <div className="h-full overflow-y-auto">
-                        {/* Header with album info and background */}
+                        {/* Header with album info and dynamic background */}
                         <div className="relative min-h-[500px]">
                             {/* Background with album art blur effect */}
                             <div
                                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                                 style={{
-                                    backgroundImage: `url(${album.art})`,
+                                    backgroundImage: `url(${albumArtUrl})`,
                                     filter: 'blur(50px) brightness(0.3)',
                                     transform: 'scale(1.1)',
                                 }}
                             />
 
-                            {/* Gradient overlays */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/90"/>
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60"/>
+                            {/* Dynamic color overlays */}
+                            {colorsLoading ? (
+                                // Fallback gradients while colors are loading
+                                <>
+                                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/90" />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60" />
+                                </>
+                            ) : (
+                                // Dynamic color gradients based on album art
+                                <>
+                                    {/* Base color gradient - most prominent */}
+                                    <div
+                                        className="absolute inset-0"
+                                        style={{
+                                            background: `linear-gradient(135deg, ${dominant}75 0%, ${vibrant}65 50%, ${muted}80 100%)`
+                                        }}
+                                    />
 
-                            {/* Header content - Add top padding for floating nav */}
+                                    {/* Accent radial gradient */}
+                                    <div
+                                        className="absolute inset-0"
+                                        style={{
+                                            background: `radial-gradient(ellipse 80% 60% at center top, ${vibrant}55 0%, transparent 70%)`
+                                        }}
+                                    />
+
+                                    {/* Subtle vignette effects */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
+                                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/25 to-black/85" />
+                                </>
+                            )}
+
+                            {/* Header content with top padding for floating nav */}
                             <div className="relative z-20 p-8 pt-24">
                                 {/* Album info section */}
                                 <div className="flex items-end gap-8 mb-8">
@@ -158,39 +194,61 @@ export function AlbumDetailPage() {
                                         className="bg-green-500 hover:bg-green-400 text-black w-14 h-14 rounded-full shadow-lg"
                                         onClick={() => tracks.length > 0 && handleTrackPlay(tracks[0])}
                                     >
-                                        <Play className="w-6 h-6 fill-current ml-1"/>
+                                        <Play className="w-6 h-6 fill-current ml-1" />
                                     </Button>
 
-                                    <Button variant="ghost" size="icon"
-                                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10">
-                                        <Shuffle className="w-5 h-5"/>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                    >
+                                        <Shuffle className="w-5 h-5" />
                                     </Button>
 
-                                    <Button variant="ghost" size="icon"
-                                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10">
-                                        <Heart className="w-5 h-5"/>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                    >
+                                        <Heart className="w-5 h-5" />
                                     </Button>
 
-                                    <Button variant="ghost" size="icon"
-                                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10">
-                                        <ThumbsDown className="w-5 h-5"/>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                    >
+                                        <ThumbsDown className="w-5 h-5" />
                                     </Button>
 
-                                    <Button variant="ghost" size="icon"
-                                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10">
-                                        <Download className="w-5 h-5"/>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                    >
+                                        <Download className="w-5 h-5" />
                                     </Button>
 
-                                    <Button variant="ghost" size="icon"
-                                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10">
-                                        <MoreHorizontal className="w-5 h-5"/>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                    >
+                                        <MoreHorizontal className="w-5 h-5" />
                                     </Button>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Track listing */}
-                        <div className="bg-gradient-to-b from-black/90 to-[#0a0a0a] px-8 pb-8">
+                        {/* Track listing with dynamic background continuation */}
+                        <div
+                            className="px-8 pb-8"
+                            style={{
+                                background: colorsLoading
+                                    ? 'linear-gradient(to bottom, rgba(0,0,0,0.9), #0a0a0a)'
+                                    : `linear-gradient(to bottom, ${dominant}15, #0a0a0a)`
+                            }}
+                        >
                             {tracks.length > 0 ? (
                                 <>
                                     {/* Table header */}
@@ -229,7 +287,7 @@ export function AlbumDetailPage() {
                                                                 <span className={`group-hover:hidden ${isCurrentTrack ? 'text-green-400' : 'text-white/60'}`}>
                                                                     {track.number || index + 1}
                                                                 </span>
-                                                                <Play className="w-4 h-4 hidden group-hover:inline-block fill-current text-white"/>
+                                                                <Play className="w-4 h-4 hidden group-hover:inline-block fill-current text-white" />
                                                             </>
                                                         )}
                                                     </div>
@@ -263,7 +321,7 @@ export function AlbumDetailPage() {
                     </div>
                 </div>
             </div>
-            <BottomPlayer/>
+            <BottomPlayer />
         </div>
     )
 }
