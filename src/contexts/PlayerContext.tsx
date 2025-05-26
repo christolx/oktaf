@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react'
 import type {ReactNode} from 'react'
 import { currentTrack as initialTrack, initialPlayerState, type CurrentTrack, type PlayerState } from '@/data/DummyData'
 
@@ -142,11 +142,11 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
     })
 
     // Simulate time progression when playing
-    useState(() => {
-        let interval: NodeJS.Timeout | null = null
+    const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
+    useEffect(() => {
         if (playerState.isPlaying && currentTime < duration) {
-            interval = setInterval(() => {
+            intervalRef.current = setInterval(() => {
                 setCurrentTime(prev => {
                     const newTime = prev + 1
                     if (currentTrack) {
@@ -158,12 +158,19 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
                     return newTime >= duration ? duration : newTime
                 })
             }, 1000)
+        } else {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current)
+                intervalRef.current = null
+            }
         }
 
         return () => {
-            if (interval) clearInterval(interval)
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current)
+            }
         }
-    })
+    }, [playerState.isPlaying, currentTime, duration])
 
     const value: PlayerContextType = {
         currentTrack,
