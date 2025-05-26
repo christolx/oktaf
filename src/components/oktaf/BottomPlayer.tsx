@@ -226,7 +226,7 @@ export function BottomPlayer() {
                 {/* Enhanced glassmorphism background with rounded corners */}
                 <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-r from-black/70 via-black/60 to-black/70 rounded-xl shadow-2xl">
                     {/* Additional glass layers for enhanced depth */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5 rounded-xl" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/5 to-white/5 rounded-xl" />
                     <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-xl" />
                     {/* Subtle inner glow */}
                     <div className="absolute inset-[1px] rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent" />
@@ -249,10 +249,10 @@ export function BottomPlayer() {
                             </div>
                         </div>
                         <div className="min-w-0 flex-1">
-                            <div className="text-white text-sm font-medium truncate hover:text-green-400 cursor-pointer transition-colors drop-shadow-sm">
+                            <div className="text-white text-sm font-medium truncate hover:text-green-400 cursor-pointer !transition-colors drop-shadow-sm">
                                 {currentTrack.title}
                             </div>
-                            <div className="text-white/70 text-xs truncate hover:text-white cursor-pointer transition-colors drop-shadow-sm">
+                            <div className="text-white/70 text-xs truncate hover:text-white cursor-pointer !transition-colors drop-shadow-sm">
                                 {currentTrack.artist}
                             </div>
                         </div>
@@ -261,7 +261,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={toggleBookmark}
-                                className={`h-8 w-8 transition-all duration-200 backdrop-blur-sm rounded-full ${
+                                className={`h-8 w-8 !transition-all duration-200 hover:bg-transparent backdrop-blur-sm rounded-full ${
                                     currentTrack.isBookmarked
                                         ? 'text-green-500 hover:text-green-400 scale-110 drop-shadow-md'
                                         : 'text-white/60 hover:text-white hover:scale-110'
@@ -273,7 +273,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={toggleLike}
-                                className={`h-8 w-8 transition-all duration-200 backdrop-blur-sm rounded-full ${
+                                className={`h-8 w-8 !transition-all duration-200 hover:bg-transparent backdrop-blur-sm rounded-full ${
                                     currentTrack.isLiked
                                         ? 'text-green-500 hover:text-green-400 scale-110 drop-shadow-md'
                                         : 'text-white/60 hover:text-white hover:scale-110'
@@ -285,7 +285,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={toggleDislike}
-                                className={`h-8 w-8 transition-all duration-200 hover:scale-110 backdrop-blur-sm rounded-full ${
+                                className={`h-8 w-8 !transition-all duration-200 hover:bg-transparent hover:scale-110 backdrop-blur-sm rounded-full ${
                                     currentTrack.isDisliked
                                         ? 'text-red-500 hover:text-red-400 drop-shadow-md'
                                         : 'text-white/60 hover:text-white'
@@ -305,7 +305,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={toggleShuffle}
-                                className={`h-8 w-8 transition-all duration-200 hover:scale-110 backdrop-blur-sm rounded-full ${
+                                className={`h-8 w-8 !transition-all duration-200 hover:bg-transparent hover:scale-110 backdrop-blur-sm rounded-full ${
                                     playerState.isShuffled
                                         ? 'text-green-500 hover:text-green-400 drop-shadow-md'
                                         : 'text-white/60 hover:text-white'
@@ -318,7 +318,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={previousTrack}
-                                className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                                className="text-white/50 hover:scale-120 hover:bg-transparent hover:text-white !transition-all duration-200 h-10 w-10"
                                 title="Previous Track"
                             >
                                 <SkipBack className="w-4 h-4" />
@@ -327,7 +327,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={togglePlayPause}
-                                className="text-black bg-white/90 hover:bg-white hover:scale-105 transition-all duration-200 h-10 w-10 shadow-lg backdrop-blur-sm rounded-full"
+                                className="text-white hover:scale-120 hover:bg-transparent hover:text-white !transition-all duration-200 h-10 w-10"
                                 title={isPlaying ? "Pause" : "Play"}
                             >
                                 {isPlaying ? (
@@ -340,7 +340,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={nextTrack}
-                                className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                                className="text-white/50 hover:scale-120 hover:bg-transparent hover:text-white !transition-all duration-200 h-10 w-10"
                                 title="Next Track"
                             >
                                 <SkipForward className="w-4 h-4" />
@@ -349,7 +349,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={toggleRepeat}
-                                className={`h-8 w-8 transition-all duration-200 hover:scale-110 relative backdrop-blur-sm rounded-full ${
+                                className={`h-8 w-8 transition-all duration-200 hover:bg-transparent hover:scale-110 relative backdrop-blur-sm rounded-full ${
                                     playerState.repeatMode !== 'off'
                                         ? 'text-green-500 hover:text-green-400 drop-shadow-md'
                                         : 'text-white/60 hover:text-white'
@@ -377,7 +377,7 @@ export function BottomPlayer() {
                                 onMouseDown={handleProgressMouseDown}
                             >
                                 <div
-                                    className="bg-white/90 h-1 rounded-full relative transition-all duration-100 shadow-sm"
+                                    className="bg-white/90 h-1 rounded-full relative !transition-all duration-100 shadow-sm"
                                     style={{ width: `${displayProgress}%` }}
                                 >
                                     <div
@@ -400,7 +400,7 @@ export function BottomPlayer() {
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                            className="text-white/60 hover:text-white hover:bg-transparent hover:scale-110 !transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
                             title="Queue"
                         >
                             <List className="w-4 h-4" />
@@ -408,7 +408,7 @@ export function BottomPlayer() {
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                            className="text-white/60 hover:text-white hover:bg-transparent hover:scale-110 !transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
                             title="Connect to device"
                         >
                             <Monitor className="w-4 h-4" />
@@ -422,14 +422,14 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={toggleMute}
-                                className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                                className="text-white/60 hover:text-white hover:bg-transparent hover:scale-110 !transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
                                 title={`Volume: ${Math.round(playerState.volume)}%`}
                             >
                                 <VolumeIcon className="w-4 h-4" />
                             </Button>
                             <div
                                 ref={volumeRef}
-                                className={`w-20 bg-white/20 h-1 rounded-full cursor-pointer group transition-all duration-200 backdrop-blur-sm shadow-inner ${
+                                className={`w-20 bg-white/20 h-1 rounded-full cursor-pointer group !transition-all duration-200 backdrop-blur-sm shadow-inner ${
                                     showVolumeSlider ? 'opacity-100' : 'opacity-70 hover:opacity-100'
                                 }`}
                                 onClick={handleVolumeClick}
@@ -452,7 +452,7 @@ export function BottomPlayer() {
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                            className="text-white/60 hover:text-white hover:bg-transparent hover:scale-110 !transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
                             title="More options"
                         >
                             <MoreHorizontal className="w-4 h-4" />

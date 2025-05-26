@@ -252,11 +252,11 @@ export function AlbumDetailPage() {
                             {tracks.length > 0 ? (
                                 <>
                                     {/* Table header */}
-                                    <div className="grid grid-cols-12 gap-4 py-4 px-4 text-white/50 text-sm font-medium border-b border-white/10 mb-2">
+                                    <div className="grid grid-cols-12 gap-4 py-4 px-4 text-white/100 text-sm font-medium border-b border-white/10 mb-2">
                                         <div className="col-span-1 text-center">#</div>
-                                        <div className="col-span-6">Title</div>
+                                        <div className="col-span-3">Title</div>
                                         <div className="col-span-3 text-right">Plays</div>
-                                        <div className="col-span-2 text-right">Duration</div>
+                                        <div className="col-span-3 text-right">Duration</div>
                                     </div>
 
                                     {/* Track rows */}
@@ -292,7 +292,7 @@ export function AlbumDetailPage() {
                                                         )}
                                                     </div>
 
-                                                    <div className="col-span-6">
+                                                    <div className="col-span-3">
                                                         <div className={`text-sm font-medium ${isCurrentTrack ? 'text-green-400' : 'text-white'}`}>
                                                             {track.title}
                                                         </div>
@@ -303,7 +303,7 @@ export function AlbumDetailPage() {
                                                         {formatPlayCount(track.plays)}
                                                     </div>
 
-                                                    <div className="col-span-2 text-right text-white/60 text-sm flex items-center justify-end">
+                                                    <div className="col-span-3 text-right text-white/60 text-sm flex items-center justify-end">
                                                         {track.duration}
                                                     </div>
                                                 </div>
