@@ -235,7 +235,7 @@ export function BottomPlayer() {
                 {/* Main content layer */}
                 <div className="relative flex items-center h-full px-6 backdrop-saturate-150 rounded-xl">
                     {/* Left Section - Current Track Info */}
-                    <div className="flex items-center gap-3 w-[280px] min-w-[200px] flex-shrink-0">
+                    <div className="flex items-center gap-3 w-fit max-w-[360px] flex-shrink-1">
                         <div className="relative group flex-shrink-0">
                             <AlbumArt art={currentTrack.art} size="md" />
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center backdrop-blur-sm">
@@ -256,7 +256,7 @@ export function BottomPlayer() {
                                 {currentTrack.artist}
                             </div>
                         </div>
-                        <div className="flex items-center gap-1 flex-shrink-0">
+                        <div className="flex items-center flex-shrink-0">
                             <Button
                                 variant="ghost"
                                 size="icon"
