@@ -19,6 +19,7 @@ interface PlayerContextType {
     toggleShuffle: () => void
     toggleRepeat: () => void
     toggleLike: () => void
+    toggleDislike: () => void
     toggleBookmark: () => void
 }
 
@@ -120,6 +121,12 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
         }
     }, [currentTrack])
 
+    const toggleDislike = useCallback(() => {
+        if (currentTrack) {
+            setCurrentTrack(prev => prev ? { ...prev, isDisliked: !prev.isDisliked } : null)
+        }
+    }, [currentTrack])
+
     const toggleBookmark = useCallback(() => {
         if (currentTrack) {
             setCurrentTrack(prev => prev ? { ...prev, isBookmarked: !prev.isBookmarked } : null)
@@ -174,6 +181,7 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
         toggleShuffle,
         toggleRepeat,
         toggleLike,
+        toggleDislike,
         toggleBookmark,
     }
 

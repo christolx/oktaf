@@ -1,4 +1,4 @@
-import { Heart, SkipBack, Play, Pause, SkipForward, Shuffle, Repeat, Volume2, Monitor, List, MoreHorizontal, ThumbsDown, Bookmark, Bell, Users, Settings, Home, Plus, ChevronLeft, ChevronRight, Search } from 'lucide-react'
+import { Heart, SkipBack, Play, Pause, SkipForward, Shuffle, Repeat, Volume2, Monitor, List, MoreHorizontal, ThumbsDown, Bookmark, Bell, Users, Settings, Home, Plus, ChevronLeft, ChevronRight, Search, VolumeX,  Volume1, PictureInPicture2} from 'lucide-react'
 
 // Types
 export interface AlbumArt {
@@ -42,8 +42,9 @@ export interface CurrentTrack {
     duration: string;
     currentTime: string;
     art: AlbumArt;
-    isLiked: boolean;
-    isBookmarked: boolean;
+    isLiked?: boolean;
+    isDisliked?: boolean;
+    isBookmarked?: boolean;
 }
 
 export interface PlayerState {
@@ -287,6 +288,7 @@ export const currentTrack: CurrentTrack = {
     currentTime: "2:23",
     art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748218460/Random_Access_ndsnbg.jpg", "Failed to load album cover."),
     isLiked: true,
+    isDisliked: false,
     isBookmarked: false,
 };
 
@@ -372,7 +374,10 @@ export const playerIcons = {
     List,
     MoreHorizontal,
     ThumbsDown,
-    Bookmark
+    Bookmark,
+    VolumeX,
+    Volume1,
+    PictureInPicture2
 };
 
 export const navigationIcons = {
@@ -396,5 +401,5 @@ export const navigationIcons = {
     Bookmark,
     Repeat,
     SkipBack,
-    SkipForward
+    SkipForward,
 };

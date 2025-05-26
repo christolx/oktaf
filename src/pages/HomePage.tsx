@@ -29,7 +29,7 @@ export function HomePage() {
 
     return (
         <div className="h-screen w-screen bg-[#0a0a0a] text-white flex flex-col overflow-hidden">
-            <div className="flex flex-1 min-h-0">
+            <div className="flex flex-1 min-h-0 pb-20"> {/* Add pb-20 for bottom player space */}
                 <Sidebar />
                 <div className="flex-1 flex flex-col min-w-0">
                     <div className="p-4">

@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { AlbumArt } from '@/components/ui/AlbumArt'
 import { usePlayer } from '@/contexts/PlayerContext'
 import { playerIcons } from '@/data/DummyData.tsx'
+import { useState, useRef, useEffect } from 'react'
 
 const {
     Heart,
@@ -16,7 +17,9 @@ const {
     List,
     MoreHorizontal,
     ThumbsDown,
-    Bookmark
+    Bookmark,
+    VolumeX,
+    Volume1,
 } = playerIcons;
 
 export function BottomPlayer() {
@@ -35,7 +38,18 @@ export function BottomPlayer() {
         toggleRepeat,
         toggleLike,
         toggleBookmark,
+        toggleDislike,
     } = usePlayer()
+
+    const [isDraggingProgress, setIsDraggingProgress] = useState(false)
+    const [isDraggingVolume, setIsDraggingVolume] = useState(false)
+    const [tempProgress, setTempProgress] = useState(0)
+    const [tempVolume, setTempVolume] = useState(playerState.volume)
+    const [previousVolume, setPreviousVolume] = useState(playerState.volume)
+    const [showVolumeSlider, setShowVolumeSlider] = useState(false)
+
+    const progressRef = useRef<HTMLDivElement>(null)
+    const volumeRef = useRef<HTMLDivElement>(null)
 
     // Helper function to format time
     const formatTime = (seconds: number): string => {
@@ -44,161 +58,384 @@ export function BottomPlayer() {
         return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
     }
 
-    // Handle progress bar click
+    // Calculate progress percentage
+    const displayProgress = isDraggingProgress ? tempProgress : (duration > 0 ? (currentTime / duration) * 100 : 0)
+
+    // Handle progress bar interactions
+    const handleProgressMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!progressRef.current) return
+        setIsDraggingProgress(true)
+        updateProgress(e)
+    }
+
+    const updateProgress = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
+        if (!progressRef.current) return
+        const rect = progressRef.current.getBoundingClientRect()
+        const clickX = e.clientX - rect.left
+        const percentage = Math.max(0, Math.min(100, (clickX / rect.width) * 100))
+        setTempProgress(percentage)
+    }
+
     const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        const rect = e.currentTarget.getBoundingClientRect()
+        if (!progressRef.current || isDraggingProgress) return
+        const rect = progressRef.current.getBoundingClientRect()
         const clickX = e.clientX - rect.left
         const percentage = clickX / rect.width
         const newTime = percentage * duration
         seekTo(newTime)
     }
 
-    // Handle volume bar click
-    const handleVolumeClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        const rect = e.currentTarget.getBoundingClientRect()
-        const clickX = e.clientX - rect.left
-        const percentage = clickX / rect.width
-        const newVolume = Math.max(0, Math.min(100, percentage * 100))
-        setVolume(newVolume)
+    // Handle volume bar interactions
+    const handleVolumeMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!volumeRef.current) return
+        setIsDraggingVolume(true)
+        updateVolume(e)
     }
+
+    const updateVolume = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
+        if (!volumeRef.current) return
+        const rect = volumeRef.current.getBoundingClientRect()
+        const clickX = e.clientX - rect.left
+        const percentage = Math.max(0, Math.min(100, (clickX / rect.width) * 100))
+        setTempVolume(percentage)
+    }
+
+    const handleVolumeClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!volumeRef.current || isDraggingVolume) return
+        const rect = volumeRef.current.getBoundingClientRect()
+        const clickX = e.clientX - rect.left
+        const percentage = Math.max(0, Math.min(100, (clickX / rect.width) * 100))
+        setVolume(percentage)
+    }
+
+    // Mouse move and up handlers
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (isDraggingProgress && progressRef.current) {
+                updateProgress(e)
+            }
+            if (isDraggingVolume && volumeRef.current) {
+                updateVolume(e)
+            }
+        }
+
+        const handleMouseUp = () => {
+            if (isDraggingProgress) {
+                const newTime = (tempProgress / 100) * duration
+                seekTo(newTime)
+                setIsDraggingProgress(false)
+            }
+            if (isDraggingVolume) {
+                setVolume(tempVolume)
+                setIsDraggingVolume(false)
+            }
+        }
+
+        if (isDraggingProgress || isDraggingVolume) {
+            document.addEventListener('mousemove', handleMouseMove)
+            document.addEventListener('mouseup', handleMouseUp)
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove)
+            document.removeEventListener('mouseup', handleMouseUp)
+        }
+    }, [isDraggingProgress, isDraggingVolume, tempProgress, tempVolume, duration, seekTo, setVolume])
+
+    // Volume icon logic
+    const getVolumeIcon = () => {
+        const volume = isDraggingVolume ? tempVolume : playerState.volume
+        if (volume === 0) return VolumeX
+        if (volume < 30) return Volume1
+        return Volume2
+    }
+
+    const VolumeIcon = getVolumeIcon()
+
+    // Toggle mute
+    const toggleMute = () => {
+        if (playerState.volume > 0) {
+            setPreviousVolume(playerState.volume)
+            setVolume(0)
+        } else {
+            setVolume(previousVolume > 0 ? previousVolume : 50)
+        }
+    }
+
+    // Keyboard shortcuts
+    useEffect(() => {
+        const handleKeyPress = (e: KeyboardEvent) => {
+            if (e.target instanceof HTMLInputElement) return // Don't trigger when typing in inputs
+
+            switch (e.code) {
+                case 'Space':
+                    e.preventDefault()
+                    togglePlayPause()
+                    break
+                case 'ArrowRight':
+                    if (e.shiftKey) {
+                        nextTrack()
+                    } else {
+                        seekTo(Math.min(duration, currentTime + 10))
+                    }
+                    break
+                case 'ArrowLeft':
+                    if (e.shiftKey) {
+                        previousTrack()
+                    } else {
+                        seekTo(Math.max(0, currentTime - 10))
+                    }
+                    break
+                case 'ArrowUp':
+                    e.preventDefault()
+                    setVolume(Math.min(100, playerState.volume + 10))
+                    break
+                case 'ArrowDown':
+                    e.preventDefault()
+                    setVolume(Math.max(0, playerState.volume - 10))
+                    break
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyPress)
+        return () => document.removeEventListener('keydown', handleKeyPress)
+    }, [togglePlayPause, nextTrack, previousTrack, seekTo, currentTime, duration, setVolume, playerState.volume])
 
     if (!currentTrack) {
         return (
-            <div className="h-20 bg-[#0a0a0a] border-t border-white/10 flex items-center justify-center">
+            <div className="fixed bottom-0 left-0 right-0 h-20 bg-[#0a0a0a] border-t border-white/10 flex items-center justify-center z-50">
                 <div className="text-white/60 text-sm">No track selected</div>
             </div>
         )
     }
 
     return (
-        <div className="h-20 bg-[#0a0a0a] border-t border-white/10 flex items-center px-4">
-            {/* Current Track Info */}
-            <div className="flex items-center gap-3 w-80">
-                <AlbumArt art={currentTrack.art} size="md" />
-                <div className="min-w-0 flex-1">
-                    <div className="text-white text-sm font-medium truncate">{currentTrack.title}</div>
-                    <div className="text-white/60 text-xs truncate">{currentTrack.artist} • {currentTrack.album}</div>
-                </div>
-                <div className="flex items-center gap-1">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={toggleBookmark}
-                        className={`h-8 w-8 transition-colors ${currentTrack.isBookmarked ? 'text-yellow-500 hover:text-yellow-400' : 'text-white/60 hover:text-white'}`}
-                    >
-                        <Bookmark className={`w-4 h-4 ${currentTrack.isBookmarked ? 'fill-current' : ''}`} />
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={toggleLike}
-                        className={`h-8 w-8 transition-colors ${currentTrack.isLiked ? 'text-green-500 hover:text-green-400' : 'text-white/60 hover:text-white'}`}
-                    >
-                        <Heart className={`w-4 h-4 ${currentTrack.isLiked ? 'fill-current' : ''}`} />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
-                        <ThumbsDown className="w-4 h-4" />
-                    </Button>
-                </div>
-            </div>
-
-            {/* Player Controls */}
-            <div className="flex-1 flex flex-col items-center px-8">
-                <div className="flex items-center gap-4 mb-2">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={toggleShuffle}
-                        className={`h-8 w-8 transition-colors ${playerState.isShuffled ? 'text-green-500 hover:text-green-400' : 'text-white/60 hover:text-white'}`}
-                    >
-                        <Shuffle className="w-4 h-4" />
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={previousTrack}
-                        className="text-white/60 hover:text-white h-8 w-8"
-                    >
-                        <SkipBack className="w-4 h-4" />
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={togglePlayPause}
-                        className="text-black bg-white hover:bg-white/90 h-10 w-10"
-                    >
-                        {isPlaying ? (
-                            <Pause className="w-5 h-5 fill-current" />
-                        ) : (
-                            <Play className="w-5 h-5 fill-current" />
-                        )}
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={nextTrack}
-                        className="text-white/60 hover:text-white h-8 w-8"
-                    >
-                        <SkipForward className="w-4 h-4" />
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={toggleRepeat}
-                        className={`h-8 w-8 transition-colors ${playerState.repeatMode !== 'off' ? 'text-green-500 hover:text-green-400' : 'text-white/60 hover:text-white'}`}
-                    >
-                        <Repeat className="w-4 h-4" />
-                        {playerState.repeatMode === 'one' && (
-                            <span className="absolute top-0 right-0 text-[8px] font-bold">1</span>
-                        )}
-                    </Button>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="flex items-center gap-2 w-full max-w-lg">
-                    <span className="text-white/60 text-xs w-10 text-right">{formatTime(currentTime)}</span>
-                    <div
-                        className="flex-1 bg-white/20 h-1 rounded-full relative group cursor-pointer"
-                        onClick={handleProgressClick}
-                    >
-                        <div
-                            className="bg-white h-1 rounded-full relative transition-all duration-100"
-                            style={{ width: `${playerState.progress}%` }}
-                        >
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div className="fixed bottom-0 left-0 right-0 h-20 bg-[#0a0a0a] border-t border-white/10 z-50">
+            <div className="flex items-center h-full px-4">
+                {/* Left Section - Current Track Info */}
+                <div className="flex items-center gap-3 w-[300px] min-w-[200px] flex-shrink-0">
+                    <div className="relative group flex-shrink-0">
+                        <AlbumArt art={currentTrack.art} size="md" />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-white hover:text-white hover:bg-white/20"
+                            >
+                                <Monitor className="w-4 h-4" />
+                            </Button>
                         </div>
                     </div>
-                    <span className="text-white/60 text-xs w-10">{formatTime(duration)}</span>
-                </div>
-            </div>
-
-            {/* Volume and Additional Controls */}
-            <div className="flex items-center gap-2 w-80 justify-end">
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
-                    <Monitor className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
-                    <MoreHorizontal className="w-4 h-4" />
-                </Button>
-                <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
-                        <Volume2 className="w-4 h-4" />
-                    </Button>
-                    <div
-                        className="w-20 bg-white/20 h-1 rounded-full cursor-pointer group"
-                        onClick={handleVolumeClick}
-                    >
-                        <div
-                            className="bg-white h-1 rounded-full relative transition-all duration-100"
-                            style={{ width: `${playerState.volume}%` }}
-                        >
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="min-w-0 flex-1">
+                        <div className="text-white text-sm font-medium truncate hover:text-green-400 cursor-pointer transition-colors">
+                            {currentTrack.title}
+                        </div>
+                        <div className="text-white/60 text-xs truncate hover:text-white cursor-pointer transition-colors">
+                            {currentTrack.artist}
                         </div>
                     </div>
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={toggleBookmark}
+                            className={`h-8 w-8 transition-all duration-200 ${
+                                currentTrack.isBookmarked
+                                    ? 'text-green-500 hover:text-green-400 scale-110'
+                                    : 'text-white/60 hover:text-white hover:scale-110'
+                            }`}
+                        >
+                            <Bookmark className={`w-4 h-4 ${currentTrack.isBookmarked ? 'fill-current' : ''}`} />
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={toggleLike}
+                            className={`h-8 w-8 transition-all duration-200 ${
+                                currentTrack.isLiked
+                                    ? 'text-green-500 hover:text-green-400 scale-110'
+                                    : 'text-white/60 hover:text-white hover:scale-110'
+                            }`}
+                        >
+                            <Heart className={`w-4 h-4 ${currentTrack.isLiked ? 'fill-current' : ''}`} />
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={toggleDislike}
+                            className={`h-8 w-8 transition-all duration-200 hover:scale-110 ${
+                                currentTrack.isDisliked
+                                    ? 'text-red-500 hover:text-red-400'
+                                    : 'text-white/60 hover:text-white'
+                            }`}
+                            title="Dislike"
+                        >
+                            <ThumbsDown className={`w-4 h-4 ${currentTrack.isDisliked ? 'fill-current' : ''}`} />
+                        </Button>
+                    </div>
                 </div>
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
-                    <List className="w-4 h-4" />
-                </Button>
+
+                {/* Center Section - Player Controls */}
+                <div className="flex-1 flex flex-col items-center justify-center max-w-[600px] mx-auto">
+                    {/* Control Buttons */}
+                    <div className="flex items-center gap-4 mb-2">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={toggleShuffle}
+                            className={`h-8 w-8 transition-all duration-200 hover:scale-110 ${
+                                playerState.isShuffled
+                                    ? 'text-green-500 hover:text-green-400'
+                                    : 'text-white/60 hover:text-white'
+                            }`}
+                            title="Toggle Shuffle"
+                        >
+                            <Shuffle className="w-4 h-4" />
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={previousTrack}
+                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
+                            title="Previous Track"
+                        >
+                            <SkipBack className="w-4 h-4" />
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={togglePlayPause}
+                            className="text-black bg-white hover:bg-white/90 hover:scale-105 transition-all duration-200 h-10 w-10 shadow-lg"
+                            title={isPlaying ? "Pause" : "Play"}
+                        >
+                            {isPlaying ? (
+                                <Pause className="w-5 h-5 fill-current" />
+                            ) : (
+                                <Play className="w-5 h-5 fill-current ml-0.5" />
+                            )}
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={nextTrack}
+                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
+                            title="Next Track"
+                        >
+                            <SkipForward className="w-4 h-4" />
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={toggleRepeat}
+                            className={`h-8 w-8 transition-all duration-200 hover:scale-110 relative ${
+                                playerState.repeatMode !== 'off'
+                                    ? 'text-green-500 hover:text-green-400'
+                                    : 'text-white/60 hover:text-white'
+                            }`}
+                            title={`Repeat: ${playerState.repeatMode}`}
+                        >
+                            <Repeat className="w-4 h-4" />
+                            {playerState.repeatMode === 'one' && (
+                                <span className="absolute -top-1 -right-1 text-[8px] font-bold bg-green-500 text-white rounded-full w-3 h-3 flex items-center justify-center">
+                                    1
+                                </span>
+                            )}
+                        </Button>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="flex items-center gap-2 w-full max-w-[500px]">
+                        <span className="text-white/60 text-xs w-10 text-right font-mono flex-shrink-0">
+                            {formatTime(currentTime)}
+                        </span>
+                        <div
+                            ref={progressRef}
+                            className="flex-1 bg-white/20 h-1 rounded-full relative group cursor-pointer"
+                            onClick={handleProgressClick}
+                            onMouseDown={handleProgressMouseDown}
+                        >
+                            <div
+                                className="bg-white h-1 rounded-full relative transition-all duration-100"
+                                style={{ width: `${displayProgress}%` }}
+                            >
+                                <div
+                                    className={`absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full transition-opacity shadow-lg ${
+                                        isDraggingProgress || progressRef.current?.matches(':hover')
+                                            ? 'opacity-100'
+                                            : 'opacity-0'
+                                    }`}
+                                ></div>
+                            </div>
+                        </div>
+                        <span className="text-white/60 text-xs w-10 font-mono flex-shrink-0">
+                            {formatTime(duration)}
+                        </span>
+                    </div>
+                </div>
+
+                {/* Right Section - Volume and Additional Controls */}
+                <div className="flex items-center gap-2 w-[300px] min-w-[200px] justify-end flex-shrink-0">
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
+                        title="Queue"
+                    >
+                        <List className="w-4 h-4" />
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
+                        title="Connect to device"
+                    >
+                        <Monitor className="w-4 h-4" />
+                    </Button>
+                    <div
+                        className="flex items-center gap-2 relative"
+                        onMouseEnter={() => setShowVolumeSlider(true)}
+                        onMouseLeave={() => setShowVolumeSlider(false)}
+                    >
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={toggleMute}
+                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
+                            title={`Volume: ${Math.round(playerState.volume)}%`}
+                        >
+                            <VolumeIcon className="w-4 h-4" />
+                        </Button>
+                        <div
+                            ref={volumeRef}
+                            className={`w-20 bg-white/20 h-1 rounded-full cursor-pointer group transition-all duration-200 ${
+                                showVolumeSlider ? 'opacity-100' : 'opacity-70 hover:opacity-100'
+                            }`}
+                            onClick={handleVolumeClick}
+                            onMouseDown={handleVolumeMouseDown}
+                        >
+                            <div
+                                className="bg-white h-1 rounded-full relative transition-all duration-100"
+                                style={{ width: `${isDraggingVolume ? tempVolume : playerState.volume}%` }}
+                            >
+                                <div
+                                    className={`absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full transition-opacity shadow-lg ${
+                                        isDraggingVolume || showVolumeSlider
+                                            ? 'opacity-100'
+                                            : 'opacity-0'
+                                    }`}
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
+                        title="More options"
+                    >
+                        <MoreHorizontal className="w-4 h-4" />
+                    </Button>
+                </div>
             </div>
         </div>
     )
