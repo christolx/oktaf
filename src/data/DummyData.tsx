@@ -133,39 +133,6 @@ export const albumsForYou: Album[] = [
     { id: "8", title: "Take Care", artist: "Drake", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220129/take_care_xusisq.jpg", "Failed to load album cover."), year: 2011 },
 ];
 
-export const nostalgiaAlbums: Album[] = [
-    { id: "9", title: "The Eminem Show", artist: "Eminem", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220263/Eminem_Show_miw1ht.jpg", "Failed to load album cover."), year: 2002 },
-    { id: "10", title: "American Idiot", artist: "Green Day", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220304/American_Idiot_zubvfy.jpg", "Failed to load album cover."), year: 2004 },
-    { id: "11", title: "Back to Black", artist: "Amy Winehouse", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220345/back_to_black_yjhog7.jpg", "Failed to load album cover."), year: 2006 },
-    { id: "12", title: "In Rainbows", artist: "Radiohead", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220467/In_rainbow_lxwwup.jpg", "Failed to load album cover."), year: 2007 },
-    { id: "13", title: "The Black Parade", artist: "My Chemical Romance", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220524/The_black_parade_cpx8wz.jpg", "Failed to load album cover."), year: 2006 },
-    { id: "14", title: "Stadium Arcadium", artist: "Red Hot Chili Peppers", art: createImageArt("https://i.scdn.co/image/ab67616d0000b27309fd83d32aee93dceba78517", "Failed to load album cover."), year: 2006 },
-    { id: "15", title: "Whatever People Say I Am", artist: "Arctic Monkeys", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220649/arctic_jgqlpd.jpg", "Failed to load album cover."), year: 2006 },
-    { id: "16", title: "Good Girl Gone Bad", artist: "Rihanna", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220694/Rihanna_ipp5cf.jpg", "Failed to load album cover."), year: 2007 },
-];
-
-export const trendingAlbums: Album[] = [
-    { id: "17", title: "Midnights", artist: "Taylor Swift", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220990/midnights_tlrh6x.jpg", "Failed to load album cover>"), year: 2022 },
-    { id: "18", title: "Renaissance", artist: "Beyoncé", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748221499/Renaissance_aaqmjb.jpg", "Failed to load album cover."), year: 2022 },
-    { id: "19", title: "Harry's House", artist: "Harry Styles", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748221560/Harry_House_osv6xu.jpg", "Failed to load album cover."), year: 2022 },
-    { id: "20", title: "Un Verano Sin Ti", artist: "Bad Bunny", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748221678/Un_Verano_vxsqio.jpg", "Failed to load album cover."), year: 2022 },
-    { id: "21", title: "Dawn FM", artist: "The Weeknd", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748222146/Dawn_FM_qaoprx.jpg", "Failed to load album cover."), year: 2022 },
-    { id: "22", title: "Honestly, Nevermind", artist: "Drake", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748222202/Honestly_Nevermind_bcihhe.jpg", "Failed to load album cover."), year: 2022 },
-    { id: "23", title: "Mr. Morale & The Big Steppers", artist: "Kendrick Lamar", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748224153/Mr_Morale_rdhtww.jpg", "Failed to load album cover."), year: 2022 },
-    { id: "24", title: "Special", artist: "Lizzo", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748224183/Special_fxc13u.jpg", "Failed to load album cover."), year: 2022 },
-];
-
-export const PopArtAlbums: Album[] = [
-    { id: "25", title: "The Rise and Fall of Ziggy Stardust and the Spiders from Mars", artist: "David Bowie", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248586/Ziggy_Stardust_kmxajv.jpg", "Failed to load album cover."), year: 1972 },
-    { id: "26", title: "Revolver", artist: "The Beatles", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248584/Revolver_Beatles_etpbap.jpg", "Failed to load album cover."), year: 1966 },
-    { id: "27", title: "A Moon Shaped Pool", artist: "Radiohead", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248583/MoonShapedPool_azcy35.jpg", "Failed to load album cover."), year: 2016 },
-    { id: "28", title: "The Queen Is Dead", artist: "The Smiths", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248581/Queen_is_Dead_obxbtk.jpg", "Failed to load album cover."), year: 1986 },
-    { id: "29", title: "Blonde", artist: "Frank Ocean", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248580/Frank_Ocean_Blonde_yjquwt.jpg", "Failed to load album cover."), year: 2016 },
-    { id: "30", title: "Hounds of Love", artist: "Kate Bush", art: createImageArt("https://upload.wikimedia.org/wikipedia/en/1/1c/Hounds_of_love.jpg", "Failed to load album cover."), year: 1985 },
-    { id: "31", title: "Illinois", artist: "Sufjan Stevens", art: createImageArt("https://upload.wikimedia.org/wikipedia/en/4/4a/Sufjan_Stevens_-_Illinois.jpg", "Failed to load album cover."), year: 2005 },
-    { id: "32", title: "Vespertine", artist: "Björk", art: createImageArt("https://upload.wikimedia.org/wikipedia/en/0/00/Bjorkvespertine.png", "Failed to load album cover."), year: 2001 },
-];
-
 export const AlternativeRockAlbums: Album[] = [
     { id: "33", title: "OK Computer", artist: "Radiohead", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248615/Ok_Comp_hmvu0v.jpg", "Failed to load album cover."), year: 1997 },
     { id: "34", title: "Nevermind", artist: "Nirvana", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248613/nirvana_nevermind_uf3jcv.jpg", "Failed to load album cover."), year: 1991 },
@@ -186,6 +153,39 @@ export const GothicRockAlbums: Album[] = [
     { id: "46", title: "Juju", artist: "Siouxsie and the Banshees", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248591/Juju_Banshees_qbssc4.jpg", "Failed to load album cover."), year: 1981 },
     { id: "47", title: "The Great Annihilator", artist: "Swans", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248589/Great_Annihilator_bzk6go.jpg", "Failed to load album cover."), year: 1995 },
     { id: "48", title: "Faith", artist: "The Cure", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248588/The_cure_Faith_xbvnai.jpg", "Failed to load album cover."), year: 1981 },
+];
+
+export const PopArtAlbums: Album[] = [
+    { id: "25", title: "The Rise and Fall of Ziggy Stardust and the Spiders from Mars", artist: "David Bowie", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248586/Ziggy_Stardust_kmxajv.jpg", "Failed to load album cover."), year: 1972 },
+    { id: "26", title: "Revolver", artist: "The Beatles", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248584/Revolver_Beatles_etpbap.jpg", "Failed to load album cover."), year: 1966 },
+    { id: "27", title: "Post", artist: "Björk", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748253457/Post_bjork_nxiihx.jpg", "Failed to load album cover."), year: 1995 },
+    { id: "28", title: "The Queen Is Dead", artist: "The Smiths", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248581/Queen_is_Dead_obxbtk.jpg", "Failed to load album cover."), year: 1986 },
+    { id: "29", title: "Blonde", artist: "Frank Ocean", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248580/Frank_Ocean_Blonde_yjquwt.jpg", "Failed to load album cover."), year: 2016 },
+    { id: "30", title: "Hounds of Love", artist: "Kate Bush", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748253444/Hounds_of_Love_ks222x.jpg", "Failed to load album cover."), year: 1985 },
+    { id: "31", title: "Illinois", artist: "Sufjan Stevens", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748253444/Illinoise_xdugsh.jpg", "Failed to load album cover."), year: 2005 },
+    { id: "32", title: "A Moon Shaped Pool", artist: "Radiohead", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248583/MoonShapedPool_azcy35.jpg", "Failed to load album cover."), year: 2016 },
+];
+
+export const nostalgiaAlbums: Album[] = [
+    { id: "9", title: "The Eminem Show", artist: "Eminem", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220263/Eminem_Show_miw1ht.jpg", "Failed to load album cover."), year: 2002 },
+    { id: "10", title: "American Idiot", artist: "Green Day", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220304/American_Idiot_zubvfy.jpg", "Failed to load album cover."), year: 2004 },
+    { id: "11", title: "Back to Black", artist: "Amy Winehouse", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220345/back_to_black_yjhog7.jpg", "Failed to load album cover."), year: 2006 },
+    { id: "12", title: "In Rainbows", artist: "Radiohead", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220467/In_rainbow_lxwwup.jpg", "Failed to load album cover."), year: 2007 },
+    { id: "13", title: "The Black Parade", artist: "My Chemical Romance", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220524/The_black_parade_cpx8wz.jpg", "Failed to load album cover."), year: 2006 },
+    { id: "14", title: "Stadium Arcadium", artist: "Red Hot Chili Peppers", art: createImageArt("https://i.scdn.co/image/ab67616d0000b27309fd83d32aee93dceba78517", "Failed to load album cover."), year: 2006 },
+    { id: "15", title: "Whatever People Say I Am", artist: "Arctic Monkeys", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220649/arctic_jgqlpd.jpg", "Failed to load album cover."), year: 2006 },
+    { id: "16", title: "Good Girl Gone Bad", artist: "Rihanna", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220694/Rihanna_ipp5cf.jpg", "Failed to load album cover."), year: 2007 },
+];
+
+export const trendingAlbums: Album[] = [
+    { id: "17", title: "Midnights", artist: "Taylor Swift", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748220990/midnights_tlrh6x.jpg", "Failed to load album cover>"), year: 2022 },
+    { id: "18", title: "Renaissance", artist: "Beyoncé", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748221499/Renaissance_aaqmjb.jpg", "Failed to load album cover."), year: 2022 },
+    { id: "19", title: "Harry's House", artist: "Harry Styles", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748221560/Harry_House_osv6xu.jpg", "Failed to load album cover."), year: 2022 },
+    { id: "20", title: "Un Verano Sin Ti", artist: "Bad Bunny", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748221678/Un_Verano_vxsqio.jpg", "Failed to load album cover."), year: 2022 },
+    { id: "21", title: "Dawn FM", artist: "The Weeknd", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748222146/Dawn_FM_qaoprx.jpg", "Failed to load album cover."), year: 2022 },
+    { id: "22", title: "Honestly, Nevermind", artist: "Drake", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748222202/Honestly_Nevermind_bcihhe.jpg", "Failed to load album cover."), year: 2022 },
+    { id: "23", title: "Mr. Morale & The Big Steppers", artist: "Kendrick Lamar", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748224153/Mr_Morale_rdhtww.jpg", "Failed to load album cover."), year: 2022 },
+    { id: "24", title: "Special", artist: "Lizzo", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748224183/Special_fxc13u.jpg", "Failed to load album cover."), year: 2022 },
 ];
 
 // Player Data

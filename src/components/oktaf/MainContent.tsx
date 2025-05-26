@@ -39,7 +39,7 @@ function AlbumCard({ album }: AlbumCardProps) {
 
     return (
         <div className="group cursor-pointer" onClick={handleAlbumClick}>
-            <div className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
+            <div className="aspect-squareee mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
                 <AlbumArt
                     art={album.art}
                     className="w-full h-full group-hover:brightness-110 transition-all duration-200"
