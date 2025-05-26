@@ -49,9 +49,6 @@ function AlbumCard({ album }: AlbumCardProps) {
             <div className="space-y-1">
                 <h4 className="text-white text-sm font-medium truncate">{album.title}</h4>
                 <p className="text-white/60 text-xs truncate">{album.artist}</p>
-                {album.year && (
-                    <p className="text-white/40 text-xs">{album.year}</p>
-                )}
             </div>
         </div>
     )
@@ -252,8 +249,9 @@ export function MainContent({ activeSection }: MainContentProps) {
     };
 
     return (
-        <div className="flex-1 overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
-            <div className="p-6">
+        <div className="h-full overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
+            {/* Add top padding to account for floating NavHeader */}
+            <div className="pt-20 p-6">
                 {renderContent()}
             </div>
         </div>

@@ -1,3 +1,4 @@
+// HomePage.tsx
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
 import { mainNavItems } from "@/data/DummyData.tsx";
@@ -29,15 +30,23 @@ export function HomePage() {
 
     return (
         <div className="h-screen w-screen bg-[#0a0a0a] text-white flex flex-col overflow-hidden">
-            <div className="flex flex-1 min-h-0 pb-20"> {/* Add pb-20 for bottom player space */}
-                <Sidebar />
-                <div className="flex-1 flex flex-col min-w-0">
-                    <div className="p-4">
+            <div className="flex flex-1 min-h-0 pb-20 relative">
+                {/* Sidebar with proper z-index */}
+                <div className="relative z-40">
+                    <Sidebar />
+                </div>
+
+                {/* Main Content Area - Full Height */}
+                <div className="flex-1 relative min-w-0">
+                    {/* Floating NavHeader */}
+                    <div className="absolute top-0 left-0 right-0 z-50 p-4">
                         <NavHeader
                             activeNav={activeNav}
                             setActiveNav={handleSetActiveNav}
                         />
                     </div>
+
+                    {/* Main Content - Extends Full Height */}
                     <MainContent activeSection={activeNav} />
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import { Heart, SkipBack, Play, Pause, SkipForward, Shuffle, Repeat, Volume2, Monitor, List, MoreHorizontal, ThumbsDown, Bookmark, Bell, Users, Settings, Home, Plus, ChevronLeft, ChevronRight, Search, VolumeX,  Volume1, PictureInPicture2} from 'lucide-react'
+import { Heart, SkipBack, Play, Pause, SkipForward, Shuffle, Repeat, Volume2, Monitor, List, MoreHorizontal, ThumbsDown, Bookmark, Bell, Users, Settings, Home, Plus, ChevronLeft, ChevronRight, Search, VolumeX,  Volume1, Download} from 'lucide-react'
 
 // Types
 export interface AlbumArt {
@@ -1258,8 +1258,7 @@ export const playerIcons = {
     ThumbsDown,
     Bookmark,
     VolumeX,
-    Volume1,
-    PictureInPicture2
+    Volume1
 };
 
 export const navigationIcons = {
@@ -1284,4 +1283,5 @@ export const navigationIcons = {
     Repeat,
     SkipBack,
     SkipForward,
+    Download
 };
