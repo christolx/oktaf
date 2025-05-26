@@ -203,238 +203,261 @@ export function BottomPlayer() {
 
     if (!currentTrack) {
         return (
-            <div className="fixed bottom-0 left-0 right-0 h-20 bg-[#0a0a0a] border-t border-white/10 flex items-center justify-center z-50">
-                <div className="text-white/60 text-sm">No track selected</div>
+            <div className="fixed bottom-0 left-0 right-0 h-20 z-50">
+                {/* Glassmorphism background */}
+                <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-t from-black/50 via-black/30 to-black/20 border-t border-white/20 shadow-2xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5" />
+                </div>
+
+                {/* Content */}
+                <div className="relative flex items-center justify-center h-full backdrop-saturate-150">
+                    <div className="text-white/60 text-sm">No track selected</div>
+                </div>
             </div>
         )
     }
 
+    // Replace the return statement in your BottomPlayer component with this enhanced version:
+
     return (
-        <div className="fixed bottom-0 left-0 right-0 h-20 bg-[#0a0a0a] border-t border-white/10 z-50">
-            <div className="flex items-center h-full px-4">
-                {/* Left Section - Current Track Info */}
-                <div className="flex items-center gap-3 w-[300px] min-w-[200px] flex-shrink-0">
-                    <div className="relative group flex-shrink-0">
-                        <AlbumArt art={currentTrack.art} size="md" />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+        <div className="fixed bottom-0 left-0 right-0 h-20 z-50 flex justify-center items-end pb-4">
+            {/* Floating container with glassmorphism */}
+            <div className="w-[97%] h-24 relative">
+                {/* Enhanced glassmorphism background with rounded corners */}
+                <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-r from-black/70 via-black/60 to-black/70 rounded-xl shadow-2xl">
+                    {/* Additional glass layers for enhanced depth */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5 rounded-xl" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-xl" />
+                    {/* Subtle inner glow */}
+                    <div className="absolute inset-[1px] rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+                </div>
+
+                {/* Main content layer */}
+                <div className="relative flex items-center h-full px-6 backdrop-saturate-150 rounded-xl">
+                    {/* Left Section - Current Track Info */}
+                    <div className="flex items-center gap-3 w-[280px] min-w-[200px] flex-shrink-0">
+                        <div className="relative group flex-shrink-0">
+                            <AlbumArt art={currentTrack.art} size="md" />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 text-white hover:text-white hover:bg-white/20 rounded-full"
+                                >
+                                    <Monitor className="w-4 h-4" />
+                                </Button>
+                            </div>
+                        </div>
+                        <div className="min-w-0 flex-1">
+                            <div className="text-white text-sm font-medium truncate hover:text-green-400 cursor-pointer transition-colors drop-shadow-sm">
+                                {currentTrack.title}
+                            </div>
+                            <div className="text-white/70 text-xs truncate hover:text-white cursor-pointer transition-colors drop-shadow-sm">
+                                {currentTrack.artist}
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-1 flex-shrink-0">
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-8 w-8 text-white hover:text-white hover:bg-white/20"
+                                onClick={toggleBookmark}
+                                className={`h-8 w-8 transition-all duration-200 backdrop-blur-sm rounded-full ${
+                                    currentTrack.isBookmarked
+                                        ? 'text-green-500 hover:text-green-400 scale-110 drop-shadow-md'
+                                        : 'text-white/60 hover:text-white hover:scale-110'
+                                }`}
                             >
-                                <Monitor className="w-4 h-4" />
+                                <Bookmark className={`w-4 h-4 ${currentTrack.isBookmarked ? 'fill-current' : ''}`} />
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={toggleLike}
+                                className={`h-8 w-8 transition-all duration-200 backdrop-blur-sm rounded-full ${
+                                    currentTrack.isLiked
+                                        ? 'text-green-500 hover:text-green-400 scale-110 drop-shadow-md'
+                                        : 'text-white/60 hover:text-white hover:scale-110'
+                                }`}
+                            >
+                                <Heart className={`w-4 h-4 ${currentTrack.isLiked ? 'fill-current' : ''}`} />
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={toggleDislike}
+                                className={`h-8 w-8 transition-all duration-200 hover:scale-110 backdrop-blur-sm rounded-full ${
+                                    currentTrack.isDisliked
+                                        ? 'text-red-500 hover:text-red-400 drop-shadow-md'
+                                        : 'text-white/60 hover:text-white'
+                                }`}
+                                title="Dislike"
+                            >
+                                <ThumbsDown className={`w-4 h-4 ${currentTrack.isDisliked ? 'fill-current' : ''}`} />
                             </Button>
                         </div>
                     </div>
-                    <div className="min-w-0 flex-1">
-                        <div className="text-white text-sm font-medium truncate hover:text-green-400 cursor-pointer transition-colors">
-                            {currentTrack.title}
-                        </div>
-                        <div className="text-white/60 text-xs truncate hover:text-white cursor-pointer transition-colors">
-                            {currentTrack.artist}
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-1 flex-shrink-0">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={toggleBookmark}
-                            className={`h-8 w-8 transition-all duration-200 ${
-                                currentTrack.isBookmarked
-                                    ? 'text-green-500 hover:text-green-400 scale-110'
-                                    : 'text-white/60 hover:text-white hover:scale-110'
-                            }`}
-                        >
-                            <Bookmark className={`w-4 h-4 ${currentTrack.isBookmarked ? 'fill-current' : ''}`} />
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={toggleLike}
-                            className={`h-8 w-8 transition-all duration-200 ${
-                                currentTrack.isLiked
-                                    ? 'text-green-500 hover:text-green-400 scale-110'
-                                    : 'text-white/60 hover:text-white hover:scale-110'
-                            }`}
-                        >
-                            <Heart className={`w-4 h-4 ${currentTrack.isLiked ? 'fill-current' : ''}`} />
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={toggleDislike}
-                            className={`h-8 w-8 transition-all duration-200 hover:scale-110 ${
-                                currentTrack.isDisliked
-                                    ? 'text-red-500 hover:text-red-400'
-                                    : 'text-white/60 hover:text-white'
-                            }`}
-                            title="Dislike"
-                        >
-                            <ThumbsDown className={`w-4 h-4 ${currentTrack.isDisliked ? 'fill-current' : ''}`} />
-                        </Button>
-                    </div>
-                </div>
 
-                {/* Center Section - Player Controls */}
-                <div className="flex-1 flex flex-col items-center justify-center max-w-[600px] mx-auto">
-                    {/* Control Buttons */}
-                    <div className="flex items-center gap-4 mb-2">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={toggleShuffle}
-                            className={`h-8 w-8 transition-all duration-200 hover:scale-110 ${
-                                playerState.isShuffled
-                                    ? 'text-green-500 hover:text-green-400'
-                                    : 'text-white/60 hover:text-white'
-                            }`}
-                            title="Toggle Shuffle"
-                        >
-                            <Shuffle className="w-4 h-4" />
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={previousTrack}
-                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
-                            title="Previous Track"
-                        >
-                            <SkipBack className="w-4 h-4" />
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={togglePlayPause}
-                            className="text-black bg-white hover:bg-white/90 hover:scale-105 transition-all duration-200 h-10 w-10 shadow-lg"
-                            title={isPlaying ? "Pause" : "Play"}
-                        >
-                            {isPlaying ? (
-                                <Pause className="w-5 h-5 fill-current" />
-                            ) : (
-                                <Play className="w-5 h-5 fill-current ml-0.5" />
-                            )}
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={nextTrack}
-                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
-                            title="Next Track"
-                        >
-                            <SkipForward className="w-4 h-4" />
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={toggleRepeat}
-                            className={`h-8 w-8 transition-all duration-200 hover:scale-110 relative ${
-                                playerState.repeatMode !== 'off'
-                                    ? 'text-green-500 hover:text-green-400'
-                                    : 'text-white/60 hover:text-white'
-                            }`}
-                            title={`Repeat: ${playerState.repeatMode}`}
-                        >
-                            <Repeat className="w-4 h-4" />
-                            {playerState.repeatMode === 'one' && (
-                                <span className="absolute -top-1 -right-1 text-[8px] font-bold bg-green-500 text-white rounded-full w-3 h-3 flex items-center justify-center">
+                    {/* Center Section - Player Controls */}
+                    <div className="flex-1 flex flex-col items-center justify-center max-w-[500px] mx-auto">
+                        {/* Control Buttons */}
+                        <div className="flex items-center gap-3 mb-2">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={toggleShuffle}
+                                className={`h-8 w-8 transition-all duration-200 hover:scale-110 backdrop-blur-sm rounded-full ${
+                                    playerState.isShuffled
+                                        ? 'text-green-500 hover:text-green-400 drop-shadow-md'
+                                        : 'text-white/60 hover:text-white'
+                                }`}
+                                title="Toggle Shuffle"
+                            >
+                                <Shuffle className="w-4 h-4" />
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={previousTrack}
+                                className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                                title="Previous Track"
+                            >
+                                <SkipBack className="w-4 h-4" />
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={togglePlayPause}
+                                className="text-black bg-white/90 hover:bg-white hover:scale-105 transition-all duration-200 h-10 w-10 shadow-lg backdrop-blur-sm rounded-full"
+                                title={isPlaying ? "Pause" : "Play"}
+                            >
+                                {isPlaying ? (
+                                    <Pause className="w-5 h-5 fill-current" />
+                                ) : (
+                                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                                )}
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={nextTrack}
+                                className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                                title="Next Track"
+                            >
+                                <SkipForward className="w-4 h-4" />
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={toggleRepeat}
+                                className={`h-8 w-8 transition-all duration-200 hover:scale-110 relative backdrop-blur-sm rounded-full ${
+                                    playerState.repeatMode !== 'off'
+                                        ? 'text-green-500 hover:text-green-400 drop-shadow-md'
+                                        : 'text-white/60 hover:text-white'
+                                }`}
+                                title={`Repeat: ${playerState.repeatMode}`}
+                            >
+                                <Repeat className="w-4 h-4" />
+                                {playerState.repeatMode === 'one' && (
+                                    <span className="absolute -top-1 -right-1 text-[8px] font-bold bg-green-500 text-white rounded-full w-3 h-3 flex items-center justify-center shadow-lg">
                                     1
                                 </span>
-                            )}
-                        </Button>
-                    </div>
+                                )}
+                            </Button>
+                        </div>
 
-                    {/* Progress Bar */}
-                    <div className="flex items-center gap-2 w-full max-w-[500px]">
-                        <span className="text-white/60 text-xs w-10 text-right font-mono flex-shrink-0">
+                        {/* Progress Bar */}
+                        <div className="flex items-center gap-2 w-full max-w-[450px]">
+                        <span className="text-white/70 text-xs w-10 text-right font-league-spartan flex-shrink-0 drop-shadow-sm">
                             {formatTime(currentTime)}
                         </span>
-                        <div
-                            ref={progressRef}
-                            className="flex-1 bg-white/20 h-1 rounded-full relative group cursor-pointer"
-                            onClick={handleProgressClick}
-                            onMouseDown={handleProgressMouseDown}
-                        >
                             <div
-                                className="bg-white h-1 rounded-full relative transition-all duration-100"
-                                style={{ width: `${displayProgress}%` }}
+                                ref={progressRef}
+                                className="flex-1 bg-white/20 h-1 rounded-full relative group cursor-pointer backdrop-blur-sm shadow-inner"
+                                onClick={handleProgressClick}
+                                onMouseDown={handleProgressMouseDown}
                             >
                                 <div
-                                    className={`absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full transition-opacity shadow-lg ${
-                                        isDraggingProgress || progressRef.current?.matches(':hover')
-                                            ? 'opacity-100'
-                                            : 'opacity-0'
-                                    }`}
-                                ></div>
+                                    className="bg-white/90 h-1 rounded-full relative transition-all duration-100 shadow-sm"
+                                    style={{ width: `${displayProgress}%` }}
+                                >
+                                    <div
+                                        className={`absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full transition-opacity shadow-lg backdrop-blur-sm ${
+                                            isDraggingProgress || progressRef.current?.matches(':hover')
+                                                ? 'opacity-100'
+                                                : 'opacity-0'
+                                        }`}
+                                    ></div>
+                                </div>
                             </div>
-                        </div>
-                        <span className="text-white/60 text-xs w-10 font-mono flex-shrink-0">
+                            <span className="text-white/70 text-xs w-10 font-league-spartan flex-shrink-0 drop-shadow-sm">
                             {formatTime(duration)}
                         </span>
+                        </div>
                     </div>
-                </div>
 
-                {/* Right Section - Volume and Additional Controls */}
-                <div className="flex items-center gap-2 w-[300px] min-w-[200px] justify-end flex-shrink-0">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
-                        title="Queue"
-                    >
-                        <List className="w-4 h-4" />
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
-                        title="Connect to device"
-                    >
-                        <Monitor className="w-4 h-4" />
-                    </Button>
-                    <div
-                        className="flex items-center gap-2 relative"
-                        onMouseEnter={() => setShowVolumeSlider(true)}
-                        onMouseLeave={() => setShowVolumeSlider(false)}
-                    >
+                    {/* Right Section - Volume and Additional Controls */}
+                    <div className="flex items-center gap-2 w-[280px] min-w-[200px] justify-end flex-shrink-0">
                         <Button
                             variant="ghost"
                             size="icon"
-                            onClick={toggleMute}
-                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
-                            title={`Volume: ${Math.round(playerState.volume)}%`}
+                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                            title="Queue"
                         >
-                            <VolumeIcon className="w-4 h-4" />
+                            <List className="w-4 h-4" />
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                            title="Connect to device"
+                        >
+                            <Monitor className="w-4 h-4" />
                         </Button>
                         <div
-                            ref={volumeRef}
-                            className={`w-20 bg-white/20 h-1 rounded-full cursor-pointer group transition-all duration-200 ${
-                                showVolumeSlider ? 'opacity-100' : 'opacity-70 hover:opacity-100'
-                            }`}
-                            onClick={handleVolumeClick}
-                            onMouseDown={handleVolumeMouseDown}
+                            className="flex items-center gap-2 relative"
+                            onMouseEnter={() => setShowVolumeSlider(true)}
+                            onMouseLeave={() => setShowVolumeSlider(false)}
                         >
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={toggleMute}
+                                className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                                title={`Volume: ${Math.round(playerState.volume)}%`}
+                            >
+                                <VolumeIcon className="w-4 h-4" />
+                            </Button>
                             <div
-                                className="bg-white h-1 rounded-full relative transition-all duration-100"
-                                style={{ width: `${isDraggingVolume ? tempVolume : playerState.volume}%` }}
+                                ref={volumeRef}
+                                className={`w-20 bg-white/20 h-1 rounded-full cursor-pointer group transition-all duration-200 backdrop-blur-sm shadow-inner ${
+                                    showVolumeSlider ? 'opacity-100' : 'opacity-70 hover:opacity-100'
+                                }`}
+                                onClick={handleVolumeClick}
+                                onMouseDown={handleVolumeMouseDown}
                             >
                                 <div
-                                    className={`absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full transition-opacity shadow-lg ${
-                                        isDraggingVolume || showVolumeSlider
-                                            ? 'opacity-100'
-                                            : 'opacity-0'
-                                    }`}
-                                ></div>
+                                    className="bg-white/90 h-1 rounded-full relative transition-all duration-100 shadow-sm"
+                                    style={{ width: `${isDraggingVolume ? tempVolume : playerState.volume}%` }}
+                                >
+                                    <div
+                                        className={`absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full transition-opacity shadow-lg backdrop-blur-sm ${
+                                            isDraggingVolume || showVolumeSlider
+                                                ? 'opacity-100'
+                                                : 'opacity-0'
+                                        }`}
+                                    ></div>
+                                </div>
                             </div>
                         </div>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                            title="More options"
+                        >
+                            <MoreHorizontal className="w-4 h-4" />
+                        </Button>
                     </div>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="text-white/60 hover:text-white hover:scale-110 transition-all duration-200 h-8 w-8"
-                        title="More options"
-                    >
-                        <MoreHorizontal className="w-4 h-4" />
-                    </Button>
                 </div>
             </div>
         </div>

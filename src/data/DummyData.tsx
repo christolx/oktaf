@@ -1,4 +1,4 @@
-import { Heart, SkipBack, Play, Pause, SkipForward, Shuffle, Repeat, Volume2, Monitor, List, MoreHorizontal, ThumbsDown, Bookmark, Bell, Users, Settings, Home, Plus, ChevronLeft, ChevronRight, Search, VolumeX,  Volume1, Download} from 'lucide-react'
+import { Heart, SkipBack, Play, Pause, SkipForward, Shuffle, Repeat, Volume2, Monitor, List, MoreHorizontal, ThumbsDown, Bookmark, Bell, Users, Settings, Home, Plus, ChevronLeft, ChevronRight, Search, VolumeX,  Volume1, Download, ListMusic, LibraryBig, CopyPlus} from 'lucide-react'
 
 // Types
 export interface AlbumArt {
@@ -36,6 +36,7 @@ export interface Playlist {
     art: AlbumArt;
     trackCount?: number;
     duration?: string;
+    creator?: string; // Add this line
 }
 
 export interface CurrentTrack {
@@ -101,7 +102,8 @@ export const libraryItems: NavItem[] = [
 export const userPlaylists: Playlist[] = [
     {
         id: "p1",
-        name: "Upbeat & songs",
+        name: "my first playlist",
+        creator: "torbob32",
         art: createGradientArt("from-purple-500 to-pink-500"),
         trackCount: 47,
         duration: "3h 12m"
@@ -109,27 +111,31 @@ export const userPlaylists: Playlist[] = [
     {
         id: "p2",
         name: "Alternative Rock",
+        creator: "Echo Roberts",
         art: createGradientArt("from-blue-500 to-purple-500"),
         trackCount: 32,
         duration: "2h 45m"
     },
     {
         id: "p3",
-        name: "My first playlist",
+        name: "lofi full study",
+        creator: "torbob32",
         art: createGradientArt("from-green-500 to-teal-500"),
         trackCount: 15,
         duration: "1h 8m"
     },
     {
         id: "p4",
-        name: "Icona pop's full",
+        name: "dj tiktok full",
+        creator: "torbob32",
         art: createGradientArt("from-orange-500 to-red-500"),
         trackCount: 28,
         duration: "1h 52m"
     },
     {
         id: "p5",
-        name: "Lana Del Rey",
+        name: "lebron ai songs",
+        creator: "TalentedBlake",
         art: createGradientArt("from-pink-500 to-purple-500"),
         trackCount: 23,
         duration: "1h 34m"
@@ -1258,7 +1264,10 @@ export const playerIcons = {
     ThumbsDown,
     Bookmark,
     VolumeX,
-    Volume1
+    Volume1,
+    ListMusic,
+    LibraryBig,
+    CopyPlus
 };
 
 export const navigationIcons = {
