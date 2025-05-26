@@ -18,13 +18,13 @@ export function Sidebar() {
 
     return (
         <div
-            className="w-60 h-screen pb-32 border-r border-white/5 flex flex-col bg-[#0a0a0a] relative overflow-hidden"
+            className="w-55 h-screen pb-32 border-r border-white/5 flex flex-col bg-[#0a0a0a] relative overflow-hidden"
         >
             {/* Enhanced background with subtle gradient */}
             <div
                 className="absolute inset-0 opacity-80"
                 style={{
-                    background: 'linear-gradient(180deg, #0a0a0a 0%, #1B1B1B 50%, #0a0a0a 100%)'
+                    background: 'linear-gradient(180deg, #0a0a0a 0%, #1B1B1B 30%, #0a0a0a 100%)'
                 }}
             />
 
@@ -42,7 +42,7 @@ export function Sidebar() {
                             }`}
                         >
                             <Home className="w-6 h-6" />
-                            <span className="font-medium">Home / Discover</span>
+                            <span className="font-medium !font-family-outfit">Home / Discover</span>
                         </div>
                     </div>
 
@@ -50,7 +50,7 @@ export function Sidebar() {
                     <div className="space-y-4 mb-16">
                         <div className="flex items-center gap-3">
                             <LibraryBig className="w-5 h-5 text-white/70" />
-                            <h3 className="text-white/70 text-sm font-semibold tracking-wider uppercase">
+                            <h3 className="text-white/70 text-sm font-medium !font-family-outfit tracking-wider uppercase">
                                 MY LIBRARY
                             </h3>
                         </div>
@@ -74,7 +74,7 @@ export function Sidebar() {
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
                             <ListMusic className="w-5 h-5 text-white/70" />
-                            <h3 className="text-white/70 text-sm font-semibold tracking-wider uppercase">
+                            <h3 className="text-white/70 text-sm font-medium tracking-wider !font-family-outfit uppercase">
                                 MY PLAYLISTS
                             </h3>
                         </div>
@@ -91,10 +91,10 @@ export function Sidebar() {
                                         </div>
                                     </div>
                                     <div className="flex flex-col min-w-0 flex-1">
-                                        <span className="text-white/80 text-sm font-medium group-hover:text-white truncate transition-colors duration-200">
+                                        <span className="text-white/80 text-sm font-light group-hover:text-white truncate transition-colors duration-200">
                                             {playlist.name}
                                         </span>
-                                        <span className="text-white/50 text-xs group-hover:text-white/70 truncate transition-colors duration-200">
+                                        <span className="text-white/50 text-xs font-extralight group-hover:text-white/70 truncate transition-colors duration-200">
                                             {playlist.creator}
                                         </span>
                                     </div>
