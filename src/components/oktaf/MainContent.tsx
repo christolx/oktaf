@@ -251,7 +251,7 @@ export function MainContent({ activeSection }: MainContentProps) {
     return (
         <div className="h-full overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
             {/* Add top padding to account for floating NavHeader */}
-            <div className="pt-20 p-6">
+            <div className="pt-24 p-6">
                 {renderContent()}
             </div>
         </div>
