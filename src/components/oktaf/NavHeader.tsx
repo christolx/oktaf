@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -14,6 +15,18 @@ interface NavHeaderProps {
 
 export function NavHeader({ activeNav, setActiveNav }: NavHeaderProps) {
     const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleNavClick = (navId: string) => {
+        // Always set the active nav state
+        setActiveNav(navId);
+
+        // If we're not on the homepage, navigate to homepage with the section
+        if (location.pathname !== '/') {
+            navigate(`/?section=${navId}`, { replace: false });
+        }
+    };
 
     return (
         <header className="flex w-full items-center justify-between gap-4 bg-zinc-900/70 backdrop-blur-xl rounded-2xl px-4 py-2 text-white">
@@ -23,9 +36,9 @@ export function NavHeader({ activeNav, setActiveNav }: NavHeaderProps) {
                     <Button
                         key={item.id}
                         variant="ghost"
-                        onClick={() => setActiveNav(item.id)}
+                        onClick={() => handleNavClick(item.id)}
                         className={cn(
-                            "h-[30px] px-3.5 py-1 text-sm font-medium transition-colors rounded-lg",
+                            "h-[30px] px-3.5 py-1 text-sm font-medium transition-colors rounded-lg cursor-pointer",
                             activeNav === item.id
                                 ? "bg-zinc-500 text-white"
                                 : "bg-zinc-700 text-zinc-300 hover:bg-zinc-600 hover:text-zinc-100"

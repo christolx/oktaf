@@ -2,6 +2,7 @@
 import { useNavigate } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { AlbumArt } from '@/components/ui/AlbumArt'
+import { usePlayer } from '@/contexts/PlayerContext'
 import {
     albumsForYou,
     nostalgiaAlbums,
@@ -16,7 +17,7 @@ import {
     type Playlist
 } from '@/data/DummyData.tsx'
 
-const { ChevronLeft, ChevronRight, MoreHorizontal } = navigationIcons;
+const { ChevronLeft, ChevronRight, MoreHorizontal, Play } = navigationIcons;
 
 interface AlbumCardProps {
     album: Album;
@@ -32,18 +33,47 @@ interface MainContentProps {
 
 function AlbumCard({ album }: AlbumCardProps) {
     const navigate = useNavigate()
+    const { playTrack } = usePlayer()
 
     const handleAlbumClick = () => {
         navigate(`/album/${album.id}`)
     }
 
+    const handlePlayClick = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        // Create a track from album data
+        const track = {
+            id: album.id,
+            title: album.title,
+            artist: album.artist,
+            album: album.title,
+            duration: album.duration || "3:45",
+            currentTime: "0:00",
+            art: album.art,
+            isLiked: false,
+            isBookmarked: false,
+        }
+        playTrack(track)
+    }
+
     return (
         <div className="group cursor-pointer" onClick={handleAlbumClick}>
-            <div className="aspect-squareee mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
+            <div className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
                 <AlbumArt
                     art={album.art}
                     className="w-full h-full group-hover:brightness-110 transition-all duration-200"
                 />
+                {/* Play button overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40">
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handlePlayClick}
+                        className="text-white bg-white/20 hover:bg-white/30 h-12 w-12 rounded-full backdrop-blur-sm"
+                    >
+                        <Play className="w-6 h-6 fill-current" />
+                    </Button>
+                </div>
             </div>
             <div className="space-y-1">
                 <h4 className="text-white text-sm font-medium truncate">{album.title}</h4>

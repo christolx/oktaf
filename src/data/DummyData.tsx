@@ -1,10 +1,20 @@
-import { Heart, SkipBack, Play, SkipForward, Shuffle, Repeat, Volume2, Monitor, List, MoreHorizontal, ThumbsDown, Bookmark, Bell, Users, Settings, Home, Plus, ChevronLeft, ChevronRight, Search } from 'lucide-react'
+import { Heart, SkipBack, Play, Pause, SkipForward, Shuffle, Repeat, Volume2, Monitor, List, MoreHorizontal, ThumbsDown, Bookmark, Bell, Users, Settings, Home, Plus, ChevronLeft, ChevronRight, Search } from 'lucide-react'
 
 // Types
 export interface AlbumArt {
     type: 'gradient' | 'image';
     value: string; // gradient classes for 'gradient' type, image URL for 'image' type
     alt?: string; // alt text for images
+}
+
+export interface Track {
+    id: string;
+    number: number;
+    title: string;
+    artist: string;
+    duration: string;
+    plays: number;
+    albumId: string;
 }
 
 export interface Album {
@@ -24,7 +34,7 @@ export interface Playlist {
     duration?: string;
 }
 
-export interface Track {
+export interface CurrentTrack {
     id: string;
     title: string;
     artist: string;
@@ -188,8 +198,87 @@ export const trendingAlbums: Album[] = [
     { id: "24", title: "Special", artist: "Lizzo", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748224183/Special_fxc13u.jpg", "Failed to load album cover."), year: 2022 },
 ];
 
+// Track Data
+export const albumTracks: Record<string, Track[]> = {
+    "1": [ // Random Access Memories
+        {
+            id: "track-1-1",
+            number: 1,
+            title: "Give Life Back to Music",
+            artist: "Daft Punk",
+            duration: "4:37",
+            plays: 134694315,
+            albumId: "1"
+        },
+        {
+            id: "track-1-2",
+            number: 2,
+            title: "The Game of Love",
+            artist: "Daft Punk",
+            duration: "2:33",
+            plays: 136473918,
+            albumId: "1"
+        },
+        {
+            id: "track-1-3",
+            number: 3,
+            title: "Giorgio by Moroder",
+            artist: "Daft Punk",
+            duration: "3:01",
+            plays: 28534656,
+            albumId: "1"
+        },
+        {
+            id: "track-1-4",
+            number: 4,
+            title: "Within",
+            artist: "Daft Punk",
+            duration: "2:30",
+            plays: 8901657,
+            albumId: "1"
+        },
+        {
+            id: "track-1-5",
+            number: 5,
+            title: "Instant Crush (feat. Julian Casablancas)",
+            artist: "Daft Punk, Julian Casablancas",
+            duration: "3:00",
+            plays: 7981019,
+            albumId: "1"
+        },
+        {
+            id: "track-1-6",
+            number: 6,
+            title: "Lose Yourself to Dance",
+            artist: "Daft Punk",
+            duration: "3:01",
+            plays: 56934125,
+            albumId: "1"
+        },
+        {
+            id: "track-1-7",
+            number: 7,
+            title: "Touch (feat. Paul Williams)",
+            artist: "Daft Punk, Paul Williams",
+            duration: "8:18",
+            plays: 45123789,
+            albumId: "1"
+        },
+        {
+            id: "track-1-8",
+            number: 8,
+            title: "Get Lucky (feat. Pharrell Williams)",
+            artist: "Daft Punk, Pharrell Williams",
+            duration: "4:08",
+            plays: 892456123,
+            albumId: "1"
+        }
+    ]
+    // Future albums can be added here with their respective track listings
+};
+
 // Player Data
-export const currentTrack: Track = {
+export const currentTrack: CurrentTrack = {
     id: "track-1",
     title: "Get Lucky",
     artist: "Daft Punk",
@@ -243,11 +332,38 @@ export const musicSections = {
     }
 } as const;
 
+export const formatPlayCount = (plays: number): string => {
+    return plays.toLocaleString("en-US")
+};
+
+// Helper function to get tracks for an album
+export const getAlbumTracks = (albumId: string): Track[] => {
+    return albumTracks[albumId] || [];
+};
+
+// Helper function to calculate total album duration
+export const calculateAlbumDuration = (tracks: Track[]): string => {
+    let totalMinutes = 0;
+    tracks.forEach(track => {
+        const [minutes, seconds] = track.duration.split(':').map(Number);
+        totalMinutes += minutes + (seconds / 60);
+    });
+
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = Math.floor(totalMinutes % 60);
+
+    if (hours > 0) {
+        return `${hours}h ${minutes}m`;
+    }
+    return `${minutes}m`;
+};
+
 // Icon Collections (for easier imports)
 export const playerIcons = {
     Heart,
     SkipBack,
     Play,
+    Pause,
     SkipForward,
     Shuffle,
     Repeat,
@@ -268,17 +384,17 @@ export const navigationIcons = {
     ChevronLeft,
     ChevronRight,
     Search,
-    MoreHorizontal
+    MoreHorizontal,
+    Play,
+    Pause,
+    Heart,
+    Shuffle,
+    List,
+    Volume2,
+    Monitor,
+    ThumbsDown,
+    Bookmark,
+    Repeat,
+    SkipBack,
+    SkipForward
 };
-
-// Future migration helper (example of how you'd update to images later)
-export const albumsWithImages: Album[] = [
-    // Example of how you'd add real images later:
-    // {
-    //   id: "1",
-    //   title: "Random Access Memories",
-    //   artist: "Daft Punk",
-    //   art: createImageArt("/images/albums/daft-punk-ram.jpg", "Random Access Memories album cover"),
-    //   year: 2013
-    // },
-];
