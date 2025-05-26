@@ -145,13 +145,13 @@ export const albumsForYou: Album[] = [
 ];
 
 export const AlternativeRockAlbums: Album[] = [
+    { id: "38", title: "Siamese Dream", artist: "The Smashing Pumpkins", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248605/siamese_dream_bs7otx.jpg", "Failed to load album cover."), year: 1993 },
+    { id: "39", title: "Mellon Collie and the Infinite Sadness", artist: "The Smashing Pumpkins", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248603/melon_collie_b1i9jh.jpg", "Failed to load album cover."), year: 1995 },
     { id: "33", title: "OK Computer", artist: "Radiohead", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248615/Ok_Comp_hmvu0v.jpg", "Failed to load album cover."), year: 1997 },
     { id: "34", title: "Nevermind", artist: "Nirvana", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248613/nirvana_nevermind_uf3jcv.jpg", "Failed to load album cover."), year: 1991 },
     { id: "35", title: "Doolittle", artist: "Pixies", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248611/Doolittle_kzey3l.jpg", "Failed to load album cover."), year: 1989 },
     { id: "36", title: "Grace", artist: "Jeff Buckley", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248609/Grace_xx5klu.jpg", "Failed to load album cover."), year: 1994 },
     { id: "37", title: "Daydream Nation", artist: "Sonic Youth", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248607/Daydream_nation_thtfnc.jpg", "Failed to load album cover."), year: 1988 },
-    { id: "38", title: "Siamese Dream", artist: "The Smashing Pumpkins", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248605/siamese_dream_bs7otx.jpg", "Failed to load album cover."), year: 1993 },
-    { id: "39", title: "Mellon Collie and the Infinite Sadness", artist: "The Smashing Pumpkins", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248603/melon_collie_b1i9jh.jpg", "Failed to load album cover."), year: 1995 },
     { id: "40", title: "Pinkerton", artist: "Weezer", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248602/Pinkerton_tikknk.jpg", "Failed to load album cover."), year: 1996 },
 ];
 
@@ -285,7 +285,7 @@ export const currentTrack: CurrentTrack = {
     artist: "Daft Punk",
     album: "Random Access Memories",
     duration: "4:08",
-    currentTime: "2:23",
+    currentTime: "0:00",
     art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748218460/Random_Access_ndsnbg.jpg", "Failed to load album cover."),
     isLiked: true,
     isDisliked: false,
