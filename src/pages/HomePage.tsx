@@ -29,8 +29,8 @@ export function HomePage() {
     };
 
     return (
-        <div className="h-screen w-screen bg-[#0a0a0a] text-white flex flex-col overflow-hidden">
-            <div className="flex flex-1 min-h-0 pb-20 relative">
+        <div className="h-screen w-screen bg-[#1a1a1a] text-white flex flex-col overflow-hidden">
+            <div className="flex flex-1 min-h-0 pb-24 relative">
                 {/* Sidebar with proper z-index */}
                 <div className="relative z-40">
                     <Sidebar />
