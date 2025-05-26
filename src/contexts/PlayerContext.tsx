@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react'
 import type {ReactNode} from 'react'
-import { currentTrack as initialTrack, initialPlayerState, type CurrentTrack, type PlayerState } from '@/data/DummyData'
+import { currentTrack as initialTrack, initialPlayerState, updateTrackInteraction , type CurrentTrack, type PlayerState } from '@/data/DummyData'
 
 interface PlayerContextType {
     currentTrack: CurrentTrack | null
@@ -73,6 +73,7 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
         setDuration(timeToSeconds(track.duration))
     }, [])
 
+
     const togglePlayPause = useCallback(() => {
         setPlayerState(prev => ({ ...prev, isPlaying: !prev.isPlaying }))
     }, [])
@@ -117,21 +118,44 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
 
     const toggleLike = useCallback(() => {
         if (currentTrack) {
-            setCurrentTrack(prev => prev ? { ...prev, isLiked: !prev.isLiked } : null)
+            const newLikedState = !currentTrack.isLiked;
+            setCurrentTrack(prev => prev ? {
+                ...prev,
+                isLiked: newLikedState,
+                isDisliked: newLikedState ? false : prev.isDisliked
+            } : null);
+
+            // Update the source data
+            updateTrackInteraction(currentTrack.id, 'like', newLikedState);
         }
-    }, [currentTrack])
+    }, [currentTrack]);
 
     const toggleDislike = useCallback(() => {
         if (currentTrack) {
-            setCurrentTrack(prev => prev ? { ...prev, isDisliked: !prev.isDisliked } : null)
+            const newDislikedState = !currentTrack.isDisliked;
+            setCurrentTrack(prev => prev ? {
+                ...prev,
+                isDisliked: newDislikedState,
+                isLiked: newDislikedState ? false : prev.isLiked
+            } : null);
+
+            // Update the source data
+            updateTrackInteraction(currentTrack.id, 'dislike', newDislikedState);
         }
-    }, [currentTrack])
+    }, [currentTrack]);
 
     const toggleBookmark = useCallback(() => {
         if (currentTrack) {
-            setCurrentTrack(prev => prev ? { ...prev, isBookmarked: !prev.isBookmarked } : null)
+            const newBookmarkedState = !currentTrack.isBookmarked;
+            setCurrentTrack(prev => prev ? {
+                ...prev,
+                isBookmarked: newBookmarkedState
+            } : null);
+
+            // Update the source data
+            updateTrackInteraction(currentTrack.id, 'bookmark', newBookmarkedState);
         }
-    }, [currentTrack])
+    }, [currentTrack]);
 
     // Calculate progress percentage
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0

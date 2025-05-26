@@ -15,6 +15,10 @@ export interface Track {
     duration: string;
     plays: number;
     albumId: string;
+    // Add interaction states to match CurrentTrack
+    isLiked?: boolean;
+    isDisliked?: boolean;
+    isBookmarked?: boolean;
 }
 
 export interface Album {
@@ -209,7 +213,10 @@ export const albumTracks: Record<string, Track[]> = {
             artist: "Daft Punk",
             duration: "4:37",
             plays: 134694315,
-            albumId: "1"
+            albumId: "1",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: false
         },
         {
             id: "track-1-2",
@@ -218,7 +225,10 @@ export const albumTracks: Record<string, Track[]> = {
             artist: "Daft Punk",
             duration: "2:33",
             plays: 136473918,
-            albumId: "1"
+            albumId: "1",
+            isLiked: true, // Example: this track is liked
+            isDisliked: false,
+            isBookmarked: false
         },
         {
             id: "track-1-3",
@@ -227,7 +237,10 @@ export const albumTracks: Record<string, Track[]> = {
             artist: "Daft Punk",
             duration: "3:01",
             plays: 28534656,
-            albumId: "1"
+            albumId: "1",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: true // Example: this track is bookmarked
         },
         {
             id: "track-1-4",
@@ -236,7 +249,10 @@ export const albumTracks: Record<string, Track[]> = {
             artist: "Daft Punk",
             duration: "2:30",
             plays: 8901657,
-            albumId: "1"
+            albumId: "1",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: false
         },
         {
             id: "track-1-5",
@@ -245,7 +261,10 @@ export const albumTracks: Record<string, Track[]> = {
             artist: "Daft Punk, Julian Casablancas",
             duration: "3:00",
             plays: 7981019,
-            albumId: "1"
+            albumId: "1",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: false
         },
         {
             id: "track-1-6",
@@ -254,7 +273,10 @@ export const albumTracks: Record<string, Track[]> = {
             artist: "Daft Punk",
             duration: "3:01",
             plays: 56934125,
-            albumId: "1"
+            albumId: "1",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: false
         },
         {
             id: "track-1-7",
@@ -263,7 +285,10 @@ export const albumTracks: Record<string, Track[]> = {
             artist: "Daft Punk, Paul Williams",
             duration: "8:18",
             plays: 45123789,
-            albumId: "1"
+            albumId: "1",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: true // bookmarked
         },
         {
             id: "track-1-8",
@@ -272,17 +297,20 @@ export const albumTracks: Record<string, Track[]> = {
             artist: "Daft Punk, Pharrell Williams",
             duration: "4:08",
             plays: 892456123,
-            albumId: "1"
+            albumId: "1",
+            isLiked: true, // liked
+            isDisliked: false,
+            isBookmarked: false
         }
     ]
     // Future albums can be added here with their respective track listings
 };
 
-// Player Data
+// Player Data - Updated to match track data
 export const currentTrack: CurrentTrack = {
-    id: "track-1",
-    title: "Get Lucky",
-    artist: "Daft Punk",
+    id: "track-1-8",
+    title: "Get Lucky (feat. Pharrell Williams)",
+    artist: "Daft Punk, Pharrell Williams",
     album: "Random Access Memories",
     duration: "4:08",
     currentTime: "0:00",
@@ -358,6 +386,71 @@ export const calculateAlbumDuration = (tracks: Track[]): string => {
         return `${hours}h ${minutes}m`;
     }
     return `${minutes}m`;
+};
+
+// Helper function to convert Track to CurrentTrack
+export const trackToCurrentTrack = (track: Track, albumTitle: string, albumArt: AlbumArt): CurrentTrack => {
+    return {
+        id: track.id,
+        title: track.title,
+        artist: track.artist,
+        album: albumTitle,
+        duration: track.duration,
+        currentTime: "0:00",
+        art: albumArt,
+        isLiked: track.isLiked || false,
+        isDisliked: track.isDisliked || false,
+        isBookmarked: track.isBookmarked || false,
+    };
+};
+
+// Helper function to find album by track ID
+export const findAlbumByTrackId = (trackId: string): Album | null => {
+    const allAlbums = [
+        ...albumsForYou,
+        ...nostalgiaAlbums,
+        ...trendingAlbums,
+        ...PopArtAlbums,
+        ...AlternativeRockAlbums,
+        ...GothicRockAlbums
+    ];
+
+    for (const album of allAlbums) {
+        const tracks = getAlbumTracks(album.id);
+        if (tracks.some(track => track.id === trackId)) {
+            return album;
+        }
+    }
+    return null;
+};
+
+// Helper function to update track interaction states
+export const updateTrackInteraction = (
+    trackId: string,
+    interaction: 'like' | 'dislike' | 'bookmark',
+    value: boolean
+): void => {
+    for (const albumId in albumTracks) {
+        const tracks = albumTracks[albumId];
+        const trackIndex = tracks.findIndex(track => track.id === trackId);
+
+        if (trackIndex !== -1) {
+            switch (interaction) {
+                case 'like':
+                    albumTracks[albumId][trackIndex].isLiked = value;
+                    if (value) albumTracks[albumId][trackIndex].isDisliked = false;
+                    break;
+                case 'dislike':
+                    albumTracks[albumId][trackIndex].isDisliked = value;
+                    if (value) albumTracks[albumId][trackIndex].isLiked = false;
+                    break;
+                case 'bookmark':
+                    albumTracks[albumId][trackIndex].isBookmarked = value;
+                    break;
+            }
+            break;
+        }
+    }
 };
 
 // Icon Collections (for easier imports)
