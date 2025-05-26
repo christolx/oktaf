@@ -8,7 +8,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/album/:albumId" element={<AlbumDetailPage />} />
-                {/* Add more routes as needed */}
             </Routes>
         </Router>
     )

@@ -6,6 +6,9 @@ import {
     albumsForYou,
     nostalgiaAlbums,
     trendingAlbums,
+    PopArtAlbums,
+    AlternativeRockAlbums,
+    GothicRockAlbums,
     userPlaylists,
     musicSections,
     navigationIcons,
@@ -127,11 +130,42 @@ function SectionHeader({ title }: { title: string }) {
 function AlbumsView() {
     return (
         <div className="space-y-12">
+
             {/* Albums for You */}
             <section>
                 <SectionHeader title={musicSections.albumsForYou.title} />
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
                     {albumsForYou.map((album) => (
+                        <AlbumCard key={album.id} album={album} />
+                    ))}
+                </div>
+            </section>
+
+            {/* Alternative Rock Albums */}
+            <section>
+                <SectionHeader title={musicSections.alternativeRock.title} />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                    {AlternativeRockAlbums.map((album) => (
+                        <AlbumCard key={album.id} album={album} />
+                    ))}
+                </div>
+            </section>
+
+            {/* Gothic Rock Albums */}
+            <section>
+                <SectionHeader title={musicSections.gothicRock.title} />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                    {GothicRockAlbums.map((album) => (
+                        <AlbumCard key={album.id} album={album} />
+                    ))}
+                </div>
+            </section>
+
+            {/* Pop Art Albums */}
+            <section>
+                <SectionHeader title={musicSections.popArt.title} />
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                    {PopArtAlbums.map((album) => (
                         <AlbumCard key={album.id} album={album} />
                     ))}
                 </div>
@@ -156,6 +190,7 @@ function AlbumsView() {
                     ))}
                 </div>
             </section>
+
         </div>
     )
 }

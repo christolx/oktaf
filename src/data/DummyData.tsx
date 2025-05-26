@@ -152,7 +152,40 @@ export const trendingAlbums: Album[] = [
     { id: "21", title: "Dawn FM", artist: "The Weeknd", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748222146/Dawn_FM_qaoprx.jpg", "Failed to load album cover."), year: 2022 },
     { id: "22", title: "Honestly, Nevermind", artist: "Drake", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748222202/Honestly_Nevermind_bcihhe.jpg", "Failed to load album cover."), year: 2022 },
     { id: "23", title: "Mr. Morale & The Big Steppers", artist: "Kendrick Lamar", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748224153/Mr_Morale_rdhtww.jpg", "Failed to load album cover."), year: 2022 },
-    { id: "24", title: "Special", artist: "Lizzo", art: createGradientArt("from-pink-500 to-purple-500"), year: 2022 },
+    { id: "24", title: "Special", artist: "Lizzo", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748224183/Special_fxc13u.jpg", "Failed to load album cover."), year: 2022 },
+];
+
+export const PopArtAlbums: Album[] = [
+    { id: "25", title: "The Rise and Fall of Ziggy Stardust and the Spiders from Mars", artist: "David Bowie", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248586/Ziggy_Stardust_kmxajv.jpg", "Failed to load album cover."), year: 1972 },
+    { id: "26", title: "Revolver", artist: "The Beatles", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248584/Revolver_Beatles_etpbap.jpg", "Failed to load album cover."), year: 1966 },
+    { id: "27", title: "A Moon Shaped Pool", artist: "Radiohead", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248583/MoonShapedPool_azcy35.jpg", "Failed to load album cover."), year: 2016 },
+    { id: "28", title: "The Queen Is Dead", artist: "The Smiths", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248581/Queen_is_Dead_obxbtk.jpg", "Failed to load album cover."), year: 1986 },
+    { id: "29", title: "Blonde", artist: "Frank Ocean", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248580/Frank_Ocean_Blonde_yjquwt.jpg", "Failed to load album cover."), year: 2016 },
+    { id: "30", title: "Hounds of Love", artist: "Kate Bush", art: createImageArt("https://upload.wikimedia.org/wikipedia/en/1/1c/Hounds_of_love.jpg", "Failed to load album cover."), year: 1985 },
+    { id: "31", title: "Illinois", artist: "Sufjan Stevens", art: createImageArt("https://upload.wikimedia.org/wikipedia/en/4/4a/Sufjan_Stevens_-_Illinois.jpg", "Failed to load album cover."), year: 2005 },
+    { id: "32", title: "Vespertine", artist: "Björk", art: createImageArt("https://upload.wikimedia.org/wikipedia/en/0/00/Bjorkvespertine.png", "Failed to load album cover."), year: 2001 },
+];
+
+export const AlternativeRockAlbums: Album[] = [
+    { id: "33", title: "OK Computer", artist: "Radiohead", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248615/Ok_Comp_hmvu0v.jpg", "Failed to load album cover."), year: 1997 },
+    { id: "34", title: "Nevermind", artist: "Nirvana", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248613/nirvana_nevermind_uf3jcv.jpg", "Failed to load album cover."), year: 1991 },
+    { id: "35", title: "Doolittle", artist: "Pixies", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248611/Doolittle_kzey3l.jpg", "Failed to load album cover."), year: 1989 },
+    { id: "36", title: "Grace", artist: "Jeff Buckley", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248609/Grace_xx5klu.jpg", "Failed to load album cover."), year: 1994 },
+    { id: "37", title: "Daydream Nation", artist: "Sonic Youth", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248607/Daydream_nation_thtfnc.jpg", "Failed to load album cover."), year: 1988 },
+    { id: "38", title: "Siamese Dream", artist: "The Smashing Pumpkins", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248605/siamese_dream_bs7otx.jpg", "Failed to load album cover."), year: 1993 },
+    { id: "39", title: "Mellon Collie and the Infinite Sadness", artist: "The Smashing Pumpkins", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248603/melon_collie_b1i9jh.jpg", "Failed to load album cover."), year: 1995 },
+    { id: "40", title: "Pinkerton", artist: "Weezer", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248602/Pinkerton_tikknk.jpg", "Failed to load album cover."), year: 1996 },
+];
+
+export const GothicRockAlbums: Album[] = [
+    { id: "41", title: "Disintegration", artist: "The Cure", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248600/Disintegration_vhzerq.jpg", "Failed to load album cover."), year: 1989 },
+    { id: "42", title: "Deathconsciousness", artist: "Have a Nice Life", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248598/Deathconsciousness_dwihzq.jpg", "Failed to load album cover."), year: 2008 },
+    { id: "43", title: "Closer", artist: "Joy Division", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248597/Joy_Division_Closer_qlwct8.jpg", "Failed to load album cover."), year: 1980 },
+    { id: "44", title: "Songs of a Lost World", artist: "The Cure", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248595/Songs_of_a_Lost_World_brfsai.jpg", "Failed to load album cover."), year: 2024 },
+    { id: "45", title: "Pornography", artist: "The Cure", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248593/The_Cure_Pornography_usos3r.jpg", "Failed to load album cover."), year: 1982 },
+    { id: "46", title: "Juju", artist: "Siouxsie and the Banshees", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248591/Juju_Banshees_qbssc4.jpg", "Failed to load album cover."), year: 1981 },
+    { id: "47", title: "The Great Annihilator", artist: "Swans", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248589/Great_Annihilator_bzk6go.jpg", "Failed to load album cover."), year: 1995 },
+    { id: "48", title: "Faith", artist: "The Cure", art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/v1748248588/The_cure_Faith_xbvnai.jpg", "Failed to load album cover."), year: 1981 },
 ];
 
 // Player Data
@@ -193,6 +226,21 @@ export const musicSections = {
         title: "Trending Albums Now",
         type: "albums" as const,
     },
+    popArt: {
+        id : "pop-art",
+        title: "Pop Art",
+        type: "albums" as const,
+    },
+    alternativeRock: {
+        id: "alternative-rock",
+        title: "Alternative Rock",
+        type: "albums" as const,
+    },
+    gothicRock: {
+        id: "gothic-rock",
+        title: "Gothic Rock",
+        type: "albums" as const,
+    }
 } as const;
 
 // Icon Collections (for easier imports)
