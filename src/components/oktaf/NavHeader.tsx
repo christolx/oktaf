@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router';
+import { useNavigate, useLocation, useSearchParams } from 'react-router';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -15,15 +15,9 @@ interface NavHeaderProps {
 
 export function NavHeader({ activeNav, setActiveNav }: NavHeaderProps) {
     const [searchTerm, setSearchTerm] = useState('');
-    const navigate = useNavigate();
-    const location = useLocation();
 
     const handleNavClick = (navId: string) => {
-        setActiveNav(navId);
-
-        if (location.pathname !== '/') {
-            navigate(`/?section=${navId}`, { replace: false });
-        }
+        setActiveNav(navId); // This will trigger URL update in HomePage
     };
 
     return (

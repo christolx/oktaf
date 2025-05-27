@@ -1,5 +1,7 @@
+// components/ui/AlbumArt.tsx
 import type { AlbumArt as AlbumArtType } from '@/data/DummyData.tsx';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface AlbumArtProps {
     art: AlbumArtType;
@@ -23,19 +25,27 @@ export function AlbumArt({ art, className, size = 'md' }: AlbumArtProps) {
 
     if (art.type === 'image') {
         return (
-            <img
+            <motion.img
                 src={art.value}
                 alt={art.alt || 'Album artwork'}
                 className={cn(baseClasses, 'object-cover')}
                 loading="lazy"
+                initial={{ filter: 'blur(4px)' }}
+                animate={{ filter: 'blur(0px)' }}
+                transition={{ duration: 0.3, delay: 0.1 }}
             />
         );
     }
 
-    // Gradient fallback
+    // Gradient fallback with animation
     return (
-        <div className={cn(baseClasses, `bg-gradient-to-br ${art.value}`)}>
+        <motion.div
+            className={cn(baseClasses, `bg-gradient-to-br ${art.value}`)}
+            initial={{ filter: 'blur(4px)' }}
+            animate={{ filter: 'blur(0px)' }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+        >
             <div className="w-full h-full bg-black/20"></div>
-        </div>
+        </motion.div>
     );
 }

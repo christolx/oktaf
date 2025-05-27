@@ -2,6 +2,8 @@
 import { useNavigate } from 'react-router'
 import { Button } from '@/components/ui/button'
 import { AlbumArt } from '@/components/ui/AlbumArt'
+import { motion, AnimatePresence } from 'framer-motion'
+import { containerVariants, cardVariants, sectionVariants } from '@/lib/animations'
 
 import {
     albumsForYou,
@@ -45,7 +47,6 @@ function shuffleArray<T>(array: T[]): T[] {
     return shuffledArray;
 }
 
-
 function AlbumCard({ album }: AlbumCardProps) {
     const navigate = useNavigate()
 
@@ -54,7 +55,16 @@ function AlbumCard({ album }: AlbumCardProps) {
     }
 
     return (
-        <div className="group cursor-pointer" onClick={handleAlbumClick}>
+        <motion.div
+            className="group cursor-pointer"
+            onClick={handleAlbumClick}
+            variants={cardVariants}
+            whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.98 }}
+        >
             <div className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
                 <AlbumArt
                     art={album.art}
@@ -65,7 +75,7 @@ function AlbumCard({ album }: AlbumCardProps) {
                 <h4 className="text-white text-sm font-medium truncate">{album.title}</h4>
                 <p className="text-white/60 text-xs truncate">{album.artist}</p>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
@@ -100,52 +110,55 @@ function PlaylistCard({ playlist }: PlaylistCardProps) {
     )
 }
 
-// --- TrackCard Component (Remains refactored to look like AlbumCard) ---
+// --- TrackCard Component ---
 interface TrackCardProps {
     track: Track; // The track data
     album: Album; // The associated album data for art, etc.
 }
 
+// Updated TrackCard with animation
 function TrackCard({ track, album }: TrackCardProps) {
     const handleTrackClick = () => {
-        // Example: navigate to track details page or trigger playback
         console.log(`Clicked track: ${track.title} by ${track.artist} from album ${album.title}`);
-        // navigate(`/track/${track.id}`); // Requires a track details route
     };
 
     return (
-        // Outer div structure matches AlbumCard for grid placement
-        <div className="group cursor-pointer" onClick={handleTrackClick}>
-            {/* Art area matches AlbumCard aspect ratio and hover effects */}
+        <motion.div
+            className="group cursor-pointer"
+            onClick={handleTrackClick}
+            variants={cardVariants}
+            whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.98 }}
+        >
             <div className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
-                {/* Use album art from the associated album */}
                 <AlbumArt
                     art={album.art}
                     className="w-full h-full group-hover:brightness-110 transition-all duration-200"
-                    size="lg" // Use a larger size for the square layout
+                    size="lg"
                 />
-                {/* Optional: Add a play button overlay on hover */}
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    {/* Replace with a proper play button icon */}
-                    {/* <PlayIcon className="w-12 h-12 text-white" /> */}
+                    {/* Play button placeholder */}
                 </div>
             </div>
-            {/* Text area matches AlbumCard layout */}
             <div className="space-y-1">
-                {/* Display Track Title */}
                 <h4 className="text-white text-sm font-medium truncate">{track.title}</h4>
-                {/* Display Track Artist */}
                 <p className="text-white/60 text-xs truncate">{track.artist}</p>
-                {/* Optional: Could display album title here if desired */}
-                {/* <p className="text-white/40 text-xs truncate">{album.title}</p> */}
             </div>
-        </div>
+        </motion.div>
     )
 }
 
 function SectionHeader({ title }: { title: string }) {
     return (
-        <div className="flex items-center justify-between mb-6">
+        <motion.div
+            className="flex items-center justify-between mb-6"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+        >
             <h2 className="text-white text-xl font-semibold">{title}</h2>
             <div className="flex items-center gap-2">
                 <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
@@ -158,75 +171,114 @@ function SectionHeader({ title }: { title: string }) {
                     <MoreHorizontal className="w-4 h-4" />
                 </Button>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
 function AlbumsView() {
     return (
-        <div className="space-y-12">
-
+        <motion.div
+            className="space-y-12"
+            initial="hidden"
+            animate="visible"
+            variants={{
+                visible: {
+                    transition: {
+                        staggerChildren: 0.2
+                    }
+                }
+            }}
+        >
             {/* Albums for You */}
-            <section>
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.albumsForYou.title} />
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {albumsForYou.map((album) => (
                         <AlbumCard key={album.id} album={album} />
                     ))}
-                </div>
-            </section>
+                </motion.div>
+            </motion.section>
 
             {/* Alternative Rock Albums */}
-            <section>
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.alternativeRock.title} />
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {AlternativeRockAlbums.map((album) => (
                         <AlbumCard key={album.id} album={album} />
                     ))}
-                </div>
-            </section>
+                </motion.div>
+            </motion.section>
 
             {/* Gothic Rock Albums */}
-            <section>
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.gothicRock.title} />
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {GothicRockAlbums.map((album) => (
                         <AlbumCard key={album.id} album={album} />
                     ))}
-                </div>
-            </section>
+                </motion.div>
+            </motion.section>
 
             {/* Pop Art Albums */}
-            <section>
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.popArt.title} />
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {PopArtAlbums.map((album) => (
                         <AlbumCard key={album.id} album={album} />
                     ))}
-                </div>
-            </section>
+                </motion.div>
+            </motion.section>
 
             {/* Best Albums of 00s & 10s */}
-            <section>
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.nostalgiaHits.title} />
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {nostalgiaAlbums.map((album) => (
                         <AlbumCard key={album.id} album={album} />
                     ))}
-                </div>
-            </section>
+                </motion.div>
+            </motion.section>
 
             {/* Trending Albums Now */}
-            <section>
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.trendingNow.title} />
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {trendingAlbums.map((album) => (
                         <AlbumCard key={album.id} album={album} />
                     ))}
-                </div>
-            </section>
-
-        </div>
+                </motion.div>
+            </motion.section>
+        </motion.div>
     )
 }
 
@@ -256,7 +308,7 @@ function PlaylistsView() {
 
 // --- Updated TracksView Component with Random Shuffle ---
 function TracksView() {
-    // Combine all album data into a single array for easy lookup
+    // ... (keep your existing logic)
     const allAlbums: Album[] = [
         ...albumsForYou,
         ...nostalgiaAlbums,
@@ -264,40 +316,39 @@ function TracksView() {
         ...PopArtAlbums,
         ...AlternativeRockAlbums,
         ...GothicRockAlbums,
-        // Include any other album lists you might add later
     ];
 
-    // Filter and map to get the first track for each album
     const oneTrackPerAlbum = allAlbums.map(album => {
         const tracks = albumTracks[album.id];
-        // Check if the album exists in albumTracks and has at least one track
         if (tracks && tracks.length > 0) {
-            return { track: tracks[0], album }; // Return the first track and its album
+            return { track: tracks[0], album };
         }
-        // eslint-disable-next-line no-console
         console.warn(`No tracks found for album ID ${album.id} (${album.title}). Skipping.`);
-        return null; // Skip albums that have no tracks defined in albumTracks
-    }).filter(Boolean) as { track: Track, album: Album }[]; // Filter out the null entries
+        return null;
+    }).filter(Boolean) as { track: Track, album: Album }[];
 
-    // *** SHUFFLE THE TRACKS RANDOMLY ***
     const shuffledTracks = shuffleArray(oneTrackPerAlbum);
 
-
-    // Section Layout (Same as AlbumsView)
     return (
-        <div className="space-y-12">
-            <section>
-                {/* Changed title to reflect content */}
+        <motion.div
+            className="space-y-12"
+            initial="hidden"
+            animate="visible"
+        >
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title="Featured Tracks" />
-                {/* Use the EXACT same grid classes as AlbumsView */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
-                    {/* Render the selected tracks using the Album-like TrackCard, using the shuffled list */}
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {shuffledTracks.map(({ track, album }) => (
                         <TrackCard key={track.id} track={track} album={album} />
                     ))}
-                </div>
-            </section>
-        </div>
+                </motion.div>
+            </motion.section>
+        </motion.div>
     );
 }
 
@@ -318,9 +369,21 @@ export function MainContent({ activeSection }: MainContentProps) {
 
     return (
         <div className="h-screen overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-24">
-            {/* Add top padding to account for floating NavHeader */}
             <div className="pt-24 p-6">
-                {renderContent()}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeSection}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{
+                            duration: 0.3,
+                            ease: "easeInOut"
+                        }}
+                    >
+                        {renderContent()}
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
     )
