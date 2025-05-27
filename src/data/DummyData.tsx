@@ -104,7 +104,7 @@ export const userPlaylists: Playlist[] = [
         id: "p1",
         name: "my first playlist",
         creator: "torbob32",
-        art: createGradientArt("from-purple-500 to-pink-500"),
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363194/list_grid_vh5m8a.jpg", "Failed to load user playlist"),
         trackCount: 47,
         duration: "3h 12m"
     },
@@ -112,7 +112,7 @@ export const userPlaylists: Playlist[] = [
         id: "p2",
         name: "Alternative Rock",
         creator: "Echo Roberts",
-        art: createGradientArt("from-blue-500 to-purple-500"),
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363276/alt_rock_jfzxm0.png", "Failed to load user playlist"),
         trackCount: 32,
         duration: "2h 45m"
     },
@@ -120,7 +120,7 @@ export const userPlaylists: Playlist[] = [
         id: "p3",
         name: "lofi full study",
         creator: "torbob32",
-        art: createGradientArt("from-green-500 to-teal-500"),
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363406/lofi_study_kvcauz.webp", "Failed to load user playlist"),
         trackCount: 15,
         duration: "1h 8m"
     },
@@ -128,7 +128,7 @@ export const userPlaylists: Playlist[] = [
         id: "p4",
         name: "dj tiktok full",
         creator: "torbob32",
-        art: createGradientArt("from-orange-500 to-red-500"),
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363697/tiktok_grid_gcchvy.webp", "Failed to load user playlist"),
         trackCount: 28,
         duration: "1h 52m"
     },
@@ -136,7 +136,7 @@ export const userPlaylists: Playlist[] = [
         id: "p5",
         name: "lebron ai songs",
         creator: "TalentedBlake",
-        art: createGradientArt("from-pink-500 to-purple-500"),
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356466/1900x1900-000000-80-0-0_jd3qyo.jpg", "Failed to load user playlist"),
         trackCount: 23,
         duration: "1h 34m"
     }
