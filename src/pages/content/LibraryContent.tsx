@@ -318,7 +318,7 @@ function LibraryArtistCard({ artist }: ArtistCardProps) {
     const navigate = useNavigate()
 
     const handleArtistClick = () => {
-        navigate(`/artist/${artist.id}`)
+        navigate(`/artist/daftpunk`)
     }
 
     return (
