@@ -16,7 +16,7 @@ export function Sidebar() {
     const librarySection = params.get('section')
 
     const handleHomeClick = () => {
-        navigate('/')
+        navigate('/?section=albums')
     }
 
     // Click handler for My Library section
