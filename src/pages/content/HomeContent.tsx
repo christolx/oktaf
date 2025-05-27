@@ -14,6 +14,7 @@ import {
     AlternativeRockAlbums,
     GothicRockAlbums,
     userPlaylists,
+    lebron,
     musicSections,
     navigationIcons,
     albumTracks, // <-- Import albumTracks
@@ -296,7 +297,7 @@ function PlaylistCard({playlist}: PlaylistCardProps) {
 
     const handlePlaylistClick = () => {
         // Always navigate to the "lebron ai songs" playlist
-        navigate(`/album/1`)
+        navigate(`/album/69`)
     }
 
     return (
