@@ -1099,6 +1099,605 @@ export const albumTracks: Record<string, Track[]> = {
             isBookmarked: false
         }
     ],
+    // ---- ALBUMS FOR YOU ----
+    "4": [ // The Resistance - Muse
+        {
+            id: "track-4-1",
+            number: 1,
+            title: "Uprising",
+            artist: "Muse",
+            duration: "5:04",
+            plays: 320000000,
+            albumId: "4",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "5": [ // Minecraft - Volume Alpha - C418
+        {
+            id: "track-5-1",
+            number: 1,
+            title: "Sweden",
+            artist: "C418",
+            duration: "3:54",
+            plays: 210000000,
+            albumId: "5",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "6": [ // Dangerous - Michael Jackson
+        {
+            id: "track-6-1",
+            number: 1,
+            title: "Black or White",
+            artist: "Michael Jackson",
+            duration: "4:16",
+            plays: 380000000,
+            albumId: "6",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "7": [ // Unknown Pleasures - Joy Division
+        {
+            id: "track-7-1",
+            number: 1,
+            title: "Disorder",
+            artist: "Joy Division",
+            duration: "3:32",
+            plays: 65000000,
+            albumId: "7",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "8": [ // Take Care - Drake
+        {
+            id: "track-8-1",
+            number: 1,
+            title: "Take Care (feat. Rihanna)",
+            artist: "Drake, Rihanna",
+            duration: "4:37",
+            plays: 520000000,
+            albumId: "8",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+
+    // ---- ALTERNATIVE ROCK ALBUMS ----
+    "34": [ // Nevermind - Nirvana
+        {
+            id: "track-34-1",
+            number: 1,
+            title: "Smells Like Teen Spirit",
+            artist: "Nirvana",
+            duration: "5:01",
+            plays: 850000000,
+            albumId: "34",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ],
+    "35": [ // Doolittle - Pixies
+        {
+            id: "track-35-1",
+            number: 1,
+            title: "Here Comes Your Man",
+            artist: "Pixies",
+            duration: "3:21",
+            plays: 96000000,
+            albumId: "35",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "36": [ // Grace - Jeff Buckley
+        {
+            id: "track-36-1",
+            number: 1,
+            title: "Hallelujah",
+            artist: "Jeff Buckley",
+            duration: "6:53",
+            plays: 430000000,
+            albumId: "36",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ],
+    "37": [ // Daydream Nation - Sonic Youth
+        {
+            id: "track-37-1",
+            number: 1,
+            title: "Teen Age Riot",
+            artist: "Sonic Youth",
+            duration: "6:57",
+            plays: 70000000,
+            albumId: "37",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "40": [ // Pinkerton - Weezer
+        {
+            id: "track-40-1",
+            number: 1,
+            title: "El Scorcho",
+            artist: "Weezer",
+            duration: "4:03",
+            plays: 48000000,
+            albumId: "40",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+
+    // ---- GOTHIC ROCK ALBUMS ----
+    "41": [ // Disintegration - The Cure
+        {
+            id: "track-41-1",
+            number: 1,
+            title: "Pictures of You",
+            artist: "The Cure",
+            duration: "7:28",
+            plays: 112000000,
+            albumId: "41",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "42": [ // Deathconsciousness - Have a Nice Life
+        {
+            id: "track-42-1",
+            number: 1,
+            title: "Bloodhail",
+            artist: "Have a Nice Life",
+            duration: "5:40",
+            plays: 33000000,
+            albumId: "42",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "43": [ // Closer - Joy Division
+        {
+            id: "track-43-1",
+            number: 1,
+            title: "Isolation",
+            artist: "Joy Division",
+            duration: "2:52",
+            plays: 42000000,
+            albumId: "43",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "44": [ // Songs of a Lost World - The Cure
+        {
+            id: "track-44-1",
+            number: 1,
+            title: "Endsong",
+            artist: "The Cure",
+            duration: "7:23",
+            plays: 28000000,
+            albumId: "44",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "45": [ // Pornography - The Cure
+        {
+            id: "track-45-1",
+            number: 1,
+            title: "The Hanging Garden",
+            artist: "The Cure",
+            duration: "4:21",
+            plays: 34000000,
+            albumId: "45",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "46": [ // Juju - Siouxsie and the Banshees
+        {
+            id: "track-46-1",
+            number: 1,
+            title: "Spellbound",
+            artist: "Siouxsie and the Banshees",
+            duration: "3:18",
+            plays: 25000000,
+            albumId: "46",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "47": [ // The Great Annihilator - Swans
+        {
+            id: "track-47-1",
+            number: 1,
+            title: "Celebrity Lifestyle",
+            artist: "Swans",
+            duration: "4:35",
+            plays: 12000000,
+            albumId: "47",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "48": [ // Faith - The Cure
+        {
+            id: "track-48-1",
+            number: 1,
+            title: "Primary",
+            artist: "The Cure",
+            duration: "3:36",
+            plays: 22000000,
+            albumId: "48",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+
+    // ---- POP ART ALBUMS ----
+    "25": [ // Ziggy Stardust - David Bowie
+        {
+            id: "track-25-1",
+            number: 1,
+            title: "Starman",
+            artist: "David Bowie",
+            duration: "4:16",
+            plays: 185000000,
+            albumId: "25",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "26": [ // Revolver - The Beatles
+        {
+            id: "track-26-1",
+            number: 1,
+            title: "Eleanor Rigby",
+            artist: "The Beatles",
+            duration: "2:08",
+            plays: 145000000,
+            albumId: "26",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "27": [ // Post - Björk
+        {
+            id: "track-27-1",
+            number: 1,
+            title: "It's Oh So Quiet",
+            artist: "Björk",
+            duration: "3:39",
+            plays: 52000000,
+            albumId: "27",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "28": [ // The Queen Is Dead - The Smiths
+        {
+            id: "track-28-1",
+            number: 1,
+            title: "There Is a Light That Never Goes Out",
+            artist: "The Smiths",
+            duration: "4:02",
+            plays: 107000000,
+            albumId: "28",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ],
+    "29": [ // Blonde - Frank Ocean
+        {
+            id: "track-29-1",
+            number: 1,
+            title: "Nights",
+            artist: "Frank Ocean",
+            duration: "5:07",
+            plays: 260000000,
+            albumId: "29",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "30": [ // Hounds of Love - Kate Bush
+        {
+            id: "track-30-1",
+            number: 1,
+            title: "Running Up That Hill (A Deal with God)",
+            artist: "Kate Bush",
+            duration: "5:00",
+            plays: 500000000,
+            albumId: "30",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ],
+    "31": [ // Illinois - Sufjan Stevens
+        {
+            id: "track-31-1",
+            number: 1,
+            title: "Chicago",
+            artist: "Sufjan Stevens",
+            duration: "6:04",
+            plays: 87000000,
+            albumId: "31",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "32": [ // A Moon Shaped Pool - Radiohead
+        {
+            id: "track-32-1",
+            number: 1,
+            title: "Burn the Witch",
+            artist: "Radiohead",
+            duration: "3:41",
+            plays: 91000000,
+            albumId: "32",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+
+    // ---- NOSTALGIA ALBUMS ----
+    "9": [ // The Eminem Show - Eminem
+        {
+            id: "track-9-1",
+            number: 1,
+            title: "Without Me",
+            artist: "Eminem",
+            duration: "4:50",
+            plays: 680000000,
+            albumId: "9",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "10": [ // American Idiot - Green Day
+        {
+            id: "track-10-1",
+            number: 1,
+            title: "Boulevard of Broken Dreams",
+            artist: "Green Day",
+            duration: "4:20",
+            plays: 540000000,
+            albumId: "10",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ],
+    "11": [ // Back to Black - Amy Winehouse
+        {
+            id: "track-11-1",
+            number: 1,
+            title: "Rehab",
+            artist: "Amy Winehouse",
+            duration: "3:34",
+            plays: 380000000,
+            albumId: "11",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "12": [ // In Rainbows - Radiohead
+        {
+            id: "track-12-1",
+            number: 1,
+            title: "Nude",
+            artist: "Radiohead",
+            duration: "4:15",
+            plays: 75000000,
+            albumId: "12",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "13": [ // The Black Parade - My Chemical Romance
+        {
+            id: "track-13-1",
+            number: 1,
+            title: "Welcome to the Black Parade",
+            artist: "My Chemical Romance",
+            duration: "5:11",
+            plays: 420000000,
+            albumId: "13",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ],
+    "14": [ // Stadium Arcadium - Red Hot Chili Peppers
+        {
+            id: "track-14-1",
+            number: 1,
+            title: "Dani California",
+            artist: "Red Hot Chili Peppers",
+            duration: "4:42",
+            plays: 380000000,
+            albumId: "14",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "15": [ // Whatever People Say I Am - Arctic Monkeys
+        {
+            id: "track-15-1",
+            number: 1,
+            title: "I Bet You Look Good on the Dancefloor",
+            artist: "Arctic Monkeys",
+            duration: "2:53",
+            plays: 320000000,
+            albumId: "15",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "16": [ // Good Girl Gone Bad - Rihanna
+        {
+            id: "track-16-1",
+            number: 1,
+            title: "Umbrella (feat. Jay-Z)",
+            artist: "Rihanna, Jay-Z",
+            duration: "4:36",
+            plays: 670000000,
+            albumId: "16",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+
+    // ---- TRENDING ALBUMS ----
+    "17": [ // Midnights - Taylor Swift
+        {
+            id: "track-17-1",
+            number: 1,
+            title: "Anti-Hero",
+            artist: "Taylor Swift",
+            duration: "3:20",
+            plays: 620000000,
+            albumId: "17",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "18": [ // Renaissance - Beyoncé
+        {
+            id: "track-18-1",
+            number: 1,
+            title: "CUFF IT",
+            artist: "Beyoncé",
+            duration: "3:45",
+            plays: 210000000,
+            albumId: "18",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "19": [ // Harry's House - Harry Styles
+        {
+            id: "track-19-1",
+            number: 1,
+            title: "As It Was",
+            artist: "Harry Styles",
+            duration: "2:47",
+            plays: 950000000,
+            albumId: "19",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ],
+    "20": [ // Un Verano Sin Ti - Bad Bunny
+        {
+            id: "track-20-1",
+            number: 1,
+            title: "Tití Me Preguntó",
+            artist: "Bad Bunny",
+            duration: "4:03",
+            plays: 800000000,
+            albumId: "20",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "21": [ // Dawn FM - The Weeknd
+        {
+            id: "track-21-1",
+            number: 1,
+            title: "Save Your Tears",
+            artist: "The Weeknd",
+            duration: "3:35",
+            plays: 850000000,
+            albumId: "21",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "22": [ // Honestly, Nevermind - Drake
+        {
+            id: "track-22-1",
+            number: 1,
+            title: "Sticky",
+            artist: "Drake",
+            duration: "4:03",
+            plays: 130000000,
+            albumId: "22",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        }
+    ],
+    "23": [ // Mr. Morale & The Big Steppers - Kendrick Lamar
+        {
+            id: "track-23-1",
+            number: 1,
+            title: "N95",
+            artist: "Kendrick Lamar",
+            duration: "3:16",
+            plays: 120000000,
+            albumId: "23",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ],
+    "24": [ // Special - Lizzo
+        {
+            id: "track-24-1",
+            number: 1,
+            title: "About Damn Time",
+            artist: "Lizzo",
+            duration: "3:12",
+            plays: 300000000,
+            albumId: "24",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: true
+        }
+    ]
 };
 
 // Player Data - Updated to match track data
