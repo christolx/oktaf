@@ -1,11 +1,11 @@
 // components/oktaf/Sidebar.tsx
-import { useNavigate, useLocation } from 'react-router'
-import { Button } from '@/components/ui/button'
-import { AlbumArt } from '@/components/oktaf/AlbumArt.tsx'
-import { userPlaylists, libraryItems, navigationIcons, playerIcons } from '@/data/DummyData.tsx'
+import {useNavigate, useLocation} from 'react-router'
+import {Button} from '@/components/ui/button'
+import {AlbumArt} from '@/components/oktaf/AlbumArt.tsx'
+import {userPlaylists, libraryItems, navigationIcons, playerIcons} from '@/data/DummyData.tsx'
 
-const { Home } = navigationIcons
-const { ListMusic, LibraryBig, CopyPlus } = playerIcons
+const {Home} = navigationIcons
+const {ListMusic, LibraryBig, CopyPlus} = playerIcons
 
 export function Sidebar() {
     const navigate = useNavigate()
@@ -52,7 +52,7 @@ export function Sidebar() {
                                     : 'text-white/60 hover:text-white/90'
                             }`}
                         >
-                            <Home className="w-6 h-6" />
+                            <Home className="w-6 h-6"/>
                             <span className="font-medium !font-family-outfit">Home / Discover</span>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ export function Sidebar() {
                     {/* My Library Section */}
                     <div className="space-y-4 mb-16">
                         <div className="flex items-center gap-3">
-                            <LibraryBig className="w-5 h-5 text-white/70" />
+                            <LibraryBig className="w-5 h-5 text-white/70"/>
                             <h3 className="text-white text-base font-medium !font-family-outfit tracking-wider uppercase">
                                 MY LIBRARY
                             </h3>
@@ -91,7 +91,7 @@ export function Sidebar() {
                     {/* My Playlists Section */}
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                            <ListMusic className="w-5 h-5 text-white/70" />
+                            <ListMusic className="w-5 h-5 text-white/70"/>
                             <h3 className="text-white text-base font-medium tracking-wider !font-family-outfit uppercase">
                                 MY PLAYLISTS
                             </h3>
@@ -101,6 +101,7 @@ export function Sidebar() {
                                 <div
                                     key={playlist.id}
                                     className="flex items-center gap-3 group cursor-pointer hover:bg-white/5 p-2 -ml-2 rounded-lg transition-all duration-200 hover:translate-x-1"
+                                    onClick={() => navigate(`/album/69`)}
                                 >
                                     <div className="relative flex-shrink-0">
                                         <AlbumArt art={playlist.art} size="sm" className="rounded-none" />
@@ -128,7 +129,7 @@ export function Sidebar() {
                         variant="ghost"
                         className="w-full justify-center gap-3 text-white hover:text-white/80 bg-transparent hover:bg-transparent transition-all duration-300 rounded-lg py-3 font-medium"
                     >
-                        <CopyPlus className="w-5 h-5" />
+                        <CopyPlus className="w-5 h-5"/>
                         New Playlist
                     </Button>
                 </div>
