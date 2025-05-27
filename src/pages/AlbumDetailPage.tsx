@@ -145,7 +145,7 @@ export function AlbumDetailPage() {
                     </div>
 
                     {/* Main Content - Extends Full Height */}
-                    <div className="h-full overflow-y-auto">
+                    <div className="h-screen overflow-y-auto overflow-x-hidden pb-24">
                         {/* Header with album info and dynamic background */}
                         <div className="relative min-h-[500px]">
                             {/* Background with album art blur effect */}

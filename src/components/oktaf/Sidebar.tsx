@@ -50,7 +50,7 @@ export function Sidebar() {
                     <div className="space-y-4 mb-16">
                         <div className="flex items-center gap-3">
                             <LibraryBig className="w-5 h-5 text-white/70" />
-                            <h3 className="text-white/70 text-sm font-medium !font-family-outfit tracking-wider uppercase">
+                            <h3 className="text-white text-base font-medium !font-family-outfit tracking-wider uppercase">
                                 MY LIBRARY
                             </h3>
                         </div>
@@ -74,7 +74,7 @@ export function Sidebar() {
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
                             <ListMusic className="w-5 h-5 text-white/70" />
-                            <h3 className="text-white/70 text-sm font-medium tracking-wider !font-family-outfit uppercase">
+                            <h3 className="text-white text-base font-medium tracking-wider !font-family-outfit uppercase">
                                 MY PLAYLISTS
                             </h3>
                         </div>
