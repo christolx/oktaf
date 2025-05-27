@@ -13,8 +13,10 @@ import {
     userPlaylists,
     musicSections,
     navigationIcons,
+    albumTracks, // <-- Import albumTracks
     type Album,
-    type Playlist
+    type Playlist,
+    type Track // <-- Import Track type
 } from '@/data/DummyData.tsx'
 
 const { ChevronLeft, ChevronRight, MoreHorizontal} = navigationIcons;
@@ -30,6 +32,19 @@ interface PlaylistCardProps {
 interface MainContentProps {
     activeSection: string;
 }
+
+// Helper function to shuffle an array (Fisher-Yates algorithm)
+function shuffleArray<T>(array: T[]): T[] {
+    // Create a mutable copy to avoid modifying the original array if it's needed elsewhere
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        // Swap elements
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
+}
+
 
 function AlbumCard({ album }: AlbumCardProps) {
     const navigate = useNavigate()
@@ -85,22 +100,44 @@ function PlaylistCard({ playlist }: PlaylistCardProps) {
     )
 }
 
-function TrackCard({ album }: AlbumCardProps) {
+// --- TrackCard Component (Remains refactored to look like AlbumCard) ---
+interface TrackCardProps {
+    track: Track; // The track data
+    album: Album; // The associated album data for art, etc.
+}
+
+function TrackCard({ track, album }: TrackCardProps) {
+    const handleTrackClick = () => {
+        // Example: navigate to track details page or trigger playback
+        console.log(`Clicked track: ${track.title} by ${track.artist} from album ${album.title}`);
+        // navigate(`/track/${track.id}`); // Requires a track details route
+    };
+
     return (
-        <div className="group cursor-pointer p-3 rounded-lg hover:bg-white/5 transition-colors">
-            <div className="flex items-center gap-3">
+        // Outer div structure matches AlbumCard for grid placement
+        <div className="group cursor-pointer" onClick={handleTrackClick}>
+            {/* Art area matches AlbumCard aspect ratio and hover effects */}
+            <div className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
+                {/* Use album art from the associated album */}
                 <AlbumArt
                     art={album.art}
-                    size="sm"
-                    className="group-hover:brightness-110 transition-all duration-200"
+                    className="w-full h-full group-hover:brightness-110 transition-all duration-200"
+                    size="lg" // Use a larger size for the square layout
                 />
-                <div className="flex-1 min-w-0">
-                    <h4 className="text-white text-sm font-medium truncate">{album.title}</h4>
-                    <p className="text-white/60 text-xs truncate">{album.artist}</p>
+                {/* Optional: Add a play button overlay on hover */}
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    {/* Replace with a proper play button icon */}
+                    {/* <PlayIcon className="w-12 h-12 text-white" /> */}
                 </div>
-                <div className="text-white/40 text-xs">
-                    {album.duration || '3:45'}
-                </div>
+            </div>
+            {/* Text area matches AlbumCard layout */}
+            <div className="space-y-1">
+                {/* Display Track Title */}
+                <h4 className="text-white text-sm font-medium truncate">{track.title}</h4>
+                {/* Display Track Artist */}
+                <p className="text-white/60 text-xs truncate">{track.artist}</p>
+                {/* Optional: Could display album title here if desired */}
+                {/* <p className="text-white/40 text-xs truncate">{album.title}</p> */}
             </div>
         </div>
     )
@@ -217,21 +254,51 @@ function PlaylistsView() {
     )
 }
 
+// --- Updated TracksView Component with Random Shuffle ---
 function TracksView() {
-    const allTracks = [...albumsForYou, ...nostalgiaAlbums, ...trendingAlbums];
+    // Combine all album data into a single array for easy lookup
+    const allAlbums: Album[] = [
+        ...albumsForYou,
+        ...nostalgiaAlbums,
+        ...trendingAlbums,
+        ...PopArtAlbums,
+        ...AlternativeRockAlbums,
+        ...GothicRockAlbums,
+        // Include any other album lists you might add later
+    ];
 
+    // Filter and map to get the first track for each album
+    const oneTrackPerAlbum = allAlbums.map(album => {
+        const tracks = albumTracks[album.id];
+        // Check if the album exists in albumTracks and has at least one track
+        if (tracks && tracks.length > 0) {
+            return { track: tracks[0], album }; // Return the first track and its album
+        }
+        // eslint-disable-next-line no-console
+        console.warn(`No tracks found for album ID ${album.id} (${album.title}). Skipping.`);
+        return null; // Skip albums that have no tracks defined in albumTracks
+    }).filter(Boolean) as { track: Track, album: Album }[]; // Filter out the null entries
+
+    // *** SHUFFLE THE TRACKS RANDOMLY ***
+    const shuffledTracks = shuffleArray(oneTrackPerAlbum);
+
+
+    // Section Layout (Same as AlbumsView)
     return (
-        <div className="space-y-8">
+        <div className="space-y-12">
             <section>
-                <SectionHeader title="All Tracks" />
-                <div className="space-y-1">
-                    {allTracks.map((album) => (
-                        <TrackCard key={`track-${album.id}`} album={album} />
+                {/* Changed title to reflect content */}
+                <SectionHeader title="Featured Tracks" />
+                {/* Use the EXACT same grid classes as AlbumsView */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                    {/* Render the selected tracks using the Album-like TrackCard, using the shuffled list */}
+                    {shuffledTracks.map(({ track, album }) => (
+                        <TrackCard key={track.id} track={track} album={album} />
                     ))}
                 </div>
             </section>
         </div>
-    )
+    );
 }
 
 export function MainContent({ activeSection }: MainContentProps) {
@@ -241,9 +308,10 @@ export function MainContent({ activeSection }: MainContentProps) {
                 return <AlbumsView />;
             case 'playlists':
                 return <PlaylistsView />;
-            case 'tracks':
+            case 'tracks': // <-- Render TracksView
                 return <TracksView />;
             default:
+                // Fallback
                 return <AlbumsView />;
         }
     };
