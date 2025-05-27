@@ -1,9 +1,9 @@
-// components/oktaf/MainContent.tsx
+// components/oktaf/HomeContent.tsx
 import {useNavigate} from 'react-router'
-import {Button} from '@/components/ui/button'
-import {AlbumArt} from '@/components/ui/AlbumArt'
+import {Button} from '@/components/ui/button.tsx'
+import {AlbumArt} from '@/components/ui/AlbumArt.tsx'
 import {motion, AnimatePresence} from 'framer-motion'
-import {containerVariants, cardVariants, sectionVariants} from '@/lib/animations'
+import {containerVariants, cardVariants, sectionVariants} from '@/lib/animations.ts'
 
 import {
     albumsForYou,
@@ -371,7 +371,7 @@ function TracksView() {
     );
 }
 
-export function MainContent({activeSection}: MainContentProps) {
+export function HomeContent({activeSection}: MainContentProps) {
     const renderContent = () => {
         switch (activeSection) {
             case 'albums':

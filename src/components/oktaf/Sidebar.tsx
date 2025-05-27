@@ -11,9 +11,20 @@ export function Sidebar() {
     const navigate = useNavigate()
     const location = useLocation()
     const isHomePage = location.pathname === '/'
+    const isLibraryPage = location.pathname === '/library'
+    const params = new URLSearchParams(location.search)
+    const librarySection = params.get('section')
 
     const handleHomeClick = () => {
         navigate('/')
+    }
+
+    // Click handler for My Library section
+    const handleLibraryItemClick = (itemId: string) => {
+        // Only navigate if not already correct section
+        if (!isLibraryPage || librarySection !== itemId) {
+            navigate(`/library?section=${itemId}`)
+        }
     }
 
     return (
@@ -31,7 +42,7 @@ export function Sidebar() {
             <div className="relative z-10 flex flex-col h-full p-4">
                 {/* Navigation */}
                 <div className="space-y-6">
-                    {/* Home/Discover Button - Fixed alignment */}
+                    {/* Home/Discover Button */}
                     <div className="pt-2">
                         <div
                             onClick={handleHomeClick}
@@ -55,18 +66,25 @@ export function Sidebar() {
                             </h3>
                         </div>
                         <div className="space-y-3 pl-8">
-                            {libraryItems.map((item, index) => (
-                                <div
-                                    key={item.id}
-                                    className={`cursor-pointer text-base transition-all duration-200 hover:translate-x-1 ${
-                                        index === 0
-                                            ? "text-white font-medium"
-                                            : "text-white/60 hover:text-white/90"
-                                    }`}
-                                >
-                                    {item.label}
-                                </div>
-                            ))}
+                            {libraryItems.map((item, idx) => {
+                                // If on /library, highlight by query param. Else, highlight first item.
+                                const isActive = isLibraryPage
+                                    ? (librarySection === item.id || (!librarySection && idx === 0))
+                                    : idx === 0
+                                return (
+                                    <div
+                                        key={item.id}
+                                        onClick={() => handleLibraryItemClick(item.id)}
+                                        className={`cursor-pointer text-base transition-all duration-200 hover:translate-x-1 ${
+                                            isActive
+                                                ? "text-white font-medium"
+                                                : "text-white/60 hover:text-white/90"
+                                        }`}
+                                    >
+                                        {item.label}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 
@@ -79,7 +97,7 @@ export function Sidebar() {
                             </h3>
                         </div>
                         <div className="space-y-3 pl-8">
-                            {userPlaylists.map((playlist, index) => (
+                            {userPlaylists.map((playlist) => (
                                 <div
                                     key={playlist.id}
                                     className="flex items-center gap-3 group cursor-pointer hover:bg-white/5 p-2 -ml-2 rounded-lg transition-all duration-200 hover:translate-x-1"
