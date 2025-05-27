@@ -1,6 +1,6 @@
 // components/oktaf/AlbumDetailContent.tsx
 import { Button } from '@/components/ui/button.tsx'
-import { AlbumArt } from '@/components/ui/AlbumArt.tsx'
+import { AlbumArt } from '@/components/oktaf/AlbumArt.tsx'
 import { usePlayer } from '@/contexts/PlayerContext.tsx'
 import { useAlbumColors } from '@/hooks/useAlbumColors.ts'
 import {

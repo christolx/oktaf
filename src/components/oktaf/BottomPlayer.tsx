@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { AlbumArt } from '@/components/ui/AlbumArt'
+import { AlbumArt } from '@/components/oktaf/AlbumArt.tsx'
 import { usePlayer } from '@/contexts/PlayerContext'
 import { playerIcons } from '@/data/DummyData.tsx'
 import { useState, useRef, useEffect } from 'react'

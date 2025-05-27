@@ -1,7 +1,7 @@
 // components/oktaf/HomeContent.tsx
 import {useNavigate} from 'react-router'
 import {Button} from '@/components/ui/button.tsx'
-import {AlbumArt} from '@/components/ui/AlbumArt.tsx'
+import {AlbumArt} from '@/components/oktaf/AlbumArt.tsx'
 import {motion, AnimatePresence} from 'framer-motion'
 import {containerVariants, cardVariants, sectionVariants} from '@/lib/animations.ts'
 

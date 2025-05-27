@@ -1,6 +1,6 @@
 // components/ui/AlbumArt.tsx
 import type { AlbumArt as AlbumArtType } from '@/data/DummyData.tsx';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils.ts';
 import { motion } from 'framer-motion';
 
 interface AlbumArtProps {

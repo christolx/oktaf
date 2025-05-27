@@ -1,7 +1,7 @@
 // components/oktaf/Sidebar.tsx
 import { useNavigate, useLocation } from 'react-router'
 import { Button } from '@/components/ui/button'
-import { AlbumArt } from '@/components/ui/AlbumArt'
+import { AlbumArt } from '@/components/oktaf/AlbumArt.tsx'
 import { userPlaylists, libraryItems, navigationIcons, playerIcons } from '@/data/DummyData.tsx'
 
 const { Home } = navigationIcons
