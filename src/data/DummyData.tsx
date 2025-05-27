@@ -1163,8 +1163,10 @@ export const formatPlayCount = (plays: number): string => {
 
 // Helper function to get tracks for an album
 export const getAlbumTracks = (albumId: string): Track[] => {
-    return albumTracks[albumId] || [];
-};
+    // Add debugging here too
+    const tracks = albumTracks[albumId] || []
+    return tracks
+}
 
 // Helper function to calculate total album duration
 export const calculateAlbumDuration = (tracks: Track[]): string => {

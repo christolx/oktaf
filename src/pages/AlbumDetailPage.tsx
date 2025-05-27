@@ -1,4 +1,4 @@
-// src/pages/AlbumDetailPage.tsx
+// AlbumDetailPage.tsx - Updated relevant sections
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { Button } from '@/components/ui/button'
@@ -37,7 +37,15 @@ export function AlbumDetailPage() {
     const { albumId } = useParams()
     const navigate = useNavigate()
     const [activeNav, setActiveNav] = useState(mainNavItems[0].id)
-    const { playTrack, currentTrack, isPlaying } = usePlayer()
+    const {
+        playTrack,
+        playAlbum,
+        currentTrack,
+        isPlaying,
+        playerState,
+        toggleShuffle,
+        currentAlbum
+    } = usePlayer()
 
     // Find the album from all available albums
     const allAlbums = [
@@ -57,6 +65,9 @@ export function AlbumDetailPage() {
 
     const tracks = album ? getAlbumTracks(album.id) : []
     const albumDuration = tracks.length > 0 ? calculateAlbumDuration(tracks) : '0m'
+
+    // Check if this album is currently playing
+    const isCurrentAlbum = currentAlbum === albumId
 
     const handleNavClick = (navId: string) => {
         setActiveNav(navId)
@@ -80,7 +91,26 @@ export function AlbumDetailPage() {
             isDisliked: track.isDisliked || false,
             isBookmarked: track.isBookmarked || false,
         }
-        playTrack(trackData)
+        playTrack(trackData, albumId)
+    }
+
+    const handlePlayAlbum = () => {
+        if (!albumId || tracks.length === 0) return
+        playAlbum(albumId)
+    }
+
+    const handleShufflePlay = () => {
+        if (!albumId || tracks.length === 0) return
+
+        // If shuffle is not already on, turn it on
+        if (!playerState.isShuffled) {
+            toggleShuffle()
+        }
+
+        // Play the album (it will be shuffled due to the shuffle state)
+        setTimeout(() => {
+            playAlbum(albumId)
+        }, 50) // Small delay to ensure shuffle state is updated
     }
 
     if (!album) {
@@ -130,31 +160,24 @@ export function AlbumDetailPage() {
 
                             {/* Dynamic color overlays */}
                             {colorsLoading ? (
-                                // Fallback gradients while colors are loading
                                 <>
                                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/90" />
                                     <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60" />
                                 </>
                             ) : (
-                                // Dynamic color gradients based on album art
                                 <>
-                                    {/* Base color gradient - most prominent */}
                                     <div
                                         className="absolute inset-0"
                                         style={{
                                             background: `linear-gradient(135deg, ${dominant}75 0%, ${vibrant}65 50%, ${muted}80 100%)`
                                         }}
                                     />
-
-                                    {/* Accent radial gradient */}
                                     <div
                                         className="absolute inset-0"
                                         style={{
                                             background: `radial-gradient(ellipse 80% 60% at center top, ${vibrant}55 0%, transparent 70%)`
                                         }}
                                     />
-
-                                    {/* Subtle vignette effects */}
                                     <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
                                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/25 to-black/85" />
                                 </>
@@ -191,8 +214,9 @@ export function AlbumDetailPage() {
                                 <div className="flex items-center gap-6">
                                     <Button
                                         size="icon"
-                                        className="bg-green-500 hover:bg-green-400 text-black w-14 h-14 rounded-full shadow-lg"
-                                        onClick={() => tracks.length > 0 && handleTrackPlay(tracks[0])}
+                                        className="bg-green-500 hover:bg-green-400 text-black w-14 h-14 rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+                                        onClick={handlePlayAlbum}
+                                        title="Play album"
                                     >
                                         <Play className="w-6 h-6 fill-current ml-1" />
                                     </Button>
@@ -200,7 +224,13 @@ export function AlbumDetailPage() {
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                        onClick={handleShufflePlay}
+                                        className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${
+                                            isCurrentAlbum && playerState.isShuffled
+                                                ? 'text-green-500 hover:text-green-400'
+                                                : 'text-white/70 hover:text-white hover:bg-white/10'
+                                        }`}
+                                        title="Shuffle play"
                                     >
                                         <Shuffle className="w-5 h-5" />
                                     </Button>
@@ -208,7 +238,8 @@ export function AlbumDetailPage() {
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10 transition-all duration-200 hover:scale-110"
+                                        title="Like album"
                                     >
                                         <Heart className="w-5 h-5" />
                                     </Button>
@@ -216,7 +247,8 @@ export function AlbumDetailPage() {
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10 transition-all duration-200 hover:scale-110"
+                                        title="Dislike album"
                                     >
                                         <ThumbsDown className="w-5 h-5" />
                                     </Button>
@@ -224,7 +256,8 @@ export function AlbumDetailPage() {
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10 transition-all duration-200 hover:scale-110"
+                                        title="Download album"
                                     >
                                         <Download className="w-5 h-5" />
                                     </Button>
@@ -232,7 +265,8 @@ export function AlbumDetailPage() {
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10"
+                                        className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10 transition-all duration-200 hover:scale-110"
+                                        title="More options"
                                     >
                                         <MoreHorizontal className="w-5 h-5" />
                                     </Button>
