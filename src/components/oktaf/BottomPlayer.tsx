@@ -298,7 +298,7 @@ export function BottomPlayer() {
                     </div>
 
                     {/* Center Section - Absolutely positioned and centered */}
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center max-w-[500px] z-10">
+                    <div className="flex flex-col items-center justify-center w-[500px] flex-shrink-0 mx-auto">
                         {/* Control Buttons */}
                         <div className="flex items-center gap-3 mb-2">
                             <Button
