@@ -13,14 +13,12 @@ import {
     PopArtAlbums,
     AlternativeRockAlbums,
     GothicRockAlbums,
-    userPlaylists,
-    lebron,
     musicSections,
     navigationIcons,
-    albumTracks, // <-- Import albumTracks
+    albumTracks,
     type Album,
     type Playlist,
-    type Track // <-- Import Track type
+    type Track
 } from '@/data/DummyData.tsx'
 
 const {ChevronLeft, ChevronRight, MoreHorizontal} = navigationIcons;
