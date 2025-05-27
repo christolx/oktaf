@@ -431,7 +431,7 @@ function AlbumsLibraryView() {
 }
 
 function ArtistsLibraryView() {
-    // Shuffle function for artists
+
     function shuffleArtists(array: Artist[]) {
         const shuffled = [...array];
         for (let i = shuffled.length - 1; i > 0; i--) {
@@ -474,7 +474,8 @@ function ArtistsLibraryView() {
                     initial="hidden"
                     animate="visible"
                 >
-                    {shuffledArtists.map((artist) => (
+                    {/*Map featuredartists instead of shuffledartists for sake of simplicity.*/}
+                    {featuredArtists.map((artist) => (
                         <LibraryArtistCard key={artist.id} artist={artist}/>
                     ))}
                 </motion.div>
