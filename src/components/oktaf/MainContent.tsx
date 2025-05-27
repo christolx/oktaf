@@ -4,6 +4,7 @@ import {Button} from '@/components/ui/button'
 import {AlbumArt} from '@/components/ui/AlbumArt'
 import {motion, AnimatePresence} from 'framer-motion'
 import {containerVariants, cardVariants, sectionVariants} from '@/lib/animations'
+import {useAlbumColors} from "@/hooks/useAlbumColors.ts"
 
 import {
     albumsForYou,
@@ -22,6 +23,153 @@ import {
 } from '@/data/DummyData.tsx'
 
 const {ChevronLeft, ChevronRight, MoreHorizontal} = navigationIcons;
+
+const createImageArt = (url: string, alt: string): AlbumArt => ({
+    type: 'image',
+    value: url,
+    alt
+});
+
+// New playlist data for display
+const featuredPlaylists: Playlist[] = [
+    {
+        id: 'featured-1',
+        name: 'lebron ai songs',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356466/1900x1900-000000-80-0-0_jd3qyo.jpg", "Failed to load playlist cover"),
+        trackCount: 25,
+        duration: '1h 42m',
+        creator: 'AI Music Lab'
+    },
+    {
+        id: 'featured-2',
+        name: 'Romantical Vibes',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748361007/romance_gjk5f0.webp", "Failed to load playlist cover"),
+        trackCount: 35,
+        duration: '2h 15m',
+        creator: 'ItsLove'
+    },
+    {
+        id: 'featured-3',
+        name: 'Lofi study',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356748/lofi_znxzoy.png", "Failed to load playlist cover"),
+        trackCount: 50,
+        duration: '3h 20m',
+        creator: 'ChillStudy'
+    },
+    {
+        id: 'featured-4',
+        name: 'Old nostalgic',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356809/nostalgia_izvptr.jpg", "Failed to load playlist cover"),
+        trackCount: 40,
+        duration: '2h 45m',
+        creator: 'RetroVibes'
+    },
+    {
+        id: 'featured-5',
+        name: 'Best Hip Hop',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356961/hiphop_e4ef5k.jpg", "Failed to load playlist cover"),
+        trackCount: 45,
+        duration: '3h 5m',
+        creator: 'HipHopCentral'
+    },
+    {
+        id: 'featured-6',
+        name: 'Best Pop Playlist Ever',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748357083/pop_pmnbxp.jpg", "Failed to load playlist cover"),
+        trackCount: 60,
+        duration: '4h 12m',
+        creator: 'PopMaster'
+    },
+    {
+        id: 'featured-7',
+        name: 'West Side Trio',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748357188/west_side_pfwsmf.jpg", "Failed to load playlist cover"),
+        trackCount: 18,
+        duration: '1h 15m',
+        creator: 'WestCoast'
+    },
+    {
+        id: 'featured-8',
+        name: 'GTA 5 Radio',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748357253/gta_5_tejf1j.jpg", "Failed to load playlist cover"),
+        trackCount: 55,
+        duration: '3h 45m',
+        creator: 'GameSounds'
+    },
+    {
+        id: 'featured-9',
+        name: 'Leg Day Workout Playlist',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359574/leg_day_ubhbp8.jpg", "Failed to load playlist cover"),
+        trackCount: 28,
+        duration: '1h 55m',
+        creator: 'LegDayWarrior'
+    },
+    {
+        id: 'featured-10',
+        name: 'Favorite Jogging Playlist',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359656/jogging_tumczb.jpg", "Failed to load playlist cover"),
+        trackCount: 42,
+        duration: '2h 38m',
+        creator: 'RunnerHub'
+    },
+    {
+        id: 'featured-11',
+        name: 'The Best Hooping Playlist',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359751/kd_workout_vz3hjo.jpg", "Failed to load playlist cover"),
+        trackCount: 33,
+        duration: '2h 12m',
+        creator: 'CourtKings'
+    },
+    {
+        id: 'featured-12',
+        name: 'Cardio Performance',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359864/cardio_rvjuvr.jpg", "Failed to load playlist cover"),
+        trackCount: 38,
+        duration: '2h 25m',
+        creator: 'CardioZone'
+    },
+    {
+        id: 'featured-13',
+        name: 'UNLOCK YOUR BEAST MODE',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359967/beast_i8ppyz.jpg", "Failed to load playlist cover"),
+        trackCount: 52,
+        duration: '3h 18m',
+        creator: 'BeastModeMusic'
+    },
+    {
+        id: 'featured-14',
+        name: 'Best for Calisthenics',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748360147/kalistenik_xuyxzo.jpg", "Failed to load playlist cover"),
+        trackCount: 31,
+        duration: '2h 8m',
+        creator: 'BodyWeightBeats'
+    },
+    {
+        id: 'featured-15',
+        name: 'Best for Crossfit',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748360215/crossfit_ephdbb.jpg", "Failed to load playlist cover"),
+        trackCount: 47,
+        duration: '2h 58m',
+        creator: 'CrossFitVibes'
+    },
+    {
+        id: 'featured-16',
+        name: 'Climb Your Energy',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748360268/rockclimbing_zw6i2y.jpg", "Failed to load playlist cover"),
+        trackCount: 29,
+        duration: '1h 52m',
+        creator: 'ClimbBeats'
+    },
+    {
+        id: 'featured-17',
+        name: 'Leg Day Workout Playlist',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359574/leg_day_ubhbp8.jpg", "Failed to load playlist cover"),
+        trackCount: 28,
+        duration: '1h 55m',
+        creator: 'LegDayWarrior'
+    }
+
+];
 
 interface AlbumCardProps {
     album: Album;
@@ -88,27 +236,47 @@ function PlaylistCard({playlist}: PlaylistCardProps) {
     }
 
     return (
-        <div className="group cursor-pointer" onClick={handlePlaylistClick}>
+        <motion.div
+            className="group cursor-pointer"
+            onClick={handlePlaylistClick}
+            variants={cardVariants}
+            whileHover={{
+                scale: 1.02,
+                transition: {duration: 0.2}
+            }}
+            whileTap={{scale: 0.98}}
+        >
             <div
-                className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
+                className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200"
+            >
                 <AlbumArt
                     art={playlist.art}
                     className="w-full h-full group-hover:brightness-110 transition-all duration-200"
                 />
-                <div className="absolute inset-0 flex items-center justify-center text-lg font-bold text-white">
-                    {playlist.name[0]}
+            </div>
+
+            {/* Layout dengan flex untuk memisahkan kiri dan kanan */}
+            <div className="flex items-start justify-between">
+                {/* Bagian kiri: Judul dan Creator */}
+                <div className="flex-1 min-w-0 space-y-1">
+                    <h4 className="text-white text-sm font-light truncate">
+                        {playlist.name}
+                    </h4>
+                    {playlist.creator && (
+                        <p className="text-white/40 text-xs font-extralight truncate">
+                            by {playlist.creator}
+                        </p>
+                    )}
+                </div>
+
+                {/* Bagian kanan: Jumlah tracks dengan warna hijau Spotify */}
+                <div className="flex-shrink-0 ml-2">
+                    <span className="text-[#1db954] text-xs font-medium">
+                        {playlist.trackCount}
+                    </span>
                 </div>
             </div>
-            <div className="space-y-1">
-                <h4 className="text-white text-sm font-medium truncate">{playlist.name}</h4>
-                <p className="text-white/60 text-xs truncate">
-                    {playlist.trackCount} tracks
-                </p>
-                {playlist.duration && (
-                    <p className="text-white/40 text-xs">{playlist.duration}</p>
-                )}
-            </div>
-        </div>
+        </motion.div>
     )
 }
 
@@ -288,27 +456,78 @@ function AlbumsView() {
 
 function PlaylistsView() {
     return (
-        <div className="space-y-12">
-            <section>
+        <motion.div
+            className="space-y-12"
+            initial="hidden"
+            animate="visible"
+            variants={{
+                visible: {
+                    transition: {
+                        staggerChildren: 0.2
+                    }
+                }
+            }}
+        >
+            {/* Featured Playlists */}
+            <motion.section variants={sectionVariants}>
+                <SectionHeader title="Featured Playlists"/>
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    {featuredPlaylists.slice(0, 8).map((playlist) => (
+                        <PlaylistCard key={`rec-${playlist.id}`} playlist={playlist}/>
+                    ))}
+                </motion.div>
+            </motion.section>
+
+            {/*Workout Playlists*/}
+            <motion.section variants={sectionVariants}>
+                <SectionHeader title="Workout Playlists"/>
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    {featuredPlaylists.slice(9, 17).map((playlist) => (
+                        <PlaylistCard key={`rec-${playlist.id}`} playlist={playlist}/>
+                    ))}
+                </motion.div>
+            </motion.section>
+
+            {/* Your Playlists */}
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title="Your Playlists"/>
-                <div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {userPlaylists.map((playlist) => (
                         <PlaylistCard key={playlist.id} playlist={playlist}/>
                     ))}
-                </div>
-            </section>
+                </motion.div>
+            </motion.section>
 
-            <section>
+            {/* Recommended Playlists */}
+            <motion.section variants={sectionVariants}>
                 <SectionHeader title="Recommended Playlists"/>
-                <div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
-                    {userPlaylists.slice(0, 4).map((playlist) => (
+                <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    {featuredPlaylists.slice(1, 5).map((playlist) => (
                         <PlaylistCard key={`rec-${playlist.id}`} playlist={playlist}/>
                     ))}
-                </div>
-            </section>
-        </div>
+                </motion.div>
+            </motion.section>
+        </motion.div>
     )
 }
 
