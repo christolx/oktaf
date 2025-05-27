@@ -234,8 +234,8 @@ export function BottomPlayer() {
 
                 {/* Main content layer */}
                 <div className="relative flex items-center h-full px-6 backdrop-saturate-150 rounded-xl">
-                    {/* Left Section - Current Track Info */}
-                    <div className="flex items-center gap-3 w-fit max-w-[360px] flex-shrink-1">
+                    {/* Left Section - Absolutely positioned */}
+                    <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-3 w-fit max-w-[360px] z-10">
                         <div className="relative group flex-shrink-0">
                             <AlbumArt art={currentTrack.art} size="md" />
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center backdrop-blur-sm">
@@ -297,8 +297,8 @@ export function BottomPlayer() {
                         </div>
                     </div>
 
-                    {/* Center Section - Player Controls */}
-                    <div className="flex-1 flex flex-col items-center justify-center max-w-[500px] mx-auto">
+                    {/* Center Section - Absolutely positioned and centered */}
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center max-w-[500px] z-10">
                         {/* Control Buttons */}
                         <div className="flex items-center gap-3 mb-2">
                             <Button
@@ -395,8 +395,8 @@ export function BottomPlayer() {
                         </div>
                     </div>
 
-                    {/* Right Section - Volume and Additional Controls */}
-                    <div className="flex items-center gap-2 w-[280px] min-w-[200px] justify-end flex-shrink-0">
+                    {/* Right Section - Absolutely positioned */}
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2 w-[280px] min-w-[200px] justify-end z-10">
                         <Button
                             variant="ghost"
                             size="icon"
