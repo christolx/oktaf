@@ -104,9 +104,6 @@ export function Sidebar() {
                                 >
                                     <div className="relative flex-shrink-0">
                                         <AlbumArt art={playlist.art} size="sm" className="rounded-none" />
-                                        <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white bg-black/0 rounded-none">
-                                            {playlist.name[0]}
-                                        </div>
                                     </div>
                                     <div className="flex flex-col min-w-0 flex-1">
                                         <span className="text-white/80 text-sm font-light group-hover:text-white truncate transition-colors duration-200">
