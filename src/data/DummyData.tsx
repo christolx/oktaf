@@ -96,16 +96,16 @@ export const libraryItems: NavItem[] = [
 export const userPlaylists: Playlist[] = [
     {
         id: "p1",
-        name: "my first playlist",
-        creator: "torbob32",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363194/list_grid_vh5m8a.jpg", "Failed to load user playlist"),
-        trackCount: 47,
-        duration: "3h 12m"
+        name: "lebron ai songs",
+        creator: "TalentedBlake",
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356466/1900x1900-000000-80-0-0_jd3qyo.jpg", "Failed to load user playlist"),
+        trackCount: 23,
+        duration: "1h 34m"
     },
     {
         id: "p2",
-        name: "Alternative Rock",
-        creator: "Echo Roberts",
+        name: "dangdut phonk",
+        creator: "Icemotion",
         art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363276/alt_rock_jfzxm0.png", "Failed to load user playlist"),
         trackCount: 32,
         duration: "2h 45m"
@@ -121,18 +121,18 @@ export const userPlaylists: Playlist[] = [
     {
         id: "p4",
         name: "dj tiktok full",
-        creator: "torbob32",
+        creator: "rizky_psht",
         art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363697/tiktok_grid_gcchvy.webp", "Failed to load user playlist"),
         trackCount: 28,
         duration: "1h 52m"
     },
     {
         id: "p5",
-        name: "lebron ai songs",
-        creator: "TalentedBlake",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356466/1900x1900-000000-80-0-0_jd3qyo.jpg", "Failed to load user playlist"),
-        trackCount: 23,
-        duration: "1h 34m"
+        name: "my first playlist",
+        creator: "myfirstaccount",
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363194/list_grid_vh5m8a.jpg", "Failed to load user playlist"),
+        trackCount: 47,
+        duration: "3h 12m"
     }
 ];
 
@@ -1710,6 +1710,104 @@ export const albumTracks: Record<string, Track[]> = {
             isLiked: true,
             isDisliked: false,
             isBookmarked: true
+        }
+    ],
+    "69": [ // lebron ai songs - AI Music Lab
+        {
+            id: "track-69-1",
+            number: 1,
+            title: "King of the Court",
+            artist: "AI Music Lab",
+            duration: "4:23",
+            plays: 12500000,
+            albumId: "69",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: false
+        },
+        {
+            id: "track-69-2",
+            number: 2,
+            title: "Cleveland Dreams",
+            artist: "AI Music Lab",
+            duration: "3:45",
+            plays: 8900000,
+            albumId: "69",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        },
+        {
+            id: "track-69-3",
+            number: 3,
+            title: "Miami Heat",
+            artist: "AI Music Lab",
+            duration: "4:12",
+            plays: 15200000,
+            albumId: "69",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: true
+        },
+        {
+            id: "track-69-4",
+            number: 4,
+            title: "The Decision",
+            artist: "AI Music Lab",
+            duration: "5:01",
+            plays: 11800000,
+            albumId: "69",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: false
+        },
+        {
+            id: "track-69-5",
+            number: 5,
+            title: "Championship Rings",
+            artist: "AI Music Lab",
+            duration: "3:58",
+            plays: 18700000,
+            albumId: "69",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
+        },
+        {
+            id: "track-69-6",
+            number: 6,
+            title: "Space Jam Legacy",
+            artist: "AI Music Lab",
+            duration: "4:34",
+            plays: 22100000,
+            albumId: "69",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: false
+        },
+        {
+            id: "track-69-7",
+            number: 7,
+            title: "Lakers Purple & Gold",
+            artist: "AI Music Lab",
+            duration: "3:29",
+            plays: 9600000,
+            albumId: "69",
+            isLiked: false,
+            isDisliked: false,
+            isBookmarked: true
+        },
+        {
+            id: "track-69-8",
+            number: 8,
+            title: "Chosen One",
+            artist: "AI Music Lab",
+            duration: "4:47",
+            plays: 14300000,
+            albumId: "69",
+            isLiked: true,
+            isDisliked: false,
+            isBookmarked: false
         }
     ]
 };
