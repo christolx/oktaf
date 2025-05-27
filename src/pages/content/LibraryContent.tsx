@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router'
 import { Button } from '@/components/ui/button.tsx'
 import { AlbumArt } from '@/components/oktaf/AlbumArt.tsx'
 import { motion, AnimatePresence } from 'framer-motion'
-import { containerVariants, cardVariants, sectionVariants } from '@/lib/animations.ts'
+import { cardVariants, sectionVariants } from '@/lib/animations.ts'
+import { albumTracks } from "@/data/DummyData.tsx"
 
 import {
     albumsForYou,
@@ -14,7 +15,9 @@ import {
     GothicRockAlbums,
     navigationIcons,
     type Album, savedAlbums,
+    type AlbumArt as AlbumArtType,
 } from '@/data/DummyData.tsx'
+import { Heart, Plus, ArrowUpDown, Filter } from 'lucide-react'
 
 const { MoreHorizontal, List, Grid3x3 } = navigationIcons;
 
@@ -26,7 +29,82 @@ interface AlbumCardProps {
     album: Album;
 }
 
-// Reusable Album Card Component
+// Move this outside the component, at the top level after imports
+function generateStableLikedTracks() {
+    const likedTracks: Array<{
+        id: string;
+        number: number;
+        title: string;
+        artist: string;
+        duration: string;
+        albumTitle: string;
+        albumArt: AlbumArtType;
+        dateAdded: string;
+        isLiked: boolean;
+        albumId: string;
+    }> = [];
+
+    // Combine all albums for lookup
+    const allAlbums = [
+        ...albumsForYou,
+        ...nostalgiaAlbums,
+        ...trendingAlbums,
+        ...PopArtAlbums,
+        ...AlternativeRockAlbums,
+        ...GothicRockAlbums,
+        ...savedAlbums
+    ];
+
+    // Create a map for faster album lookup
+    const albumMap = new Map(allAlbums.map(album => [album.id, album]));
+
+    // Process each album's tracks
+    Object.entries(albumTracks).forEach(([albumId, tracks]) => {
+        const album = albumMap.get(albumId);
+
+        if (album) {
+            tracks.forEach((track, index) => {
+                if (track.isLiked) {
+                    likedTracks.push({
+                        id: track.id,
+                        number: index + 1,
+                        title: track.title,
+                        artist: track.artist,
+                        duration: track.duration,
+                        albumTitle: album.title,
+                        albumArt: album.art,
+                        dateAdded: generateStableDateAdded(track.id), // Use track ID for consistency
+                        isLiked: track.isLiked,
+                        albumId: albumId
+                    });
+                }
+            });
+        }
+    });
+
+    return likedTracks;
+}
+
+function generateStableDateAdded(trackId: string): string {
+    let hash = 0;
+    for (let i = 0; i < trackId.length; i++) {
+        const char = trackId.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+
+    const daysAgo = (Math.abs(hash) % 30) + 1;
+
+    if (daysAgo === 1) return "1 day ago";
+    if (daysAgo < 7) return `${daysAgo} days ago`;
+    if (daysAgo < 14) return "1 week ago";
+    if (daysAgo < 21) return "2 weeks ago";
+    if (daysAgo < 28) return "3 weeks ago";
+    return "1 month ago";
+}
+
+const STABLE_LIKED_TRACKS = generateStableLikedTracks();
+
 function LibraryAlbumCard({ album }: AlbumCardProps) {
     const navigate = useNavigate()
 
@@ -120,11 +198,11 @@ function AlbumsLibraryView() {
 
             {/* Saved Albums */}
             <motion.section variants={sectionVariants}>
-                <LibrarySectionHeader title={"Saved Albums"}/>
+                <LibrarySectionHeader title={"Saved Albums"} />
                 <motion.div
                     className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
                     variants={{
-                        hidden: {opacity: 0},
+                        hidden: { opacity: 0 },
                         visible: {
                             opacity: 1,
                             transition: {
@@ -137,7 +215,7 @@ function AlbumsLibraryView() {
                     animate="visible"
                 >
                     {resultAlbums.map((album) => (
-                        <LibraryAlbumCard key={album.id} album={album}/>
+                        <LibraryAlbumCard key={album.id} album={album} />
                     ))}
                 </motion.div>
             </motion.section>
@@ -146,6 +224,194 @@ function AlbumsLibraryView() {
     )
 }
 
+function LikedSongsView() {
+    // Use the stable reference instead of generating new data
+    const likedTracks = STABLE_LIKED_TRACKS;
+
+    const sortedLikedTracks = likedTracks.sort((a, b) => {
+        const dateOrder = ['1 day ago', '2 days ago', '3 days ago', '4 days ago', '5 days ago', '1 week ago', '2 weeks ago', '3 weeks ago', '1 month ago'];
+        return dateOrder.indexOf(a.dateAdded) - dateOrder.indexOf(b.dateAdded);
+    });
+
+    // Rest of the component remains the same...
+    return (
+        <motion.div
+            className="space-y-6"
+            initial="hidden"
+            animate="visible"
+            variants={sectionVariants}
+        >
+            {/* Header */}
+            <motion.div
+                className="flex items-center justify-between"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <div>
+                    <h2 className="text-white text-2xl font-bold">Liked Songs</h2>
+                    <p className="text-white/60 text-sm mt-1">{sortedLikedTracks.length} songs</p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
+                        <Plus className="w-4 h-4" />
+                    </Button>
+                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white h-8 px-3">
+                        <ArrowUpDown className="w-4 h-4 mr-2" />
+                        Recent
+                    </Button>
+                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white h-8 px-3">
+                        <Filter className="w-4 h-4 mr-2" />
+                        Filter: All
+                    </Button>
+                </div>
+            </motion.div>
+
+            {/* Table Header */}
+            <motion.div
+                className="grid grid-cols-12 gap-4 px-4 py-2 text-white/60 text-sm border-b border-white/10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+            >
+                <div className="col-span-1 text-center">#</div>
+                <div className="col-span-5">Title</div>
+                <div className="col-span-3">Album</div>
+                <div className="col-span-2">Date Added</div>
+                <div className="col-span-1 text-center">Duration</div>
+            </motion.div>
+
+            {/* Track List */}
+            <motion.div
+                className="space-y-1"
+                variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                        opacity: 1,
+                        transition: {
+                            staggerChildren: 0.05,
+                            delayChildren: 0.3
+                        }
+                    }
+                }}
+                initial="hidden"
+                animate="visible"
+            >
+                {sortedLikedTracks.length > 0 ? (
+                    sortedLikedTracks.map((track, index) => (
+                        <LikedTrackRow key={track.id} track={track} index={index} />
+                    ))
+                ) : (
+                    <motion.div
+                        className="text-center py-12"
+                        variants={cardVariants}
+                    >
+                        <p className="text-white/60 text-lg">No liked songs yet</p>
+                        <p className="text-white/40 text-sm mt-2">
+                            Songs you like will appear here
+                        </p>
+                    </motion.div>
+                )}
+            </motion.div>
+        </motion.div>
+    );
+}
+
+// Track row component
+interface LikedTrackRowProps {
+    track: {
+        id: string;
+        number: number;
+        title: string;
+        artist: string;
+        duration: string;
+        albumTitle: string;
+        albumArt: AlbumArtType;
+        dateAdded: string;
+        isLiked: boolean;
+    };
+    index: number;
+}
+
+function LikedTrackRow({ track, index }: LikedTrackRowProps) {
+    return (
+        <motion.div
+            className="grid grid-cols-12 gap-4 px-4 py-2 rounded-md hover:bg-white/5 group cursor-pointer transition-colors"
+            variants={cardVariants}
+            whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+        >
+            {/* Track Number */}
+            <div className="col-span-1 flex items-center justify-center">
+                <span className="text-white/60 text-sm group-hover:hidden">
+                    {index + 1}
+                </span>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="hidden group-hover:flex h-6 w-6 text-white hover:text-white hover:bg-transparent"
+                >
+                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                </Button>
+            </div>
+
+            {/* Title and Artist */}
+            <div className="col-span-5 flex items-center gap-3">
+                <div className="w-10 h-10 rounded overflow-hidden flex-shrink-0">
+                    <AlbumArt
+                        art={track.albumArt}
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+                <div className="min-w-0 flex-1">
+                    <h4 className="text-white text-sm font-medium truncate">
+                        {track.title}
+                    </h4>
+                    <p className="text-white/60 text-xs truncate">
+                        {track.artist}
+                    </p>
+                </div>
+            </div>
+
+            {/* Album */}
+            <div className="col-span-3 flex items-center">
+                <span className="text-white/60 text-sm truncate hover:text-white hover:underline cursor-pointer">
+                    {track.albumTitle}
+                </span>
+            </div>
+
+            {/* Date Added */}
+            <div className="col-span-2 flex items-center">
+                <span className="text-white/60 text-sm">
+                    {track.dateAdded}
+                </span>
+            </div>
+
+            {/* Duration and Heart */}
+            <div className="col-span-1 flex items-center justify-center gap-2">
+                <span className="text-white/60 text-sm group-hover:hidden">
+                    {track.duration}
+                </span>
+                <div className="hidden group-hover:flex items-center gap-2">
+                    <span className="text-white/60 text-sm">
+                        {track.duration}
+                    </span>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 text-green-500 hover:text-green-400 hover:bg-transparent"
+                    >
+                        <Heart className="w-3 h-3 fill-current" />
+                    </Button>
+                </div>
+            </div>
+        </motion.div>
+    );
+}
+
+
 export function LibraryContent({ activeSection }: LibraryContentProps) {
 
     const renderLibrarySection = () => {
@@ -153,12 +419,7 @@ export function LibraryContent({ activeSection }: LibraryContentProps) {
             case 'albums':
                 return <AlbumsLibraryView />;
             case 'liked':
-                return (
-                    <div className="text-white">
-                        <h2 className="text-2xl font-bold mb-4">Liked Songs</h2>
-                        <p className="text-white/60">Your liked songs will appear here.</p>
-                    </div>
-                );
+                return <LikedSongsView />;
             case 'artists':
                 return (
                     <div className="text-white">
@@ -177,9 +438,9 @@ export function LibraryContent({ activeSection }: LibraryContentProps) {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeSection}
-                        initial={{opacity: 0, x: 20}}
-                        animate={{opacity: 1, x: 0}}
-                        exit={{opacity: 0, x: -20}}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
                         transition={{
                             duration: 0.3,
                             ease: "easeInOut"
