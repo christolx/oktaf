@@ -14,6 +14,7 @@ import {
     AlternativeRockAlbums,
     GothicRockAlbums,
     userPlaylists,
+    lebron,
     musicSections,
     navigationIcons,
     albumTracks, // <-- Import albumTracks
@@ -36,7 +37,7 @@ const featuredPlaylists: Playlist[] = [
         id: 'featured-1',
         name: 'lebron ai songs',
         art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356466/1900x1900-000000-80-0-0_jd3qyo.jpg", "Failed to load playlist cover"),
-        trackCount: 25,
+        trackCount: 10,
         duration: '1h 42m',
         creator: 'AI Music Lab'
     },
@@ -161,14 +162,77 @@ const featuredPlaylists: Playlist[] = [
         creator: 'ClimbBeats'
     },
     {
+        id: 'featured-16',
+        name: 'Box Your Fear',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748371422/boxing_zvouxi.jpg", "Failed to load playlist cover"),
+        trackCount: 19,
+        duration: '1h 52m',
+        creator: 'FitXFearless'
+    },
+    {
         id: 'featured-17',
-        name: 'Leg Day Workout Playlist',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359574/leg_day_ubhbp8.jpg", "Failed to load playlist cover"),
-        trackCount: 28,
-        duration: '1h 55m',
-        creator: 'LegDayWarrior'
+        name: 'Summer Hits',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370186/summer_guugfh.jpg", "Failed to load playlist cover"),
+        trackCount: 65,
+        duration: '4h 32m',
+        creator: 'SunnyVibes'
+    },
+    {
+        id: 'featured-18',
+        name: 'Relaxes Your Day',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370331/chill_zjqazq.jpg", "Failed to load playlist cover"),
+        trackCount: 44,
+        duration: '2h 58m',
+        creator: 'ZenMoments'
+    },
+    {
+        id: 'featured-19',
+        name: 'Daily Hiking Picks',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370403/hiking_gjn6ev.webp", "Failed to load playlist cover"),
+        trackCount: 36,
+        duration: '2h 22m',
+        creator: 'TrailBlazers'
+    },
+    {
+        id: 'featured-20',
+        name: 'Developer Mode',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370584/dev_begg46.jpg", "Failed to load playlist cover"),
+        trackCount: 72,
+        duration: '5h 15m',
+        creator: 'CodeBeats'
+    },
+    {
+        id: 'featured-21',
+        name: 'Enjoy Your Ride',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370649/riding_clkrz3.jpg", "Failed to load playlist cover"),
+        trackCount: 48,
+        duration: '3h 8m',
+        creator: 'RoadTripVibes'
+    },
+    {
+        id: 'featured-22',
+        name: 'Locked In',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370784/locked_in_qsjjz5.webp", "Failed to load playlist cover"),
+        trackCount: 38,
+        duration: '2h 35m',
+        creator: 'FocusFlow'
+    },
+    {
+        id: 'featured-23',
+        name: 'Best of Reggae',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370852/rege_b2yage.avif", "Failed to load playlist cover"),
+        trackCount: 54,
+        duration: '3h 42m',
+        creator: 'IslandSounds'
+    },
+    {
+        id: 'featured-24',
+        name: 'Daily EDM Mix',
+        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370910/edm_qud0hu.jpg", "Failed to load playlist cover"),
+        trackCount: 61,
+        duration: '4h 18m',
+        creator: 'ElectroBeats'
     }
-
 ];
 
 interface AlbumCardProps {
@@ -232,7 +296,8 @@ function PlaylistCard({playlist}: PlaylistCardProps) {
     const navigate = useNavigate()
 
     const handlePlaylistClick = () => {
-        navigate(`/playlist/${playlist.id}`)
+        // Always navigate to the "lebron ai songs" playlist
+        navigate(`/album/69`)
     }
 
     return (
@@ -498,31 +563,16 @@ function PlaylistsView() {
                 </motion.div>
             </motion.section>
 
-            {/* Your Playlists */}
+            {/*Hits Playlists*/}
             <motion.section variants={sectionVariants}>
-                <SectionHeader title="Your Playlists"/>
+                <SectionHeader title="Today's Hits"/>
                 <motion.div
                     className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
                 >
-                    {userPlaylists.map((playlist) => (
-                        <PlaylistCard key={playlist.id} playlist={playlist}/>
-                    ))}
-                </motion.div>
-            </motion.section>
-
-            {/* Recommended Playlists */}
-            <motion.section variants={sectionVariants}>
-                <SectionHeader title="Recommended Playlists"/>
-                <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {featuredPlaylists.slice(1, 5).map((playlist) => (
+                    {featuredPlaylists.slice(17, 25).map((playlist) => (
                         <PlaylistCard key={`rec-${playlist.id}`} playlist={playlist}/>
                     ))}
                 </motion.div>
