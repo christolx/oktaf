@@ -13,7 +13,7 @@ import {
     AlternativeRockAlbums,
     GothicRockAlbums,
     navigationIcons,
-    type Album,
+    type Album, savedAlbums,
 } from '@/data/DummyData.tsx'
 
 const { MoreHorizontal, List, Grid3x3 } = navigationIcons;
@@ -102,6 +102,7 @@ function AlbumsLibraryView() {
     }
 
     const scrambledAlbums = shuffle([...squashedAlbums]);
+    const resultAlbums = [...savedAlbums, ...scrambledAlbums];
 
     return (
         <motion.div
@@ -126,7 +127,7 @@ function AlbumsLibraryView() {
                     initial="hidden"
                     animate="visible"
                 >
-                    {scrambledAlbums.map((album) => (
+                    {resultAlbums.map((album) => (
                         <LibraryAlbumCard key={album.id} album={album}/>
                     ))}
                 </motion.div>
@@ -182,4 +183,3 @@ export function LibraryContent({ activeSection }: LibraryContentProps) {
         </div>
     );
 }
-
