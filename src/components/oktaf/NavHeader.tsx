@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate, useLocation, useSearchParams } from 'react-router';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -17,7 +16,7 @@ export function NavHeader({ activeNav, setActiveNav }: NavHeaderProps) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleNavClick = (navId: string) => {
-        setActiveNav(navId); // This will trigger URL update in HomePage
+        setActiveNav(navId);
     };
 
     return (
