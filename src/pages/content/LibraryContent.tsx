@@ -362,13 +362,13 @@ function LibrarySectionHeader({ title, albumCount }: { title: string; albumCount
                 )}
             </div>
             <div className="flex items-center gap-2">
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
+                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-transparent h-8 w-8">
                     <Grid3x3 className="w-4 h-4" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
+                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-transparent h-8 w-8">
                     <List className="w-4 h-4" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
+                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-transparent h-8 w-8">
                     <MoreHorizontal className="w-4 h-4" />
                 </Button>
             </div>
@@ -512,14 +512,14 @@ function LikedSongsView() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
+                    <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-transparent h-8 w-8">
                         <Plus className="w-4 h-4" />
                     </Button>
-                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white h-8 px-3">
+                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-transparent h-8 px-3">
                         <ArrowUpDown className="w-4 h-4 mr-2" />
                         Recent
                     </Button>
-                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white h-8 px-3">
+                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-transparent h-8 px-3">
                         <Filter className="w-4 h-4 mr-2" />
                         Filter: All
                     </Button>
@@ -528,13 +528,13 @@ function LikedSongsView() {
 
             {/* Table Header */}
             <motion.div
-                className="grid grid-cols-12 gap-4 px-4 py-2 text-white/60 text-sm border-b border-white/10"
+                className="grid grid-cols-12 gap-4 px-4 py-2 text-white/60 text-base font-light border-b border-white/10"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
             >
                 <div className="col-span-1 text-center">#</div>
-                <div className="col-span-5">Title</div>
+                <div className="col-span-4">Title</div>
                 <div className="col-span-3">Album</div>
                 <div className="col-span-2">Date Added</div>
                 <div className="col-span-1 text-center">Duration</div>
@@ -616,7 +616,7 @@ function LikedTrackRow({ track, index }: LikedTrackRowProps) {
             </div>
 
             {/* Title and Artist */}
-            <div className="col-span-5 flex items-center gap-3">
+            <div className="col-span-4 flex items-center gap-3">
                 <div className="w-10 h-10 rounded overflow-hidden flex-shrink-0">
                     <AlbumArt
                         art={track.albumArt}
@@ -624,10 +624,10 @@ function LikedTrackRow({ track, index }: LikedTrackRowProps) {
                     />
                 </div>
                 <div className="min-w-0 flex-1">
-                    <h4 className="text-white text-sm font-medium truncate">
+                    <h4 className="text-white text-sm font-light truncate hover:text-green-500 transition-all duration-500">
                         {track.title}
                     </h4>
-                    <p className="text-white/60 text-xs truncate">
+                    <p className="text-white/60 text-xs font-extralight truncate">
                         {track.artist}
                     </p>
                 </div>
@@ -648,22 +648,29 @@ function LikedTrackRow({ track, index }: LikedTrackRowProps) {
             </div>
 
             {/* Duration and Heart */}
-            <div className="col-span-1 flex items-center justify-center gap-2">
-                <span className="text-white/60 text-sm group-hover:hidden">
+            <div className="relative col-span-1 flex items-start justify-center gap-2">
+                <span className="text-white/60 text-sm hover:text-white/60">
                     {track.duration}
                 </span>
-                <div className="hidden group-hover:flex items-center gap-2">
-                    <span className="text-white/60 text-sm">
-                        {track.duration}
-                    </span>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-6 w-6 text-green-500 hover:text-green-400 hover:bg-transparent"
-                    >
-                        <Heart className="w-3 h-3 fill-current" />
-                    </Button>
-                </div>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-6 w-6 text-green-500 hover:text-green-400 hover:bg-transparent absolute ml-60"
+                >
+                    <Heart className="w-3 h-3 fill-current" />
+                </Button>
+                {/*<div className="hidden group-hover:flex items-center gap-2">*/}
+                {/*    <span className="text-white/60 text-sm">*/}
+                {/*        {track.duration}*/}
+                {/*    </span>*/}
+                {/*    <Button*/}
+                {/*        variant="ghost"*/}
+                {/*        size="icon"*/}
+                {/*        className="h-6 w-6 text-green-500 hover:text-green-400 hover:bg-transparent"*/}
+                {/*    >*/}
+                {/*        <Heart className="w-3 h-3 fill-current" />*/}
+                {/*    </Button>*/}
+                {/*</div>*/}
             </div>
         </motion.div>
     );
