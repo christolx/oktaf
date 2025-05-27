@@ -85,8 +85,8 @@ export function Sidebar() {
                                     className="flex items-center gap-3 group cursor-pointer hover:bg-white/5 p-2 -ml-2 rounded-lg transition-all duration-200 hover:translate-x-1"
                                 >
                                     <div className="relative flex-shrink-0">
-                                        <AlbumArt art={playlist.art} size="sm" className="rounded-md" />
-                                        <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white bg-black/20 rounded-md">
+                                        <AlbumArt art={playlist.art} size="sm" className="rounded-none" />
+                                        <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white bg-black/0 rounded-none">
                                             {playlist.name[0]}
                                         </div>
                                     </div>
