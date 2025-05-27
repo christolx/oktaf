@@ -123,7 +123,16 @@ function AlbumsLibraryView() {
                 <LibrarySectionHeader title={"Saved Albums"}/>
                 <motion.div
                     className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
-                    variants={containerVariants}
+                    variants={{
+                        hidden: {opacity: 0},
+                        visible: {
+                            opacity: 1,
+                            transition: {
+                                staggerChildren: 0.08,
+                                delayChildren: 0.1
+                            }
+                        }
+                    }}
                     initial="hidden"
                     animate="visible"
                 >
