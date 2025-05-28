@@ -580,7 +580,7 @@ function AlbumsSection({ artistData }: AlbumsSectionProps) {
             artist: artistData.name,
             year: '2005',
             type: 'Album',
-            art: 'https://res.cloudinary.com/dewgvguem/image/upload/v1748387414/daft_homework_h8f2fo.jpg', // Replace with actual cover
+            art: 'https://res.cloudinary.com/dewgvguem/image/upload/v1748388845/human_after_all_xlb0va.jpg',
             trackCount: 10
         },
         {
@@ -589,7 +589,7 @@ function AlbumsSection({ artistData }: AlbumsSectionProps) {
             artist: artistData.name,
             year: '2013',
             type: 'Single',
-            art: 'https://res.cloudinary.com/dewgvguem/image/upload/v1748218460/Random_Access_ndsnbg.jpg'
+            art: 'https://res.cloudinary.com/dewgvguem/image/upload/v1748391088/daft_punk_getlucky_ugbbjr.webp'
         },
         {
             id: 'one-more-time',
@@ -597,7 +597,7 @@ function AlbumsSection({ artistData }: AlbumsSectionProps) {
             artist: artistData.name,
             year: '2000',
             type: 'Single',
-            art: 'https://res.cloudinary.com/dewgvguem/image/upload/v1748387332/discovery_daft_qh5ljq.jpg'
+            art: 'https://res.cloudinary.com/dewgvguem/image/upload/v1748391154/daftpunk_onemoretime_jsxkke.jpg'
         },
         {
             id: 'musique-vol1',
@@ -605,7 +605,7 @@ function AlbumsSection({ artistData }: AlbumsSectionProps) {
             artist: artistData.name,
             year: '2006',
             type: 'Compilation',
-            art: 'https://res.cloudinary.com/dewgvguem/image/upload/v1748387414/daft_homework_h8f2fo.jpg', // Replace with actual cover
+            art: 'https://res.cloudinary.com/dewgvguem/image/upload/v1748391025/daft_punk_musique_ozzhhf.jpg', // Replace with actual cover
             trackCount: 15
         }
     ];
