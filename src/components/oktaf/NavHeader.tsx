@@ -43,7 +43,7 @@ export function NavHeader({ activeNav, setActiveNav }: NavHeaderProps) {
                             "h-[30px] px-3.5 py-1 text-sm font-medium transition-all duration-300 rounded-lg cursor-pointer relative overflow-hidden",
                             "border border-transparent hover:border-white/20",
                             activeNav === item.id
-                                ? "bg-white/20 text-white shadow-lg backdrop-blur-sm border-white/30"
+                                ? "bg-white/20 text-white/80 shadow-lg backdrop-blur-sm border-white/30"
                                 : "bg-white/5 text-zinc-300 hover:bg-white/15 hover:text-zinc-100 backdrop-blur-sm"
                         )}
                     >
@@ -64,14 +64,14 @@ export function NavHeader({ activeNav, setActiveNav }: NavHeaderProps) {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="h-[30px] w-full rounded-lg
-                             bg-white/10 backdrop-blur-sm
+                             bg-zinc/90 backdrop-blur-sm
                              border border-white/20
                              pl-9 pr-3 text-sm text-zinc-100
                              placeholder:text-zinc-400
-                             focus-visible:ring-1 focus-visible:ring-white/40
+                             focus-visible:ring-1 focus-visible:ring-green-500
                              focus-visible:ring-offset-0
-                             focus-visible:border-white/40
-                             focus-visible:bg-white/15
+                             focus-visible:border-green-500
+                             focus-visible:bg-zinc/0
                              transition-all duration-300
                              shadow-inner"
                 />

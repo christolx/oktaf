@@ -264,7 +264,7 @@ export function BottomPlayer() {
                                 className={`h-8 w-8 !transition-all duration-200 hover:bg-transparent backdrop-blur-sm rounded-full ${
                                     currentTrack.isBookmarked
                                         ? 'text-green-500 hover:text-green-400 scale-110 drop-shadow-md'
-                                        : 'text-white/60 hover:text-white hover:scale-110'
+                                        : 'text-white/60 hover:text-green-400 hover:scale-110'
                                 }`}
                             >
                                 <Bookmark className={`w-4 h-4 ${currentTrack.isBookmarked ? 'fill-current' : ''}`} />
@@ -276,7 +276,7 @@ export function BottomPlayer() {
                                 className={`h-8 w-8 !transition-all duration-200 hover:bg-transparent backdrop-blur-sm rounded-full ${
                                     currentTrack.isLiked
                                         ? 'text-green-500 hover:text-green-400 scale-110 drop-shadow-md'
-                                        : 'text-white/60 hover:text-white hover:scale-110'
+                                        : 'text-white/60 hover:text-green-400 hover:scale-110'
                                 }`}
                             >
                                 <Heart className={`w-4 h-4 ${currentTrack.isLiked ? 'fill-current' : ''}`} />
@@ -288,7 +288,7 @@ export function BottomPlayer() {
                                 className={`h-8 w-8 !transition-all duration-200 hover:bg-transparent hover:scale-110 backdrop-blur-sm rounded-full ${
                                     currentTrack.isDisliked
                                         ? 'text-red-500 hover:text-red-400 drop-shadow-md'
-                                        : 'text-white/60 hover:text-white'
+                                        : 'text-white/60 hover:text-green-400'
                                 }`}
                                 title="Dislike"
                             >
@@ -308,7 +308,7 @@ export function BottomPlayer() {
                                 className={`h-8 w-8 !transition-all duration-200 hover:bg-transparent hover:scale-110 backdrop-blur-sm rounded-full ${
                                     playerState.isShuffled
                                         ? 'text-green-500 hover:text-green-400 drop-shadow-md'
-                                        : 'text-white/60 hover:text-white'
+                                        : 'text-white/60 hover:text-green-400'
                                 }`}
                                 title="Toggle Shuffle"
                             >
@@ -352,7 +352,7 @@ export function BottomPlayer() {
                                 className={`h-8 w-8 transition-all duration-200 hover:bg-transparent hover:scale-110 relative backdrop-blur-sm rounded-full ${
                                     playerState.repeatMode !== 'off'
                                         ? 'text-green-500 hover:text-green-400 drop-shadow-md'
-                                        : 'text-white/60 hover:text-white'
+                                        : 'text-white/60 hover:text-green-400'
                                 }`}
                                 title={`Repeat: ${playerState.repeatMode}`}
                             >
@@ -377,11 +377,11 @@ export function BottomPlayer() {
                                 onMouseDown={handleProgressMouseDown}
                             >
                                 <div
-                                    className="bg-white/90 h-1 rounded-full relative !transition-all duration-100 shadow-sm"
+                                    className="bg-white/90 hover:bg-green-500 active:bg-green-500 h-1 rounded-full relative !transition-all duration-100 shadow-sm"
                                     style={{ width: `${displayProgress}%` }}
                                 >
                                     <div
-                                        className={`absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full transition-opacity shadow-lg backdrop-blur-sm ${
+                                        className={`absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white/90 active:bg-green-500 rounded-full transition-opacity shadow-lg backdrop-blur-sm ${
                                             isDraggingProgress || progressRef.current?.matches(':hover')
                                                 ? 'opacity-100'
                                                 : 'opacity-0'
@@ -422,7 +422,7 @@ export function BottomPlayer() {
                                 variant="ghost"
                                 size="icon"
                                 onClick={toggleMute}
-                                className="text-white/60 hover:text-white hover:bg-transparent hover:scale-110 !transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
+                                className="text-white/60 hover:bg-transparent hover:text-green-500 hover:scale-110 !transition-all duration-200 h-8 w-8 backdrop-blur-sm rounded-full"
                                 title={`Volume: ${Math.round(playerState.volume)}%`}
                             >
                                 <VolumeIcon className="w-4 h-4" />
@@ -436,11 +436,11 @@ export function BottomPlayer() {
                                 onMouseDown={handleVolumeMouseDown}
                             >
                                 <div
-                                    className="bg-white/90 h-1 rounded-full relative transition-all duration-100 shadow-sm"
+                                    className="bg-white/90 hover:bg-green-500 active:bg-green-500 h-1 rounded-full relative transition-all duration-100 shadow-sm"
                                     style={{ width: `${isDraggingVolume ? tempVolume : playerState.volume}%` }}
                                 >
                                     <div
-                                        className={`absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full transition-opacity shadow-lg backdrop-blur-sm ${
+                                        className={`absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white active:bg-green-500 rounded-full transition-opacity shadow-lg backdrop-blur-sm ${
                                             isDraggingVolume || showVolumeSlider
                                                 ? 'opacity-100'
                                                 : 'opacity-0'

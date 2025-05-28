@@ -53,7 +53,7 @@ export function Sidebar() {
                             }`}
                         >
                             <Home className="w-6 h-6"/>
-                            <span className="font-medium !font-family-outfit">Home / Discover</span>
+                            <span className="font-normal !font-family-outfit">Home / Discover</span>
                         </div>
                     </div>
 
