@@ -4,7 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "League Spartan", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   line-height: 1.5;
   font-weight: 400;
 
@@ -73,23 +75,23 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  /*border-radius: 8px;*/
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  /*background-color: #1a1a1a;*/
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+/*button:hover {*/
+/*  border-color: #646cff;*/
+/*}*/
+/*button:focus,*/
+/*button:focus-visible {*/
+/*  outline: 4px auto -webkit-focus-ring-color;*/
+/*}*/
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -112,7 +114,7 @@ button:focus-visible {
 
   /* Custom font families */
   --font-family-league-spartan: 'League Spartan', sans-serif;
-
+  --font-family-outfit: 'Outfit', sans-serif;
   /* Custom backdrop blur values */
   --backdrop-blur-21_3: blur(21.3px);
   --backdrop-blur-27_3: blur(27.3px);
@@ -190,5 +192,9 @@ button:focus-visible {
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1; /* Consistent font rendering */
+  }
+  html {
+    scroll-behavior: smooth;
   }
 }
