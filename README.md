@@ -21,4 +21,5 @@ Visit the live application: [oktaf.vercel.app](https://oktaf.vercel.app)
 
 Oktaf combines the best elements from established music streaming platforms while introducing innovative solutions to common user experience challenges, creating a more intuitive and enjoyable music discovery and listening experience.
 
+![Failed to load image.](https://res.cloudinary.com/dewgvguem/image/upload/v1748493209/demo_screenshot_zqjwtk.png)
 ---
