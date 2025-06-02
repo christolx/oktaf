@@ -1,6 +1,6 @@
 # Oktaf 🎵
 
-A modern music streaming platform designed to address UI/UX limitations found in existing services like Spotify.
+A modern music streaming platform designed to address UI/UX limitations found in Spotify's desktop interface.
 
 ## 🎯 Project Overview
 
