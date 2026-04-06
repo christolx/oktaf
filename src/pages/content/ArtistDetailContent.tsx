@@ -4,6 +4,8 @@ import {Play, Heart, Plus, MoreHorizontal, Search, Bookmark} from 'lucide-react'
 import { motion } from 'framer-motion';
 import {useNavigate} from "react-router";
 import {cardVariants, containerVariants} from "@/lib/animations.ts";
+import { AlbumArt } from '@/components/oktaf/AlbumArt.tsx';
+import type { AlbumArt as AlbumArtType } from '@/data/DummyData.tsx';
 
 interface Song {
     id: number;
@@ -44,6 +46,12 @@ interface AlbumAppearance {
     coverArt: string;
     type: 'album' | 'playlist' | 'compilation';
 }
+
+const createImageArt = (url: string, alt: string): AlbumArtType => ({
+    type: 'image',
+    value: url,
+    alt
+});
 
 function HeroSection({artistData}: HeroSectionProps) {
     return (
@@ -243,10 +251,9 @@ function AboutSection() {
                     {albumAppearances.map((album) => (
                         <div key={album.id} className="group cursor-pointer">
                             <div className="relative mb-4">
-                                <img
-                                    src={album.coverArt}
-                                    alt={`${album.title} cover`}
-                                    className="w-full aspect-square object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow"
+                                <AlbumArt
+                                    art={createImageArt(album.coverArt, `${album.title} cover`)}
+                                    className="w-full aspect-square rounded-lg shadow-lg group-hover:shadow-xl"
                                 />
 
                                 {/* Play button overlay */}
@@ -325,7 +332,7 @@ function SongSection({title, songs}: SongSectionProps) {
 
             <div className="space-y-2">
                 {songs.map((song, index) => (
-                    <SongRow key={song.id} song={song} index={index + 1}/>
+                    <SongRow key={song.id} song={song} index={index + 1} priority={index < 2}/>
                 ))}
             </div>
         </div>
@@ -335,9 +342,10 @@ function SongSection({title, songs}: SongSectionProps) {
 interface SongRowProps {
     song: Song;
     index: number;
+    priority?: boolean;
 }
 
-function SongRow({song, index}: SongRowProps) {
+function SongRow({song, index, priority = false}: SongRowProps) {
     return (
         <div className="group flex items-center gap-4 p-2 rounded-lg hover:bg-gray-900 transition-colors">
             {/* Track Number */}
@@ -346,10 +354,10 @@ function SongRow({song, index}: SongRowProps) {
       </span>
 
             {/* Album Art */}
-            <img
-                src={song.albumArt}
-                alt={`${song.album} cover`}
-                className="w-12 h-12 rounded object-cover"
+            <AlbumArt
+                art={createImageArt(song.albumArt, `${song.album} cover`)}
+                className="w-12 h-12 rounded"
+                priority={priority}
             />
 
             {/* Song Info */}
@@ -392,15 +400,15 @@ function Sidebar({artistData}: SidebarProps) {
         <div className="w-full lg:w-80 space-y-8">
             {/* Artist Avatars */}
             <div className="flex justify-center gap-4">
-                <img
-                    src={artistData.avatar1}
-                    alt="Daft Punk member 1"
-                    className="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover"
+                <AlbumArt
+                    art={createImageArt(artistData.avatar1, 'Daft Punk member 1')}
+                    className="w-24 h-24 lg:w-32 lg:h-32 rounded-full"
+                    priority
                 />
-                <img
-                    src={artistData.avatar2}
-                    alt="Daft Punk member 2"
-                    className="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover"
+                <AlbumArt
+                    art={createImageArt(artistData.avatar2, 'Daft Punk member 2')}
+                    className="w-24 h-24 lg:w-32 lg:h-32 rounded-full"
+                    priority
                 />
             </div>
 
@@ -469,13 +477,10 @@ function ArtistAlbumCard({ album }: AlbumCardProps) {
             whileTap={{ scale: 0.98 }}
         >
             <div className="relative mb-4">
-                <div className="aspect-square overflow-hidden rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-200">
-                    <img
-                        src={album.art}
-                        alt={`${album.title} cover`}
-                        className="w-full h-full object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-200"
-                    />
-                </div>
+                <AlbumArt
+                    art={createImageArt(album.art, `${album.title} cover`)}
+                    className="w-full aspect-square rounded-lg shadow-lg group-hover:brightness-110 group-hover:shadow-xl transition-all duration-200"
+                />
 
                 {/* Play button overlay */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
