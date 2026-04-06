@@ -56,34 +56,35 @@ const createImageArt = (url: string, alt: string): AlbumArtType => ({
 function HeroSection({artistData}: HeroSectionProps) {
     return (
         <div
-            className="relative h-80 lg:h-96 bg-cover bg-[center_35%]"
+            className="relative h-72 bg-cover bg-[center_35%] sm:h-80 lg:h-96"
             style={{backgroundImage: `url(${artistData.heroImage})`}}
         >
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-gray-800/80 to-black/60 pointer-events-none"/>
 
             {/* Content */}
-            <div className="relative h-full flex items-end px-6 lg:px-8 pb-6">
-                <div className="flex-1">
-                    <h1 className="text-4xl lg:text-6xl font-bold mb-2">
-                        {artistData.name}
-                    </h1>
-                    <p className="text-gray-300 text-sm lg:text-base">
-                        {artistData.monthlyListeners}
-                    </p>
-                </div>
+            <div className="relative flex h-full flex-col justify-end gap-5 px-4 pb-5 sm:px-6 lg:px-8 lg:pb-6">
+                <div className="flex-1" />
+                <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                    <div className="flex-1">
+                        <h1 className="mb-2 text-4xl font-bold sm:text-5xl lg:text-6xl">
+                            {artistData.name}
+                        </h1>
+                        <p className="text-sm text-gray-300 lg:text-base">
+                            {artistData.monthlyListeners}
+                        </p>
+                    </div>
 
-                {/* Action Buttons */}
-                <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                     <button
-                        className="bg-white text-black rounded-full p-3 hover:scale-105 transition-transform"
+                        className="rounded-full bg-white p-3 text-black transition-transform hover:scale-105"
                         aria-label="Play artist"
                     >
                         <Play className="w-6 h-6 fill-current"/>
                     </button>
 
                     <button
-                        className="border border-gray-400 text-white px-6 py-2 rounded-full hover:border-white transition-colors"
+                        className="rounded-full border border-gray-400 px-5 py-2 text-white transition-colors hover:border-white"
                         aria-label="Follow artist"
                     >
                         Follow
@@ -102,6 +103,7 @@ function HeroSection({artistData}: HeroSectionProps) {
                     >
                         <MoreHorizontal className="w-6 h-6"/>
                     </button>
+                </div>
                 </div>
             </div>
         </div>
@@ -293,15 +295,15 @@ function NavigationTabs({activeTab, setActiveTab}: NavigationTabsProps) {
     const tabs = ['Home', 'About', 'Albums'];
 
     return (
-        <div className="flex items-center justify-between border-b border-gray-800 pb-4">
-            <nav className="flex gap-8">
+        <div className="flex flex-col gap-4 border-b border-gray-800 pb-4 sm:flex-row sm:items-center sm:justify-between">
+            <nav className="-mx-1 flex gap-3 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:gap-8 sm:px-0">
                 {tabs.map((tab) => (
                     <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`text-sm lg:text-base font-medium transition-colors ${
+                        className={`shrink-0 text-sm font-medium transition-colors lg:text-base ${
                             activeTab === tab
-                                ? 'text-white border-b-2 border-white pb-4'
+                                ? 'border-b-2 border-white pb-2 text-white sm:pb-4'
                                 : 'text-gray-400 hover:text-white'
                         }`}
                     >
@@ -347,9 +349,9 @@ interface SongRowProps {
 
 function SongRow({song, index, priority = false}: SongRowProps) {
     return (
-        <div className="group flex items-center gap-4 p-2 rounded-lg hover:bg-gray-900 transition-colors">
+        <div className="group flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-gray-900 sm:gap-4">
             {/* Track Number */}
-            <span className="text-gray-400 text-sm w-6 text-center">
+            <span className="w-6 text-center text-sm text-gray-400">
         {index}
       </span>
 
@@ -367,10 +369,10 @@ function SongRow({song, index, priority = false}: SongRowProps) {
             </div>
 
             {/* Duration */}
-            <span className="text-gray-400 text-sm">{song.duration}</span>
+            <span className="hidden text-sm text-gray-400 sm:inline">{song.duration}</span>
 
             {/* Action Buttons */}
-            <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-2 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
                 <button
                     className="text-gray-400 hover:text-white transition-colors"
                     aria-label="Like song"
@@ -528,7 +530,7 @@ function AlbumFilter({
     const filters = ['All', 'Albums', 'Singles', 'Compilations'];
 
     return (
-        <div className="flex items-center gap-2 mb-8">
+        <div className="mb-8 flex flex-wrap items-center gap-2">
             {filters.map((filter) => (
                 <button
                     key={filter}
@@ -737,12 +739,12 @@ export function ArtistDetailContent() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white pb-24">
+            <div className="min-h-screen bg-black pb-40 text-white md:pb-28">
             {/* Hero Section */}
             <HeroSection artistData={artistData}/>
 
             {/* Navigation and Content */}
-            <div className="px-6 lg:px-8">
+            <div className="px-4 sm:px-6 lg:px-8">
                 <NavigationTabs activeTab={activeTab} setActiveTab={setActiveTab}/>
 
                 <div className="flex flex-col lg:flex-row gap-8 mt-8">

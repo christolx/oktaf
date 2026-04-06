@@ -654,8 +654,8 @@ export function HomeContent({activeSection}: MainContentProps) {
     };
 
     return (
-        <div className="h-screen overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-24">
-            <div className="pt-24 p-6">
+        <div className="min-h-full overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-44 md:pb-32">
+            <div className="px-4 pb-6 pt-32 sm:px-6 md:p-6 md:pt-24">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeSection}

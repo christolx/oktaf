@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { Sidebar } from '@/components/oktaf/Sidebar.tsx'
 import { BottomPlayer } from '@/components/oktaf/BottomPlayer.tsx'
 import NavHeader from '@/components/oktaf/NavHeader.tsx'
+import { MobileBottomNav } from '@/components/oktaf/MobileBottomNav.tsx'
 
 interface AppLayoutProps {
     children: ReactNode
@@ -18,31 +19,28 @@ export function AppLayout({
                               setActiveNav,
                               className = "",
                               contentClassName = ""
-                          }: AppLayoutProps) {
+                           }: AppLayoutProps) {
     return (
-        <div className={`h-screen w-screen bg-[#1a1a1a] text-white flex flex-col overflow-hidden ${className}`}>
+        <div className={`flex min-h-dvh w-full flex-col overflow-hidden bg-[#1a1a1a] text-white ${className}`}>
             <div className="flex flex-1 min-h-0 relative">
-                {/* Sidebar with proper z-index */}
-                <div className="relative z-40">
+                <div className="relative z-40 hidden md:block">
                     <Sidebar />
                 </div>
 
-                {/* Main Content Area - Full Height */}
                 <div className="flex-1 relative min-w-0">
-                    {/* Always show NavHeader for easy homepage section navigation */}
-                    <div className="absolute top-0 left-0 right-0 z-50 p-4">
+                    <div className="absolute left-0 right-0 top-0 z-50 p-3 sm:p-4 pt-[max(0.75rem,env(safe-area-inset-top))]">
                         <NavHeader
                             activeNav={activeNav}
                             setActiveNav={setActiveNav}
                         />
                     </div>
 
-                    {/* Main Content - Extends Full Height with top padding for NavHeader */}
                     <div className={`h-full ${contentClassName}`}>
                         {children}
                     </div>
                 </div>
             </div>
+            <MobileBottomNav activeNav={activeNav} setActiveNav={setActiveNav} />
             <BottomPlayer />
         </div>
     )

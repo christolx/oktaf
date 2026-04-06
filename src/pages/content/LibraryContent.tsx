@@ -529,7 +529,7 @@ function LikedSongsView() {
 
             {/* Table Header */}
             <motion.div
-                className="grid grid-cols-12 gap-4 px-4 py-2 text-white/60 text-base font-light border-b border-white/10"
+                className="hidden grid-cols-12 gap-4 border-b border-white/10 px-4 py-2 text-base font-light text-white/60 md:grid"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
@@ -596,19 +596,19 @@ interface LikedTrackRowProps {
 function LikedTrackRow({ track, index }: LikedTrackRowProps) {
     return (
         <motion.div
-            className="grid grid-cols-12 gap-4 px-4 py-2 rounded-md hover:bg-white/5 group cursor-pointer transition-colors"
+            className="group grid grid-cols-[auto,minmax(0,1fr),auto] items-center gap-3 rounded-md px-3 py-3 transition-colors hover:bg-white/5 md:grid-cols-12 md:gap-4 md:px-4 md:py-2"
             variants={cardVariants}
             whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
         >
             {/* Track Number */}
-            <div className="col-span-1 flex items-center justify-center">
-                <span className="text-white/60 text-sm group-hover:hidden">
+            <div className="flex items-center justify-center md:col-span-1">
+                <span className="text-sm text-white/60 group-hover:hidden">
                     {index + 1}
                 </span>
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="hidden group-hover:flex h-6 w-6 text-white hover:text-white hover:bg-transparent"
+                    className="hidden h-6 w-6 text-white hover:bg-transparent hover:text-white group-hover:flex"
                 >
                     <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8 5v14l11-7z" />
@@ -617,8 +617,8 @@ function LikedTrackRow({ track, index }: LikedTrackRowProps) {
             </div>
 
             {/* Title and Artist */}
-            <div className="col-span-4 flex items-center gap-3">
-                <div className="w-10 h-10 rounded overflow-hidden flex-shrink-0">
+            <div className="flex min-w-0 items-center gap-3 md:col-span-5">
+                <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded">
                     <AlbumArt
                         art={track.albumArt}
                         className="w-full h-full object-cover"
@@ -635,43 +635,31 @@ function LikedTrackRow({ track, index }: LikedTrackRowProps) {
             </div>
 
             {/* Album */}
-            <div className="col-span-3 flex items-center">
+            <div className="hidden items-center md:col-span-3 md:flex">
                 <span className="text-white/60 text-sm truncate hover:text-white hover:underline cursor-pointer">
                     {track.albumTitle}
                 </span>
             </div>
 
             {/* Date Added */}
-            <div className="col-span-2 flex items-center">
+            <div className="hidden items-center md:col-span-2 md:flex">
                 <span className="text-white/60 text-sm">
                     {track.dateAdded}
                 </span>
             </div>
 
             {/* Duration and Heart */}
-            <div className="relative col-span-1 flex items-start justify-center gap-2">
-                <span className="text-white/60 text-sm hover:text-white/60">
+            <div className="flex items-center justify-end gap-2 md:col-span-1 md:justify-center">
+                <span className="text-sm text-white/60 hover:text-white/60">
                     {track.duration}
                 </span>
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="h-6 w-6 text-green-500 hover:text-green-400 hover:bg-transparent absolute ml-60"
+                    className="h-6 w-6 text-green-500 hover:bg-transparent hover:text-green-400"
                 >
                     <Heart className="w-3 h-3 fill-current" />
                 </Button>
-                {/*<div className="hidden group-hover:flex items-center gap-2">*/}
-                {/*    <span className="text-white/60 text-sm">*/}
-                {/*        {track.duration}*/}
-                {/*    </span>*/}
-                {/*    <Button*/}
-                {/*        variant="ghost"*/}
-                {/*        size="icon"*/}
-                {/*        className="h-6 w-6 text-green-500 hover:text-green-400 hover:bg-transparent"*/}
-                {/*    >*/}
-                {/*        <Heart className="w-3 h-3 fill-current" />*/}
-                {/*    </Button>*/}
-                {/*</div>*/}
             </div>
         </motion.div>
     );
@@ -692,8 +680,8 @@ export function LibraryContent({ activeSection }: LibraryContentProps) {
     };
 
     return (
-        <div className="h-screen overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-24">
-            <div className="pt-24 p-6">
+        <div className="min-h-full overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-44 md:pb-32">
+            <div className="px-4 pb-6 pt-32 sm:px-6 md:p-6 md:pt-24">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeSection}
