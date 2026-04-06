@@ -127,6 +127,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                             art={album.art}
                             size="xl"
                             className="w-56 h-56 shadow-2xl rounded-lg flex-shrink-0"
+                            priority
                         />
 
                         <div className="flex-1 pb-4">
