@@ -50,162 +50,162 @@ const featuredArtists: Artist[] = [
     {
         id: "car-seat-headrest",
         artistname: "Car Seat Headrest",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748379848/car_seat_headrest_jcy4px.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-01_ox3wuu.jpg", "Car Seat Headrest")
     },
     {
         id: "daft-punk",
         artistname: "Daft Punk",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748379949/daft_punk_uqvrq9.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-02_gtxd7s.jpg", "Daft Punk")
     },
     {
         id: "linkin-park",
         artistname: "Linkin Park",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380045/linkin_park_y8bzn6.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-03_exkxkq.jpg", "Linkin Park")
     },
     {
         id: "the-beatles",
         artistname: "The Beatles",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380274/The-Beatles-Video_lnb8cu.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-04_mjogjt.jpg", "The Beatles")
     },
     {
         id: "muse",
         artistname: "Muse",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380312/muse_cv9lxs.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-05_ra9umc.jpg", "Muse")
     },
     {
         id: "michael-jackson",
         artistname: "Michael Jackson",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380364/thriller-album-michaeljackson_hzixyv.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-06_nq5e68.jpg", "Michael Jackson")
     },
     {
         id: "joy-division",
         artistname: "Joy Division",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380437/joy_division_djoebu.avif", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-07_rgbjqo.jpg", "Joy Division")
     },
     {
         id: "drake",
         artistname: "Drake",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380563/drake_jn8fw5.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/drake_rblsuf.jpg", "Drake")
     },
     {
         id: "the-smashing-pumpkins",
         artistname: "The Smashing Pumpkins",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380570/pumpkins_ncie1k.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/replacement-09_jsntea.jpg", "The Smashing Pumpkins")
     },
     {
         id: "radiohead",
         artistname: "Radiohead",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380649/radiohead_slunpa.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-10_b0qyq9.jpg", "Radiohead")
     },
     {
         id: "nirvana",
         artistname: "Nirvana",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380662/nirvana_btq2dv.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-11_a3vk7x.jpg", "Nirvana")
     },
     {
         id: "pixies",
         artistname: "Pixies",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380707/pixies_ihbqfj.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-12_ogi1wh.jpg", "Pixies")
     },
     {
         id: "jeff-buckley",
         artistname: "Jeff Buckley",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380724/jeff_buckley_uu0ifb.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/jeff-buckley_eydfnk.jpg", "Jeff Buckley")
     },
     {
         id: "sonic-youth",
         artistname: "Sonic Youth",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380830/sonic_youth_d9y2gl.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-14_bgtfk0.jpg", "Sonic Youth")
     },
     {
         id: "weezer",
         artistname: "Weezer",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380855/weezer_aaiwuo.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-15_owzd4r.jpg", "Weezer")
     },
     {
         id: "the-cure",
         artistname: "The Cure",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380888/the-cure_tpdd9k.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/replacement-16_juibnu.jpg", "The Cure")
     },
     {
         id: "swans",
         artistname: "Swans",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380920/swans_a9fnui.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-17_ilwxex.jpg", "Swans")
     },
     {
         id: "david-bowie",
         artistname: "David Bowie",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748380962/david_bowie_b0z7in.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/replacement-18_xiywhd.jpg", "David Bowie")
     },
     {
         id: "bjork",
         artistname: "Bjork",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381018/bjork_mekvxo.png", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-19_eb1mye.jpg", "Björk")
     },
     {
         id: "kate-bush",
         artistname: "Kate Bush",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381006/Kate-Bush-GettyImages-98590873_tcjqeh.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/replacement-20_pqalwl.jpg", "Kate Bush")
     },
     {
         id: "frank-ocean",
         artistname: "Frank Ocean",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381033/frank_ocean_f7zqut.png", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-21_qrh4mw.jpg", "Frank Ocean")
     },
     {
         id: "sufjan-stevens",
         artistname: "Sufjan Stevens",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381174/sufjan_stevens_ilrjdh.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/replacement-22_jo1xxc.jpg", "Sufjan Stevens")
     },
     {
         id: "rihanna",
         artistname: "Rihanna",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381196/rihanna_mlqov7.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-23_y7rdti.jpg", "Rihanna")
     },
     {
         id: "green-day",
         artistname: "Green Day",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381264/green_day_xdpsrb.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-24_slilej.jpg", "Green Day")
     },
     {
         id: "amy-winehouse",
         artistname: "Amy Winehouse",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381305/amy_winehouse_s1dw5l.png", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-25_ydb4ts.jpg", "Amy Winehouse")
     },
     {
         id: "harry-styles",
         artistname: "Harry Styles",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381336/harry_styles_ht4a0w.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-26_xzgvv4.jpg", "Harry Styles")
     },
     {
         id: "bruno-mars",
         artistname: "Bruno Mars",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381380/bruno_mars_ssz2bl.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-27_nfawxi.jpg", "Bruno Mars")
     },
     {
         id: "lizzo",
         artistname: "Lizzo",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381413/lizzo_ircqqe.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-28_aolo3q.jpg", "Lizzo")
     },
     {
         id: "kendrick-lamar",
         artistname: "Kendrick Lamar",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381425/kendrick_lamar_w2wigp.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-29_ilrjva.jpg", "Kendrick Lamar")
     },
     {
         id: "the-weeknd",
         artistname: "The Weeknd",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381550/the_weeknd_suchtt.webp", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-30_z7y7sb.jpg", "The Weeknd")
     },
     {
         id: "taylor-swift",
         artistname: "Taylor Swift",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381588/taylor_swift_ucqmjk.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-31_othnl4.jpg", "Taylor Swift")
     },
     {
         id: "bad-bunny",
         artistname: "Bad Bunny",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748381594/bad_bunny_thgyhq.jpg", "Failed to load artist image")
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/artist-32_v0htk3.jpg", "Bad Bunny")
     }
 ];
 
