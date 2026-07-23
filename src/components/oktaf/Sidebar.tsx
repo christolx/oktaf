@@ -29,7 +29,7 @@ export function Sidebar() {
 
     return (
         <div
-            className="w-55 h-screen pb-32 border-r border-white/5 flex flex-col bg-[#0a0a0a] relative overflow-hidden"
+            className="w-55 h-dvh pb-32 border-r border-white/5 flex flex-col bg-[#0a0a0a] relative overflow-hidden"
         >
             {/* Enhanced background with subtle gradient */}
             <div
