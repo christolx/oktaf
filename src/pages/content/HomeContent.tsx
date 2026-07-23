@@ -34,7 +34,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-1',
         name: 'lebron ai songs',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356466/1900x1900-000000-80-0-0_jd3qyo.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-1_stxlte.jpg", "Failed to load playlist cover"),
         trackCount: 10,
         duration: '1h 42m',
         creator: 'AI Music Lab'
@@ -42,7 +42,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-2',
         name: 'Romantical Vibes',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748361007/romance_gjk5f0.webp", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-2_riasyj.jpg", "Failed to load playlist cover"),
         trackCount: 35,
         duration: '2h 15m',
         creator: 'ItsLove'
@@ -50,7 +50,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-3',
         name: 'Lofi study',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356748/lofi_znxzoy.png", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-4_xhgwtq.jpg", "Failed to load playlist cover"),
         trackCount: 50,
         duration: '3h 20m',
         creator: 'ChillStudy'
@@ -58,7 +58,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-4',
         name: 'Old nostalgic',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356809/nostalgia_izvptr.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-9_he8xd2.jpg", "Failed to load playlist cover"),
         trackCount: 40,
         duration: '2h 45m',
         creator: 'RetroVibes'
@@ -66,7 +66,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-5',
         name: 'Best Hip Hop',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356961/hiphop_e4ef5k.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-14_rsifbm.jpg", "Failed to load playlist cover"),
         trackCount: 45,
         duration: '3h 5m',
         creator: 'HipHopCentral'
@@ -74,7 +74,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-6',
         name: 'Best Pop Playlist Ever',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748357083/pop_pmnbxp.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-6_bpfipw.jpg", "Failed to load playlist cover"),
         trackCount: 60,
         duration: '4h 12m',
         creator: 'PopMaster'
@@ -82,7 +82,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-7',
         name: 'West Side Trio',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748357188/west_side_pfwsmf.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-7_v4hqr7.jpg", "Failed to load playlist cover"),
         trackCount: 18,
         duration: '1h 15m',
         creator: 'WestCoast'
@@ -90,7 +90,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-8',
         name: 'GTA 5 Radio',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748357253/gta_5_tejf1j.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-22_h4o3jt.jpg", "Failed to load playlist cover"),
         trackCount: 55,
         duration: '3h 45m',
         creator: 'GameSounds'
@@ -98,7 +98,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-9',
         name: 'Leg Day Workout Playlist',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359574/leg_day_ubhbp8.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-25_d6un7u.jpg", "Failed to load playlist cover"),
         trackCount: 28,
         duration: '1h 55m',
         creator: 'LegDayWarrior'
@@ -106,7 +106,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-10',
         name: 'Favorite Jogging Playlist',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359656/jogging_tumczb.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-18_lpxuql.jpg", "Failed to load playlist cover"),
         trackCount: 42,
         duration: '2h 38m',
         creator: 'RunnerHub'
@@ -114,7 +114,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-11',
         name: 'The Best Hooping Playlist',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359751/kd_workout_vz3hjo.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-16_so5gkb.jpg", "Failed to load playlist cover"),
         trackCount: 33,
         duration: '2h 12m',
         creator: 'CourtKings'
@@ -122,7 +122,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-12',
         name: 'Cardio Performance',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359864/cardio_rvjuvr.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-19_xsrixr.jpg", "Failed to load playlist cover"),
         trackCount: 38,
         duration: '2h 25m',
         creator: 'CardioZone'
@@ -130,7 +130,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-13',
         name: 'UNLOCK YOUR BEAST MODE',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748359967/beast_i8ppyz.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-19_xsrixr.jpg", "Failed to load playlist cover"),
         trackCount: 52,
         duration: '3h 18m',
         creator: 'BeastModeMusic'
@@ -138,7 +138,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-14',
         name: 'Best for Calisthenics',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748360147/kalistenik_xuyxzo.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-25_d6un7u.jpg", "Failed to load playlist cover"),
         trackCount: 31,
         duration: '2h 8m',
         creator: 'BodyWeightBeats'
@@ -146,7 +146,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-15',
         name: 'Best for Crossfit',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748360215/crossfit_ephdbb.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-19_xsrixr.jpg", "Failed to load playlist cover"),
         trackCount: 47,
         duration: '2h 58m',
         creator: 'CrossFitVibes'
@@ -154,7 +154,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-16',
         name: 'Climb Your Energy',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748360268/rockclimbing_zw6i2y.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-20_fcben5.jpg", "Failed to load playlist cover"),
         trackCount: 29,
         duration: '1h 52m',
         creator: 'ClimbBeats'
@@ -162,7 +162,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-16',
         name: 'Box Your Fear',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748371422/boxing_zvouxi.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-25_d6un7u.jpg", "Failed to load playlist cover"),
         trackCount: 19,
         duration: '1h 52m',
         creator: 'FitXFearless'
@@ -170,7 +170,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-17',
         name: 'Summer Hits',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370186/summer_guugfh.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-6_bpfipw.jpg", "Failed to load playlist cover"),
         trackCount: 65,
         duration: '4h 32m',
         creator: 'SunnyVibes'
@@ -178,7 +178,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-18',
         name: 'Relaxes Your Day',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370331/chill_zjqazq.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-26_dnhedm.jpg", "Failed to load playlist cover"),
         trackCount: 44,
         duration: '2h 58m',
         creator: 'ZenMoments'
@@ -186,7 +186,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-19',
         name: 'Daily Hiking Picks',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370403/hiking_gjn6ev.webp", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-27_ymo6at.jpg", "Failed to load playlist cover"),
         trackCount: 36,
         duration: '2h 22m',
         creator: 'TrailBlazers'
@@ -194,7 +194,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-20',
         name: 'Developer Mode',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370584/dev_begg46.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-21_mvszfz.jpg", "Failed to load playlist cover"),
         trackCount: 72,
         duration: '5h 15m',
         creator: 'CodeBeats'
@@ -202,7 +202,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-21',
         name: 'Enjoy Your Ride',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370649/riding_clkrz3.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-22_h4o3jt.jpg", "Failed to load playlist cover"),
         trackCount: 48,
         duration: '3h 8m',
         creator: 'RoadTripVibes'
@@ -210,7 +210,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-22',
         name: 'Locked In',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370784/locked_in_qsjjz5.webp", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-24_bqtog6.jpg", "Failed to load playlist cover"),
         trackCount: 38,
         duration: '2h 35m',
         creator: 'FocusFlow'
@@ -218,7 +218,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-23',
         name: 'Best of Reggae',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370852/rege_b2yage.avif", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-15_m9etnu.jpg", "Failed to load playlist cover"),
         trackCount: 54,
         duration: '3h 42m',
         creator: 'IslandSounds'
@@ -226,7 +226,7 @@ const featuredPlaylists: Playlist[] = [
     {
         id: 'featured-24',
         name: 'Daily EDM Mix',
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748370910/edm_qud0hu.jpg", "Failed to load playlist cover"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-8_ypsxo2.jpg", "Failed to load playlist cover"),
         trackCount: 61,
         duration: '4h 18m',
         creator: 'ElectroBeats'

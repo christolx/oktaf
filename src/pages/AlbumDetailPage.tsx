@@ -23,7 +23,7 @@ export function AlbumDetailPage() {
         id: "69",
         title: "lebron ai songs",
         artist: "AI Music Lab",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356466/1900x1900-000000-80-0-0_jd3qyo.jpg", "Failed to load album cover."),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-1_stxlte.jpg", "Failed to load album cover."),
         year: 2013
     }
 

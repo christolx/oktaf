@@ -98,7 +98,7 @@ export const userPlaylists: Playlist[] = [
         id: "p1",
         name: "lebron ai songs",
         creator: "TalentedBlake",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748356466/1900x1900-000000-80-0-0_jd3qyo.jpg", "Failed to load user playlist"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-1_stxlte.jpg", "Failed to load user playlist"),
         trackCount: 23,
         duration: "1h 34m"
     },
@@ -106,7 +106,7 @@ export const userPlaylists: Playlist[] = [
         id: "p2",
         name: "dangdut phonk",
         creator: "Icemotion",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363276/alt_rock_jfzxm0.png", "Failed to load user playlist"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-14_rsifbm.jpg", "Failed to load user playlist"),
         trackCount: 32,
         duration: "2h 45m"
     },
@@ -114,7 +114,7 @@ export const userPlaylists: Playlist[] = [
         id: "p3",
         name: "lofi full study",
         creator: "torbob32",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363406/lofi_study_kvcauz.webp", "Failed to load user playlist"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-4_xhgwtq.jpg", "Failed to load user playlist"),
         trackCount: 15,
         duration: "1h 8m"
     },
@@ -122,7 +122,7 @@ export const userPlaylists: Playlist[] = [
         id: "p4",
         name: "dj tiktok full",
         creator: "rizky_psht",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363697/tiktok_grid_gcchvy.webp", "Failed to load user playlist"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-6_bpfipw.jpg", "Failed to load user playlist"),
         trackCount: 28,
         duration: "1h 52m"
     },
@@ -130,7 +130,7 @@ export const userPlaylists: Playlist[] = [
         id: "p5",
         name: "my first playlist",
         creator: "myfirstaccount",
-        art: createImageArt("https://res.cloudinary.com/de3hnd3wg/image/upload/v1748363194/list_grid_vh5m8a.jpg", "Failed to load user playlist"),
+        art: createImageArt("https://res.cloudinary.com/dewgvguem/image/upload/cover-15_m9etnu.jpg", "Failed to load user playlist"),
         trackCount: 47,
         duration: "3h 12m"
     }
