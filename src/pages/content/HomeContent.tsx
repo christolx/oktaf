@@ -276,7 +276,7 @@ function AlbumCard({album}: AlbumCardProps) {
             whileTap={{scale: 0.98}}
         >
             <div
-                className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
+                className="aspect-square mb-2 sm:mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
                 <AlbumArt
                     art={album.art}
                     className="w-full h-full group-hover:brightness-110 transition-all duration-200"
@@ -310,7 +310,7 @@ function PlaylistCard({playlist}: PlaylistCardProps) {
             whileTap={{scale: 0.98}}
         >
             <div
-                className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200"
+                className="aspect-square mb-2 sm:mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200"
             >
                 <AlbumArt
                     art={playlist.art}
@@ -367,7 +367,7 @@ function TrackCard({track, album}: TrackCardProps) {
             whileTap={{scale: 0.98}}
         >
             <div
-                className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
+                className="aspect-square mb-2 sm:mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
                 <AlbumArt
                     art={album.art}
                     className="w-full h-full group-hover:brightness-110 transition-all duration-200"
@@ -389,20 +389,20 @@ function TrackCard({track, album}: TrackCardProps) {
 function SectionHeader({title}: { title: string }) {
     return (
         <motion.div
-            className="flex items-center justify-between mb-6"
+            className="flex items-center justify-between gap-3 mb-4 sm:mb-6"
             initial={{opacity: 0, x: -20}}
             animate={{opacity: 1, x: 0}}
             transition={{duration: 0.5, ease: "easeOut"}}
         >
-            <h2 className="text-white text-xl font-semibold">{title}</h2>
+            <h2 className="min-w-0 text-lg font-semibold leading-tight text-white sm:text-xl">{title}</h2>
             <div className="flex items-center gap-2">
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
+                <Button variant="ghost" size="icon" aria-label={`Previous ${title}`} className="hidden size-9 text-white/60 hover:text-white sm:inline-flex">
                     <ChevronLeft className="w-4 h-4"/>
                 </Button>
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
+                <Button variant="ghost" size="icon" aria-label={`Next ${title}`} className="hidden size-9 text-white/60 hover:text-white sm:inline-flex">
                     <ChevronRight className="w-4 h-4"/>
                 </Button>
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white h-8 w-8">
+                <Button variant="ghost" size="icon" aria-label={`More ${title}`} className="size-11 text-white/60 hover:text-white sm:size-9">
                     <MoreHorizontal className="w-4 h-4"/>
                 </Button>
             </div>
@@ -413,7 +413,7 @@ function SectionHeader({title}: { title: string }) {
 function AlbumsView() {
     return (
         <motion.div
-            className="space-y-12"
+            className="space-y-10 sm:space-y-12"
             initial="hidden"
             animate="visible"
             variants={{
@@ -428,7 +428,7 @@ function AlbumsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.albumsForYou.title}/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -443,7 +443,7 @@ function AlbumsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.alternativeRock.title}/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -458,7 +458,7 @@ function AlbumsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.gothicRock.title}/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -473,7 +473,7 @@ function AlbumsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.popArt.title}/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -488,7 +488,7 @@ function AlbumsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.nostalgiaHits.title}/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -503,7 +503,7 @@ function AlbumsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title={musicSections.trendingNow.title}/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -520,7 +520,7 @@ function AlbumsView() {
 function PlaylistsView() {
     return (
         <motion.div
-            className="space-y-12"
+            className="space-y-10 sm:space-y-12"
             initial="hidden"
             animate="visible"
             variants={{
@@ -535,7 +535,7 @@ function PlaylistsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title="Featured Playlists"/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -550,7 +550,7 @@ function PlaylistsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title="Workout Playlists"/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -565,7 +565,7 @@ function PlaylistsView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title="Today's Hits"/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -604,7 +604,7 @@ function TracksView() {
 
     return (
         <motion.div
-            className="space-y-12"
+            className="space-y-10 sm:space-y-12"
             initial="hidden"
             animate="visible"
             variants={{
@@ -618,7 +618,7 @@ function TracksView() {
             <motion.section variants={sectionVariants}>
                 <SectionHeader title="Featured Tracks"/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={{
                         hidden: {opacity: 0},
                         visible: {
@@ -654,8 +654,8 @@ export function HomeContent({activeSection}: MainContentProps) {
     };
 
     return (
-        <div className="h-screen overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-24">
-            <div className="pt-24 p-6">
+        <div className="h-full overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-40 lg:pb-24">
+            <div className="px-4 pt-32 sm:px-6 lg:pt-24">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeSection}

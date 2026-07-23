@@ -299,7 +299,7 @@ function LibraryAlbumCard({ album }: AlbumCardProps) {
             }}
             whileTap={{ scale: 0.98 }}
         >
-            <div className="aspect-square mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
+            <div className="aspect-square mb-2 sm:mb-3 relative overflow-hidden group-hover:scale-105 transition-transform duration-200">
                 <AlbumArt
                     art={album.art}
                     className="w-full h-full group-hover:brightness-110 transition-all duration-200"
@@ -323,7 +323,7 @@ function LibraryArtistCard({ artist }: ArtistCardProps) {
 
     return (
         <motion.div
-            className="group cursor-pointer mb-12"
+            className="group mb-6 cursor-pointer sm:mb-12"
             onClick={handleArtistClick}
             variants={cardVariants}
             whileHover={{
@@ -348,13 +348,13 @@ function LibraryArtistCard({ artist }: ArtistCardProps) {
 function LibrarySectionHeader({ title, albumCount }: { title: string; albumCount?: number }) {
     return (
         <motion.div
-            className="flex items-center justify-between mb-6"
+            className="mb-5 flex items-start justify-between gap-3 sm:mb-6 sm:items-center"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
         >
             <div>
-                <h2 className="text-white text-2xl font-bold">{title}</h2>
+                <h2 className="text-xl font-bold leading-tight text-white sm:text-2xl">{title}</h2>
                 {albumCount && (
                     <p className="text-white/60 text-sm mt-1">
                         {albumCount} {title.toLowerCase().includes('artist') ? 'artists' : title.toLowerCase().includes('song') ? 'songs' : 'albums'}
@@ -362,13 +362,13 @@ function LibrarySectionHeader({ title, albumCount }: { title: string; albumCount
                 )}
             </div>
             <div className="flex items-center gap-2">
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-transparent h-8 w-8">
+                <Button variant="ghost" size="icon" aria-label="Grid view" className="hidden size-9 text-white/60 hover:bg-transparent hover:text-white sm:inline-flex">
                     <Grid3x3 className="w-4 h-4" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-transparent h-8 w-8">
+                <Button variant="ghost" size="icon" aria-label="List view" className="hidden size-9 text-white/60 hover:bg-transparent hover:text-white sm:inline-flex">
                     <List className="w-4 h-4" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-transparent h-8 w-8">
+                <Button variant="ghost" size="icon" aria-label="More library options" className="size-11 text-white/60 hover:bg-transparent hover:text-white sm:size-9">
                     <MoreHorizontal className="w-4 h-4" />
                 </Button>
             </div>
@@ -392,7 +392,7 @@ function AlbumsLibraryView() {
 
     return (
         <motion.div
-            className="space-y-12"
+            className="space-y-10 sm:space-y-12"
             initial="hidden"
             animate="visible"
             variants={{
@@ -407,7 +407,7 @@ function AlbumsLibraryView() {
             <motion.section variants={sectionVariants}>
                 <LibrarySectionHeader title={"Saved Albums"} albumCount={resultAlbums.length}/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={{
                         hidden: {opacity: 0},
                         visible: {
@@ -445,7 +445,7 @@ function ArtistsLibraryView() {
 
     return (
         <motion.div
-            className="space-y-12"
+            className="space-y-10 sm:space-y-12"
             initial="hidden"
             animate="visible"
             variants={{
@@ -460,7 +460,7 @@ function ArtistsLibraryView() {
             <motion.section variants={sectionVariants}>
                 <LibrarySectionHeader title={"Featured Artists"} albumCount={shuffledArtists.length}/>
                 <motion.div
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"
+                    className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8"
                     variants={{
                         hidden: {opacity: 0},
                         visible: {
@@ -502,43 +502,43 @@ function LikedSongsView() {
         >
             {/* Header */}
             <motion.div
-                className="flex items-center justify-between"
+                className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 <div>
-                    <h2 className="text-white text-2xl font-bold">Liked Songs</h2>
+                    <h2 className="text-xl font-bold text-white sm:text-2xl">Liked Songs</h2>
                     <p className="text-white/60 text-sm mt-1">{sortedLikedTracks.length} songs</p>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-transparent h-8 w-8">
+                    <Button variant="ghost" size="icon" aria-label="Add songs" className="size-11 text-white/60 hover:bg-transparent hover:text-white sm:size-9">
                         <Plus className="w-4 h-4" />
                     </Button>
-                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-transparent h-8 px-3">
+                    <Button variant="ghost" size="sm" className="h-11 px-3 text-white/60 hover:bg-transparent hover:text-white sm:h-8">
                         <ArrowUpDown className="w-4 h-4 mr-2" />
                         Recent
                     </Button>
-                    <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-transparent h-8 px-3">
-                        <Filter className="w-4 h-4 mr-2" />
-                        Filter: All
+                    <Button variant="ghost" size="sm" aria-label="Filter liked songs" className="size-11 px-0 text-white/60 hover:bg-transparent hover:text-white sm:h-8 sm:w-auto sm:px-3">
+                        <Filter className="size-4 sm:mr-2" />
+                        <span className="hidden sm:inline">Filter: All</span>
                     </Button>
                 </div>
             </motion.div>
 
             {/* Table Header */}
             <motion.div
-                className="grid grid-cols-12 gap-4 px-4 py-2 text-white/60 text-base font-light border-b border-white/10"
+                className="grid grid-cols-12 gap-2 border-b border-white/10 px-2 py-2 text-sm font-light text-white/60 sm:gap-4 sm:px-4 sm:text-base"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
             >
                 <div className="col-span-1 text-center">#</div>
-                <div className="col-span-4">Title</div>
-                <div className="col-span-3">Album</div>
-                <div className="col-span-2">Date Added</div>
-                <div className="col-span-1 text-center">Duration</div>
+                <div className="col-span-8 sm:col-span-4">Title</div>
+                <div className="col-span-3 hidden sm:block">Album</div>
+                <div className="col-span-2 hidden sm:block">Date Added</div>
+                <div className="col-span-3 text-right sm:col-span-1 sm:text-center">Duration</div>
             </motion.div>
 
             {/* Track List */}
@@ -596,7 +596,7 @@ interface LikedTrackRowProps {
 function LikedTrackRow({ track, index }: LikedTrackRowProps) {
     return (
         <motion.div
-            className="grid grid-cols-12 gap-4 px-4 py-2 rounded-md hover:bg-white/5 group cursor-pointer transition-colors"
+            className="group grid min-h-16 cursor-pointer grid-cols-12 gap-2 rounded-md px-2 py-2 transition-colors hover:bg-white/5 sm:gap-4 sm:px-4"
             variants={cardVariants}
             whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.05)" }}
         >
@@ -617,7 +617,7 @@ function LikedTrackRow({ track, index }: LikedTrackRowProps) {
             </div>
 
             {/* Title and Artist */}
-            <div className="col-span-4 flex items-center gap-3">
+            <div className="col-span-8 flex min-w-0 items-center gap-3 sm:col-span-4">
                 <div className="w-10 h-10 rounded overflow-hidden flex-shrink-0">
                     <AlbumArt
                         art={track.albumArt}
@@ -635,28 +635,29 @@ function LikedTrackRow({ track, index }: LikedTrackRowProps) {
             </div>
 
             {/* Album */}
-            <div className="col-span-3 flex items-center">
+            <div className="col-span-3 hidden items-center sm:flex">
                 <span className="text-white/60 text-sm truncate hover:text-white hover:underline cursor-pointer">
                     {track.albumTitle}
                 </span>
             </div>
 
             {/* Date Added */}
-            <div className="col-span-2 flex items-center">
+            <div className="col-span-2 hidden items-center sm:flex">
                 <span className="text-white/60 text-sm">
                     {track.dateAdded}
                 </span>
             </div>
 
             {/* Duration and Heart */}
-            <div className="relative col-span-1 flex items-start justify-center gap-2">
+            <div className="col-span-3 flex items-center justify-end gap-1 sm:col-span-1 sm:justify-center">
                 <span className="text-white/60 text-sm hover:text-white/60">
                     {track.duration}
                 </span>
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="h-6 w-6 text-green-500 hover:text-green-400 hover:bg-transparent absolute ml-60"
+                    aria-label={`Unlike ${track.title}`}
+                    className="hidden h-8 w-8 text-green-500 hover:bg-transparent hover:text-green-400 md:inline-flex"
                 >
                     <Heart className="w-3 h-3 fill-current" />
                 </Button>
@@ -692,8 +693,8 @@ export function LibraryContent({ activeSection }: LibraryContentProps) {
     };
 
     return (
-        <div className="h-screen overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-24">
-            <div className="pt-24 p-6">
+        <div className="h-full overflow-y-auto bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] pb-40 lg:pb-24">
+            <div className="px-4 pt-32 sm:px-6 lg:pt-24">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeSection}
