@@ -83,7 +83,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
     return (
         <>
             {/* Header with album info and dynamic background */}
-            <div className="relative min-h-[500px]">
+            <div className="relative min-h-[500px] overflow-hidden">
                 {/* Background with album art blur effect */}
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -120,22 +120,22 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                 )}
 
                 {/* Header content with top padding for floating nav */}
-                <div className="relative z-20 p-8 pt-24">
+                <div className="relative z-20 px-4 pb-6 pt-32 sm:px-6 lg:p-8 lg:pt-24">
                     {/* Album info section */}
-                    <div className="flex items-end gap-8 mb-8">
+                    <div className="mb-6 flex flex-col items-center gap-5 sm:items-start md:flex-row md:items-end md:gap-8 lg:mb-8">
                         <AlbumArt
                             art={album.art}
                             size="xl"
-                            className="w-56 h-56 shadow-2xl rounded-lg flex-shrink-0"
+                            className="size-44 flex-shrink-0 rounded-lg shadow-2xl sm:size-52 lg:size-56"
                             priority
                         />
 
-                        <div className="flex-1 pb-4">
-                            <div className="text-sm text-white/70 mb-2 font-medium">Album</div>
-                            <h1 className="text-6xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
+                        <div className="min-w-0 flex-1 text-center sm:text-left md:pb-4">
+                            <div className="mb-2 text-sm font-medium text-white/70">Album</div>
+                            <h1 className="mb-3 break-words text-3xl font-bold leading-tight text-white drop-shadow-lg sm:text-4xl lg:mb-6 lg:text-6xl">
                                 {album.title}
                             </h1>
-                            <div className="flex items-center gap-2 text-white/90">
+                            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-white/90 sm:justify-start">
                                 <span className="font-semibold text-white">{album.artist}</span>
                                 <span className="text-white/60">•</span>
                                 <span className="text-white/80">{album.year}</span>
@@ -148,10 +148,10 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                     </div>
 
                     {/* Action buttons */}
-                    <div className="flex items-center gap-6">
+                    <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start sm:gap-4 lg:gap-6">
                         <Button
                             size="icon"
-                            className="bg-green-500 hover:bg-green-400 text-black w-14 h-14 rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+                            className="size-14 rounded-full bg-green-500 text-black shadow-lg transition-all duration-200 hover:scale-105 hover:bg-green-400"
                             onClick={handlePlayAlbum}
                             title="Play album"
                         >
@@ -162,7 +162,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                             variant="ghost"
                             size="icon"
                             onClick={handleShufflePlay}
-                            className={`w-10 h-10 transition-all duration-200 hover:scale-110 ${
+                            className={`size-11 transition-all duration-200 hover:scale-110 ${
                                 isCurrentAlbum && playerState.isShuffled
                                     ? 'text-green-500 hover:text-green-400'
                                     : 'text-white/70 hover:text-white hover:bg-white/10'
@@ -175,7 +175,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10 transition-all duration-200 hover:scale-110"
+                            className="size-11 text-white/70 transition-all duration-200 hover:scale-110 hover:bg-white/10 hover:text-white"
                             title="Like album"
                         >
                             <Heart className="w-5 h-5" />
@@ -184,7 +184,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10 transition-all duration-200 hover:scale-110"
+                            className="size-11 text-white/70 transition-all duration-200 hover:scale-110 hover:bg-white/10 hover:text-white"
                             title="Dislike album"
                         >
                             <ThumbsDown className="w-5 h-5" />
@@ -193,7 +193,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10 transition-all duration-200 hover:scale-110"
+                            className="size-11 text-white/70 transition-all duration-200 hover:scale-110 hover:bg-white/10 hover:text-white"
                             title="Download album"
                         >
                             <Download className="w-5 h-5" />
@@ -202,7 +202,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-white/70 hover:text-white hover:bg-white/10 w-10 h-10 transition-all duration-200 hover:scale-110"
+                            className="size-11 text-white/70 transition-all duration-200 hover:scale-110 hover:bg-white/10 hover:text-white"
                             title="More options"
                         >
                             <MoreHorizontal className="w-5 h-5" />
@@ -213,7 +213,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
 
             {/* Track listing with dynamic background continuation */}
             <div
-                className="px-8 pb-8"
+                className="px-3 pb-40 sm:px-6 lg:px-8 lg:pb-28"
                 style={{
                     background: colorsLoading
                         ? 'linear-gradient(to bottom, rgba(0,0,0,0.9), #0a0a0a)'
@@ -223,10 +223,10 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                 {tracks.length > 0 ? (
                     <>
                         {/* Table header */}
-                        <div className="grid grid-cols-12 gap-4 py-4 px-4 text-white/100 text-sm font-medium border-b border-white/10 mb-2">
+                        <div className="mb-2 grid grid-cols-12 gap-2 border-b border-white/10 px-2 py-4 text-sm font-medium text-white sm:gap-4 sm:px-4">
                             <div className="col-span-1 text-center">#</div>
-                            <div className="col-span-3">Title</div>
-                            <div className="col-span-3 text-right">Plays</div>
+                            <div className="col-span-8 md:col-span-5">Title</div>
+                            <div className="col-span-3 hidden text-right md:block">Plays</div>
                             <div className="col-span-3 text-right">Duration</div>
                         </div>
 
@@ -239,7 +239,7 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                                 return (
                                     <div
                                         key={track.id}
-                                        className={`grid grid-cols-12 gap-4 py-3 px-4 rounded-lg transition-all duration-200 group cursor-pointer ${
+                                        className={`group grid min-h-16 cursor-pointer grid-cols-12 gap-2 rounded-lg px-2 py-3 transition-all duration-200 sm:gap-4 sm:px-4 ${
                                             isCurrentTrack
                                                 ? 'bg-white/10 text-green-400'
                                                 : 'hover:bg-white/5 text-white'
@@ -262,13 +262,13 @@ export function AlbumDetailContent({ album, albumId }: AlbumDetailContentProps) 
                                                 </>
                                             )}
                                         </div>
-                                        <div className="col-span-3">
-                                            <div className={`text-sm font-medium ${isCurrentTrack ? 'text-green-400' : 'text-white'}`}>
+                                        <div className="col-span-8 min-w-0 md:col-span-5">
+                                            <div className={`truncate text-sm font-medium ${isCurrentTrack ? 'text-green-400' : 'text-white'}`}>
                                                 {track.title}
                                             </div>
-                                            <div className="text-white/60 text-xs mt-1">{track.artist}</div>
+                                            <div className="mt-1 truncate text-xs text-white/60">{track.artist}</div>
                                         </div>
-                                        <div className="col-span-3 text-right text-white/60 text-sm flex items-center justify-end">
+                                        <div className="col-span-3 hidden items-center justify-end text-right text-sm text-white/60 md:flex">
                                             {formatPlayCount(track.plays)}
                                         </div>
                                         <div className="col-span-3 text-right text-white/60 text-sm flex items-center justify-end">

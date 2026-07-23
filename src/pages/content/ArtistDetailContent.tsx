@@ -56,16 +56,16 @@ const createImageArt = (url: string, alt: string): AlbumArtType => ({
 function HeroSection({artistData}: HeroSectionProps) {
     return (
         <div
-            className="relative h-80 lg:h-96 bg-cover bg-[center_35%]"
+            className="relative h-[28rem] bg-cover bg-[center_35%] lg:h-96"
             style={{backgroundImage: `url(${artistData.heroImage})`}}
         >
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-gray-800/80 to-black/60 pointer-events-none"/>
 
             {/* Content */}
-            <div className="relative h-full flex items-end px-6 lg:px-8 pb-6">
-                <div className="flex-1">
-                    <h1 className="text-4xl lg:text-6xl font-bold mb-2">
+            <div className="relative flex h-full flex-col items-start justify-end gap-5 px-4 pb-6 pt-32 sm:px-6 lg:flex-row lg:items-end lg:gap-6 lg:px-8">
+                <div className="min-w-0 flex-1">
+                    <h1 className="mb-2 text-4xl font-bold leading-none sm:text-5xl lg:text-6xl">
                         {artistData.name}
                     </h1>
                     <p className="text-gray-300 text-sm lg:text-base">
@@ -74,30 +74,30 @@ function HeroSection({artistData}: HeroSectionProps) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                     <button
-                        className="bg-white text-black rounded-full p-3 hover:scale-105 transition-transform"
+                        className="flex size-12 items-center justify-center rounded-full bg-white p-0 text-black transition-transform hover:scale-105"
                         aria-label="Play artist"
                     >
                         <Play className="w-6 h-6 fill-current"/>
                     </button>
 
                     <button
-                        className="border border-gray-400 text-white px-6 py-2 rounded-full hover:border-white transition-colors"
+                        className="h-11 rounded-full border border-gray-400 px-6 py-2 text-white transition-colors hover:border-white"
                         aria-label="Follow artist"
                     >
                         Follow
                     </button>
 
                     <button
-                        className="text-gray-400 hover:text-white transition-colors"
+                        className="flex size-11 items-center justify-center rounded-full text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
                         aria-label="Add to library"
                     >
                         <Bookmark className="w-6 h-6"/>
                     </button>
 
                     <button
-                        className="text-gray-400 hover:text-white transition-colors"
+                        className="flex size-11 items-center justify-center rounded-full text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
                         aria-label="More options"
                     >
                         <MoreHorizontal className="w-6 h-6"/>
@@ -293,8 +293,8 @@ function NavigationTabs({activeTab, setActiveTab}: NavigationTabsProps) {
     const tabs = ['Home', 'About', 'Albums'];
 
     return (
-        <div className="flex items-center justify-between border-b border-gray-800 pb-4">
-            <nav className="flex gap-8">
+        <div className="flex min-w-0 items-center justify-between gap-4 border-b border-gray-800 pb-4">
+            <nav className="flex min-w-0 gap-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-8">
                 {tabs.map((tab) => (
                     <button
                         key={tab}
@@ -311,7 +311,7 @@ function NavigationTabs({activeTab, setActiveTab}: NavigationTabsProps) {
             </nav>
 
             <button
-                className="text-gray-400 hover:text-white transition-colors"
+                className="flex size-11 flex-shrink-0 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
                 aria-label="Search"
             >
                 <Search className="w-5 h-5"/>
@@ -327,7 +327,7 @@ interface SongSectionProps {
 
 function SongSection({title, songs}: SongSectionProps) {
     return (
-        <div className="mb-12">
+        <div className="mb-10 sm:mb-12">
             <h2 className="text-xl lg:text-2xl font-bold mb-6">{title}</h2>
 
             <div className="space-y-2">
@@ -347,7 +347,7 @@ interface SongRowProps {
 
 function SongRow({song, index, priority = false}: SongRowProps) {
     return (
-        <div className="group flex items-center gap-4 p-2 rounded-lg hover:bg-gray-900 transition-colors">
+        <div className="group flex min-h-16 items-center gap-3 rounded-lg p-2 transition-colors hover:bg-gray-900 sm:gap-4">
             {/* Track Number */}
             <span className="text-gray-400 text-sm w-6 text-center">
         {index}
@@ -370,16 +370,16 @@ function SongRow({song, index, priority = false}: SongRowProps) {
             <span className="text-gray-400 text-sm">{song.duration}</span>
 
             {/* Action Buttons */}
-            <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="hidden items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100 sm:flex">
                 <button
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="flex size-10 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
                     aria-label="Like song"
                 >
                     <Heart className="w-4 h-4"/>
                 </button>
 
                 <button
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="flex size-10 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
                     aria-label="Add to playlist"
                 >
                     <Plus className="w-4 h-4"/>
@@ -640,7 +640,7 @@ function AlbumsSection({ artistData }: AlbumsSectionProps) {
 
             {/* Albums Grid */}
             <motion.div
-                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+                className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -737,15 +737,15 @@ export function ArtistDetailContent() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white pb-24">
+        <div className="min-h-full bg-black pb-40 text-white lg:pb-24">
             {/* Hero Section */}
             <HeroSection artistData={artistData}/>
 
             {/* Navigation and Content */}
-            <div className="px-6 lg:px-8">
+            <div className="px-4 sm:px-6 lg:px-8">
                 <NavigationTabs activeTab={activeTab} setActiveTab={setActiveTab}/>
 
-                <div className="flex flex-col lg:flex-row gap-8 mt-8">
+                <div className="mt-6 flex flex-col gap-8 sm:mt-8 lg:flex-row">
                     {/* Main Content */}
                     <div className="flex-1">
                         {activeTab === 'Home' && (
