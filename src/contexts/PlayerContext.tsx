@@ -14,7 +14,8 @@ import {
     trendingAlbums,
     type CurrentTrack,
     type PlayerState,
-    type Track
+    type Track,
+    type Album
 } from '@/data/DummyData'
 
 const getAllAlbums = () => [
@@ -102,7 +103,7 @@ export function PlayerProvider({ children }: PlayerProviderProps) {
     }
 
     // Convert Track to CurrentTrack
-    const trackToCurrentTrack = (track: Track, albumData?: any): CurrentTrack => {
+    const trackToCurrentTrack = (track: Track, albumData?: Album | null): CurrentTrack => {
         return {
             id: track.id,
             title: track.title,
