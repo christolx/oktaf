@@ -203,24 +203,83 @@ export function BottomPlayer() {
 
     if (!currentTrack) {
         return (
-            <div className="fixed bottom-0 left-0 right-0 h-20 z-50">
-                {/* Glassmorphism background */}
-                <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-t from-black/50 via-black/30 to-black/20 border-t border-white/20 shadow-2xl">
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5" />
+            <>
+                <div className="fixed inset-x-2 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-50 flex h-14 items-center justify-center rounded-xl border border-white/10 bg-[#151515]/95 text-sm text-white/55 shadow-2xl backdrop-blur-xl lg:hidden">
+                    Select a track to start listening
                 </div>
-
-                {/* Content */}
-                <div className="relative flex items-center justify-center h-full backdrop-saturate-150">
-                    <div className="text-white/60 text-sm">No track selected</div>
+                <div className="fixed bottom-0 left-0 right-0 z-50 hidden h-20 lg:block">
+                    <div className="absolute inset-0 border-t border-white/20 bg-gradient-to-t from-black/50 via-black/30 to-black/20 shadow-2xl backdrop-blur-xl">
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5" />
+                    </div>
+                    <div className="relative flex h-full items-center justify-center backdrop-saturate-150">
+                        <div className="text-sm text-white/60">No track selected</div>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 
     // Replace the return statement in your BottomPlayer component with this enhanced version:
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 h-20 z-50 flex justify-center items-end pb-4">
+        <>
+            <div className="fixed inset-x-2 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-50 h-16 overflow-hidden rounded-xl border border-white/10 bg-[#151515]/95 shadow-2xl backdrop-blur-xl lg:hidden">
+                <div
+                    className="absolute inset-x-0 bottom-0 h-0.5 bg-white/15"
+                    aria-hidden="true"
+                >
+                    <div
+                        className="h-full bg-green-400 transition-[width] duration-200"
+                        style={{ width: `${displayProgress}%` }}
+                    />
+                </div>
+                <div className="flex h-full min-w-0 items-center gap-3 px-2">
+                    <AlbumArt art={currentTrack.art} className="size-12 rounded-lg" />
+                    <div className="min-w-0 flex-1">
+                        <div className="truncate text-sm font-medium text-white">
+                            {currentTrack.title}
+                        </div>
+                        <div className="truncate text-xs text-white/55">
+                            {currentTrack.artist}
+                        </div>
+                    </div>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={toggleLike}
+                        aria-label={currentTrack.isLiked ? 'Unlike track' : 'Like track'}
+                        className={`size-11 rounded-full hover:bg-white/10 ${
+                            currentTrack.isLiked ? 'text-green-400' : 'text-white/65'
+                        }`}
+                    >
+                        <Heart className={`size-5 ${currentTrack.isLiked ? 'fill-current' : ''}`} />
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={togglePlayPause}
+                        aria-label={isPlaying ? 'Pause' : 'Play'}
+                        className="size-11 rounded-full bg-white text-black hover:bg-white/85 hover:text-black"
+                    >
+                        {isPlaying ? (
+                            <Pause className="size-5 fill-current" />
+                        ) : (
+                            <Play className="ml-0.5 size-5 fill-current" />
+                        )}
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={nextTrack}
+                        aria-label="Next track"
+                        className="size-11 rounded-full text-white/75 hover:bg-white/10 hover:text-white"
+                    >
+                        <SkipForward className="size-5 fill-current" />
+                    </Button>
+                </div>
+            </div>
+
+        <div className="fixed bottom-0 left-0 right-0 z-50 hidden h-20 justify-center items-end pb-4 lg:flex">
             {/* Floating container with glassmorphism */}
             <div className="w-[97%] h-24 relative">
                 {/* Enhanced glassmorphism background with rounded corners */}
@@ -461,5 +520,6 @@ export function BottomPlayer() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
